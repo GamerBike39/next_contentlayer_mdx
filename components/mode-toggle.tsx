@@ -1,14 +1,21 @@
-"use client"
+"use client";
 
-import { useTheme } from "next-themes"
+import { useTheme } from "next-themes";
+import useSound from "use-sound";
 
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, theme } = useTheme();
+
+  const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
+  const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
 
   return (
     <button
+      onMouseDown={() => playOn()}
+      onMouseUp={() => (theme === "dark" ? playOff() : playOn())}
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="border rounded-md w-6 h-6 flex items-center justify-center">
+      className="border rounded-md w-6 h-6 flex items-center justify-center"
+    >
       <span className="sr-only">Toggle mode</span>
       {theme !== "dark" ? (
         <svg
@@ -17,7 +24,8 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4">
+          className="w-4 h-4"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -31,7 +39,8 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4">
+          className="w-4 h-4"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -40,5 +49,5 @@ export function ModeToggle() {
         </svg>
       )}
     </button>
-  )
+  );
 }

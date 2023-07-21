@@ -1,0 +1,58 @@
+---
+title: ToDO
+description: Les choses à faire
+date: "2023-07-21"
+---
+
+# ToDO
+
+- [ ] page d'accueil
+- [ ] page de profil
+- [ ] page de projet
+- [ ] page de contact
+- [ ] page de blog
+  <div className="h-5" />
+
+<h1 id="guide">Guide</h1>
+
+<h2 id="sound_design">Sound Design</h2>{" "}
+
+fortement inspiré par : <a href='https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/#interrupting-sounds-10' target='_blank'>Josh W Comeau</a>
+
+dependance : pnpm i use-sound
+
+    ```js
+
+import : `import useSound from 'use-sound';
+
+exemple : =>
+const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
+const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
+
+    ```
+
+- [ ] hover
+- [ ] click
+- [ ] page transition ??
+
+- [x] click : pour le mode jour/nuit
+
+- [ ] hover : pour les liens et les boutons En Cours !
+
+Pourquoi pas faire un son d'un coeur de svg qui se remplit pour dire à quel point on m'aime 😇
+
+<h2 id="hooks">Hooks</h2>
+
+Un des premiers hooks dont j'ai besoin est pour connaître la taille du viewport. Pour cela, après mes recherches je suis tombé sur une librairie plutôt sympa, que je n'avais pas encore vu malgré les nombreux tutos que j'ai pu suivre.
+
+Il s'agit de <a href="https://mantine.dev/" target="_blank">Mantine</a>
+
+Ce hook est très pratique pour faire du style conditionnel.  
+Sont utilisation est très simple :
+
+```js
+import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
+const { height, width } = useViewportSize();
+```
+
+<h2 id="animations">Animations</h2>

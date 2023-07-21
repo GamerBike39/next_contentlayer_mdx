@@ -31,6 +31,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-  ],
+, "hooks/use-viewport-size", "hooks/use-window-event"  ],
   "exclude": ["node_modules"]
 }
