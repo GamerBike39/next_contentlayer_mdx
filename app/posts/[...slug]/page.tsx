@@ -3,6 +3,7 @@ import { allPosts } from "contentlayer/generated";
 
 import { Metadata } from "next";
 import { Mdx } from "@/components/mdx-components";
+import NavigationMenu from "@/components/ui/navigation/mdx/sideNav";
 
 interface PostProps {
   params: {
@@ -59,22 +60,9 @@ export default async function PostPage({ params }: PostProps) {
           </p>
         )}
         {post.navigation && (
-          <div className="flex flex-col flex-wrap gap-2 mt-4 fixed bottom-1/2 right-10">
-            <h4>Navigation :</h4>
-            <ul>
-              {post.navigation.map((nav) => (
-                <li key={nav}>
-                  <a
-                    href={`#${nav}`}
-                    className="text-sm text-right text-slate-700 dark:text-slate-200 decoration-transparent"
-                  >
-                    {nav}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <NavigationMenu navigationItems={post.navigation} />
         )}
+
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
