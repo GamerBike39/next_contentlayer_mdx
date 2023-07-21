@@ -11,9 +11,10 @@ export function ModeToggle() {
 
   return (
     <button
-      onMouseDown={() => playOn()}
-      onMouseUp={() => (theme === "dark" ? playOff() : playOn())}
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+      onClick={() => {
+        theme === "dark" ? playOff() : playOn();
+        setTheme(theme === "light" ? "dark" : "light");
+      }}
       className="border rounded-md w-6 h-6 flex items-center justify-center"
     >
       <span className="sr-only">Toggle mode</span>
