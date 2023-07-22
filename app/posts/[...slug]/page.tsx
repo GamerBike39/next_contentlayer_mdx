@@ -1,9 +1,12 @@
+"use client";
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import { Metadata } from "next";
 import { Mdx } from "@/components/mdx-components";
 import NavigationMenu from "@/components/ui/navigation/mdx/sideNav";
+
+import "@code-hike/mdx/dist/index.css";
 
 interface PostProps {
   params: {

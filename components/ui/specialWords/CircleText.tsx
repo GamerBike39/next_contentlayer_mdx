@@ -1,14 +1,15 @@
 interface CircleTextProps {
   text: string;
+  className?: string;
 }
 
-const CircleText = ({ text }: CircleTextProps) => {
+const CircleText = ({ text, className }: CircleTextProps) => {
   if (text.includes(" ")) {
     text = text.replace(" ", "\u00a0");
   }
 
   return (
-    <span className="relative w-fit block">
+    <span className={`relative w-fit block ${className ? className : ""}`}>
       <p className="text-gray-900 dark:text-zinc-100">
         <strong>{text}</strong>
       </p>

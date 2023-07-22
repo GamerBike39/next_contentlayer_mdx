@@ -21,6 +21,16 @@ navigation:
 
 <h1 id="guide">Guide</h1>
 
+### Pourquoi un guide ?
+
+Pourquoi pas ? 😅
+A force de voir des tutos, j'ai eu envie de faire le mien sur ce portfolio, aussi bien pour moi que pour les autres qui souhaiterait s'en servir.
+Il servira de documentation !
+
+### Les technologies et librairies utilisées
+
+Todo ! 😅
+
 <h2 id="sound_design">Sound Design</h2>{" "}
 
 fortement inspiré par : <a href='https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/#interrupting-sounds-10' target='_blank'>Josh W Comeau</a>
@@ -29,7 +39,7 @@ dependance : pnpm i use-sound
 
     ```js
 
-import : `import useSound from 'use-sound';
+import useSound from "use-sound";
 
 exemple : =>
 const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
@@ -74,5 +84,78 @@ const { height, width } = useViewportSize();
 très vite je m'apperçois qu'il va me falloir un menu pour naviguer dans cette todo liste 😅, donc c'est partit !  
 Après avoir observé quelques repo sur GitHub pour évaluer quelle serait la meilleur pratique pour générer le menu depuis un mdx.  
 Je vais faire passer tout les liens de navigations dans une liste avec les paramètres de la page
+
+Pour ça j'ajoute un nouveau champ optionnel dans contentlayer.config.js
+exemple pour le model Post :
+
+```js
+export const Post = defineDocumentType(() => ({
+  name: "Post",
+  filePathPattern: `posts/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    description: {
+      type: "string",
+    },
+    date: {
+      type: "date",
+      required: true,
+    },
+    navigation: {
+      type: "list",
+      of: { type: "string" },
+    },
+  },
+  computedFields,
+}));
+```
+
+ensuite dans le fichier mdx je peux ajouter le champ navigation
+
+```md
+navigation:
+
+- guide
+- sound_design
+- hooks
+- animations
+```
+
+je crée un composant qui générera le menu si le champ navigation est présent
+
+```js
+interface NavigationMenuProps {
+  navigationItems: string[];
+}
+
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ navigationItems }) => {
+  return (
+    <div className="flex flex-col flex-wrap gap-2 mt-4 fixed bottom-1/2 right-10">
+      <h4>Navigation :</h4>
+      <ul>
+        {navigationItems.map((nav) => (
+          <li key={nav}>
+            <a
+              href={`#${nav}`}
+              className="text-sm text-right text-slate-700 dark:text-slate-200 decoration-transparent scroll-smooth"
+            >
+              {nav}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default NavigationMenu;
+```
+
+En l'état ce composant fonctionne mais n'est pas très joli, ni responsive.  
+Donc ToDo : styliser + rendre responsive
 
 <h2 id="animations">Animations</h2>

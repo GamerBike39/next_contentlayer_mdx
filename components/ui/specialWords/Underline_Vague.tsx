@@ -6,10 +6,8 @@ interface underlineSvgProps {
 
 const UnderlineVagueSvg = ({ color, text, className }: underlineSvgProps) => {
   return (
-    <span className="relative">
-      <p>
-        <strong>{text}</strong>
-      </p>
+    <span className="relative w-fit inline-block">
+      <strong>{text}</strong>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
