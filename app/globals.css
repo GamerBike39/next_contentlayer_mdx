@@ -4,7 +4,7 @@
 
 @layer base {
     h1, h2, h3, h4, h5, h6, p {
-      @apply dark:text-zinc-100 text-zinc-900;
+      @apply dark:text-zinc-100 text-zinc-900 select-none;
     }
     /* ... */
   }

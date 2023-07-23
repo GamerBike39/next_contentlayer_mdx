@@ -6,7 +6,6 @@ import CircleText from "@/components/ui/specialWords/CircleText";
 import RedLine from "@/components/ui/specialWords/RedLine";
 import UnderlineVagueSvg from "@/components/ui/specialWords/Underline_Vague";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
-import Link from "next/link";
 
 export default function Home() {
   const { height, width } = useViewportSize();

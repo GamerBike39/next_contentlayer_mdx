@@ -2,11 +2,13 @@
 import { useState } from "react";
 import style from "./clickerSound.module.css";
 import useSound from "use-sound";
+import { useSoundContext } from "@/providers/SoundProvider";
 
-interface clickerSoundProps {}
+interface LikeButtonProps {}
 
-const LikeButton = ({}) => {
+const LikeButton = ({}: LikeButtonProps) => {
   const [isClicked, setIsClicked] = useState<number>(20);
+  const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
 
   // sound effect
   const soundUrl = "/sounds/glug-a.mp3";
@@ -14,6 +16,7 @@ const LikeButton = ({}) => {
   const [play, { stop }] = useSound(soundUrl, {
     playbackRate,
     volume: 0.5,
+    soundEnabled: soundEnabled, // Utilise l'état global du son ici
   });
 
   const handleClick = () => {

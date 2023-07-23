@@ -1,3 +1,4 @@
+import { useSoundContext } from "@/providers/SoundProvider";
 import React, { useState } from "react";
 import useSound from "use-sound";
 
@@ -8,8 +9,9 @@ interface SVGHoverAnimationProps {
 const SVGHoverAnimation = ({ text }: SVGHoverAnimationProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const soundUrl = "/sounds/rising-pops.mp3";
+  const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
 
-  const [play, { stop }] = useSound(soundUrl, { volume: 0.25 });
+  const [play, { stop }] = useSound(soundUrl, { volume: 0.25, soundEnabled });
 
   const handleMouseEnter = () => {
     play();
