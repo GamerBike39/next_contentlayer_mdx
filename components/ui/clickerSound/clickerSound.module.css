@@ -6,3 +6,36 @@
     
 	transform: scale(2);
 }
+
+
+.eyeLeft{
+position: absolute;
+border-radius: 100%;
+height: 4px;
+width: 4px;
+background-color: black;
+left: 15%;
+top: 25%;
+z-index: 10;
+color: white;
+}
+
+.eyeRight{
+position: absolute;
+border-radius: 100%;
+height: 4px;
+width: 4px;
+background-color: black;
+right: 15%;
+top: 25%;
+z-index: 10;
+color: white;
+}
+
+
+.bouche{
+position: absolute;
+left: 15%;
+bottom: 25%;
+z-index: 10;
+}
