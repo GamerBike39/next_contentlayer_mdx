@@ -59,7 +59,7 @@ export default makeSource({
   documentTypes: [Post, Page],
   mdx: {
     remarkPlugins: [
-      [remarkCodeHike, { theme: "nord", showCopyButton: true }],
+      [remarkCodeHike, { theme: "nord", showCopyButton: true, lineNumbers: true, }],
     ],
   },
 

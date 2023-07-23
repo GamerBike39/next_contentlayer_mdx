@@ -31,17 +31,41 @@ Il servira de documentation !
 
 Todo ! 😅
 
+#### afficher du code !
+
+Pour afficher le code de manière jolie, c'est à dire avec une coloration syntaxique j'utilise <a href="https://codehike.org/">Code Hike</a>
+Une fois contentlayer d'installer, c'est très simple, il suffit d'ajouter quelques lignes dans le fichier contentlayer.config.js
+
+tout d'abord on l'importe :
+
+```js contentlayer.config.js
+import { remarkCodeHike } from "@code-hike/mdx";
+```
+
+puis on l'ajoute dans les paramètres de traitement de sortie :
+
+```js contentlayer.config.js
+export default makeSource({
+  contentDirPath: "./content",
+  documentTypes: [Post, Page],
+  mdx: {
+    remarkPlugins: [[remarkCodeHike, { theme: "nord", showCopyButton: true }]],
+  },
+});
+```
+
+et vous avez le jolie résultat sous vos yeux ! 😍
+
 <h2 id="sound_design">Sound Design</h2>{" "}
 
 fortement inspiré par : <a href='https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/#interrupting-sounds-10' target='_blank'>Josh W Comeau</a>
 
 dependance : pnpm i use-sound
 
-    ```js
+    ```js mode-toggle.tsx
 
 import useSound from "use-sound";
 
-exemple : =>
 const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
 const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
 
@@ -159,3 +183,18 @@ En l'état ce composant fonctionne mais n'est pas très joli, ni responsive.
 Donc ToDo : styliser + rendre responsive
 
 <h2 id="animations">Animations</h2>
+
+Petite présentation ici d'un coeur tout mignon avec un effet sonore plus des interactions.
+
+J'ai d'abord commencer avec un SVG, mais il s'avère que c'était un peu plus compliqué que prévu de gérer les états de remplissage du coeur et rendre le tout optimiser pour éviter trop de calculs inutiles, aussi bien en face de montage que d'hydratation.
+
+C'est ainsi que je me suis rapellé d'une fonctionnalité magique du CSS le clip-path.
+
+Cette propriété n'existe pas dans Tailwind, et plutôt que de l'ajouter dans les paramètres, j'ai choisi d'utiliser les modules CSS de Next.js.  
+Comment ça marche ?
+
+On crée un fichier css dans le dossier du composant du même nom que le composant pour respecter les conventions, par exemple Heart.tsx => Heart.module.css
+
+```css
+
+```

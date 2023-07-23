@@ -29,13 +29,14 @@ const NavBar: FC<NavBarProps> = ({}) => {
   const handleToggleSound = () => {
     // Inverser la valeur de soundEnabled lors du clic sur le bouton
     setSoundEnabled((prevSoundEnabled) => !prevSoundEnabled);
+    play();
   };
 
   return (
     <div className="flex flex-wrap items-center justify-between">
       <ModeToggle />
       <div
-        className="w-10 h-10 flex items-center ml-2"
+        className="w-10 h-10 flex items-center ml-2 cursor-pointer"
         onClick={handleToggleSound}
       >
         {soundEnabled ? "🔊" : "🔇"}

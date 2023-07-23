@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "./clickerSound.module.css";
 import useSound from "use-sound";
 import { useSoundContext } from "@/providers/SoundProvider";
@@ -9,6 +9,9 @@ interface LikeButtonProps {}
 const LikeButton = ({}: LikeButtonProps) => {
   const [isClicked, setIsClicked] = useState<number>(20);
   const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
+  const refBouche = useRef<HTMLDivElement>(null);
+  const refHeart = useRef<HTMLDivElement>(null);
+  const [isPositive, setIsPositive] = useState<boolean>(true);
 
   // sound effect
   const soundUrl = "/sounds/glug-a.mp3";
@@ -21,7 +24,8 @@ const LikeButton = ({}: LikeButtonProps) => {
 
   const handleClick = () => {
     if (isClicked < 100) {
-      setIsClicked(isClicked + 5);
+      setIsPositive(true);
+      setIsClicked(isClicked < 80 ? isClicked + 5 : isClicked + 3);
       setPlaybackRate(playbackRate + 0.1);
       play();
     } else if (isClicked > 100) {
@@ -43,6 +47,7 @@ const LikeButton = ({}: LikeButtonProps) => {
 
   function rightClick(e: any) {
     e.preventDefault();
+    setIsPositive(false);
     setIsClicked(isClicked - 5);
     setPlaybackRate(playbackRate - 0.1);
     play();
@@ -59,21 +64,45 @@ const LikeButton = ({}: LikeButtonProps) => {
     return isClicked;
   }
 
+  useEffect(() => {
+    if (!isPositive) {
+      refBouche.current?.classList.add("rotate-180");
+    } else {
+      refBouche.current?.classList.remove("rotate-180");
+    }
+  }, [isPositive]);
+
+  useEffect(() => {
+    if (isClicked >= 100) {
+      refHeart.current?.classList.add("scale-150");
+      refHeart.current?.classList.add("-rotate-6");
+    } else {
+      refHeart.current?.classList.remove("scale-150");
+      refHeart.current?.classList.remove("-rotate-6");
+    }
+  }, [isClicked]);
+
   return (
     <div
+      ref={refHeart}
       onClick={handleClick}
       onContextMenu={rightClick}
-      className="relative w-max p-5 cursor-pointer hover:-rotate-3 hover:scale-150 transition-all ease-in-out duration-300"
+      className="relative w-max p-5 cursor-pointer hover:-rotate-6 hover:scale-150 transition-all ease-in-out duration-300 drop-shadow-xl"
     >
-      <div className={`${style.heart}  `}>
-        <div className="bg-gray-400/60 w-8 h-[100%] absolute bottom-0 z-[2]" />
+      <div className={`${style.heart}`}>
+        <div className={`${style.initialHeart}`} />
         <div
-          className={`bg-red-400 w-8 absolute bottom-0 z-[3] transition-all ease-in`}
+          className={`${style.heartAnimation}`}
           style={{ height: `${isClicked}%` }}
         />
         <div className={`${style.eyeLeft}`} />
         <div className={`${style.eyeRight}`} />
-        <div className="absolute left-[15%] bottom-[25%] z-10">
+        <div
+          ref={refBouche}
+          className={`absolute left-[15%] bottom-[25%] z-10 ${
+            isPositive ? " " : "transform rotate-180"
+          }}`}
+        >
           <svg
             width="16"
             height="4"

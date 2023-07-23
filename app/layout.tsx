@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="max-w-2xl mx-auto py-10 px-4">
+            <div className="max-w-3xl mx-auto py-10 px-4">
               <header>
                 <NavBar />
               </header>
