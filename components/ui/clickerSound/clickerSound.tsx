@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import style from "./clickerSound.module.css";
 import useSound from "use-sound";
 import { useSoundContext } from "@/providers/SoundProvider";
-import Confetti from "react-confetti";
+import party from "party-js";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 
 interface LikeButtonProps {}
@@ -99,6 +99,27 @@ const LikeButton = ({}: LikeButtonProps) => {
     }
   }, [showConfetti]);
 
+  const confetti = () => {
+    party.confetti(refHeart? {
+      count: party.variation.range(50, 100),
+      size: party.variation.range(1, 6),
+      angle: party.variation.range(0, 360),
+      spread: party.variation.range(10, 70),
+      decay: 0.91,
+      gravity: 1,
+      drift: 0,
+      colors: [
+        "#a864fd",
+        "#29cdff",
+        "#78ff44",
+        "#ff718d",
+        "#fdff6a",
+        "#ff9c5b",
+      ],
+      scalar: 1,
+    });
+  };
+
   return (
     <>
       <div
@@ -138,14 +159,7 @@ const LikeButton = ({}: LikeButtonProps) => {
           </div>
         </div>
       </div>
-      {showConfetti && (
-        <Confetti
-          width={width - 20}
-          height={height}
-          gravity={0.5}
-          // numberOfPieces={100}
-        />
-      )}
+      {showConfetti && { confetti }}
     </>
   );
 };
