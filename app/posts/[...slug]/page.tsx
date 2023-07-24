@@ -4,7 +4,7 @@ import { allPosts } from "contentlayer/generated";
 
 import { Metadata } from "next";
 import { Mdx } from "@/components/mdx-components";
-import NavigationMenu from "@/components/ui/navigation/mdx/sideNav";
+import SummaryPost from "@/components/ui/navigation/mdx/sideNav";
 
 import "@code-hike/mdx/dist/index.css";
 import NavPost from "@/components/ui/navigation/mdx/NavPosts";
@@ -63,15 +63,13 @@ export default async function PostPage({ params }: PostProps) {
             {post.description}
           </p>
         )}
-        {post.navigation && (
-          <NavigationMenu navigationItems={post.navigation} />
-        )}
+        {/* {post.navigation && <SummaryPost navigationItems={post.navigation} />} */}
 
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
       <div className="fixed left-0 top-32 pt-5 z-50 max-w-[250px]">
-        <NavPost />
+        <NavPost navigationItems={post.navigation ? post.navigation : []} />
       </div>
     </div>
   );

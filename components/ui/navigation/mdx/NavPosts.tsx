@@ -2,15 +2,17 @@ import { allPosts } from "@/.contentlayer/generated";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
+import SummaryPost from "./sideNav";
 
 interface NavPostsProps {
   className?: string;
+  navigationItems: string[];
 }
 
-const NavPost = ({ className }: NavPostsProps) => {
+const NavPost = ({ className, navigationItems }: NavPostsProps) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
   const [isArticleOpen, setIsArticleOpen] = useState(false);
@@ -63,25 +65,33 @@ const NavPost = ({ className }: NavPostsProps) => {
                 className ? className : ""
               }`}
             >
-              <p className="ml-5 border-b border-gray-300  max-w-fit font-bold text-lg mb-5">
+              <SummaryPost navigationItems={navigationItems} />
+
+              <p
+                onClick={toggleMenuArticle}
+                className="ml-5 border-b border-gray-300  max-w-fit font-bold text-lg mb-5"
+              >
                 Liste des articles :
               </p>
-              <ul className="flex flex-col gap-4">
-                {allPosts.map((post) => (
-                  <li key={post._id}>
-                    <Link href={post.slug}>
-                      {pathname === post.slug ? (
-                        <span className="text-blue-500">{post.title}</span>
-                      ) : (
-                        <span>{post.title}</span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {isArticleOpen ? (
+                <ul className="flex flex-col gap-4">
+                  {allPosts.map((post) => (
+                    <li key={post._id}>
+                      <Link href={post.slug}>
+                        {pathname === post.slug ? (
+                          <span className="text-blue-500">{post.title}</span>
+                        ) : (
+                          <span>{post.title}</span>
+                        )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
             </motion.div>
           </>
         )}
+        {/* fin menu principal */}
       </AnimatePresence>
     </>
   );
