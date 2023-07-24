@@ -2,16 +2,17 @@
 	width: 24px; height: 24px;
     clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");
 	transform: scale(2);
+	overflow: hidden;
 }
 
 
 .eyeLeft{
 position: absolute;
 border-radius: 100%;
-height: 4px;
-width: 4px;
+height: 3px;
+width: 3px;
 background-color: black;
-left: 15%;
+left: 20%;
 top: 25%;
 z-index: 10;
 color: white;
@@ -20,10 +21,10 @@ color: white;
 .eyeRight{
 position: absolute;
 border-radius: 100%;
-height: 4px;
-width: 4px;
+height: 3px;
+width: 3px;
 background-color: black;
-right: 15%;
+right: 20%;
 top: 25%;
 z-index: 10;
 color: white;
@@ -38,7 +39,6 @@ z-index: 10;
 }
 
 
-/* bg-gray-400/60 w-8 h-[100%] absolute bottom-0 z-[2] */
 .initialHeart{
 	background-color: #696C76;
 	width: 32px;
@@ -48,7 +48,7 @@ z-index: 10;
 	z-index: 2;
 }
 
-/* bg-red-400 w-8 absolute bottom-0 z-[3] transition-all ease-in */
+
 .heartAnimation{
 	background-color: #FF4D4D;
 	width: 32px;
@@ -58,5 +58,3 @@ z-index: 10;
 	z-index: 3;
 	transition: all 0.1s ease-in;
 }
-
-/* absolute left-[15%] bottom-[25%] z-10 */

@@ -1,5 +1,5 @@
 "use client";
-import { FC, useState, useRef } from "react";
+import { FC, useRef } from "react";
 import { useSoundContext } from "@/providers/SoundProvider";
 import SoundLink from "./SoundLink";
 import useSound from "use-sound";
