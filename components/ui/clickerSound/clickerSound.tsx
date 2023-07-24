@@ -49,10 +49,10 @@ const LikeButton = ({}: LikeButtonProps) => {
     if (isClicked >= 100) {
       if (isVictory) {
         playVictory();
+        setShowConfetti(true);
       }
       setIsVictory(false);
       setIsClicked(100);
-      setShowConfetti(true); // Affiche le confetti lorsque isClicked atteint 100
       return isClicked;
     }
 
@@ -91,7 +91,6 @@ const LikeButton = ({}: LikeButtonProps) => {
     if (isClicked >= 100) {
       refHeart.current?.classList.add("scale-150");
       refHeart.current?.classList.add("-rotate-6");
-      setShowConfetti(true); // Affiche le confetti lorsque isClicked atteint 100
     } else {
       refHeart.current?.classList.remove("scale-150");
       refHeart.current?.classList.remove("-rotate-6");
