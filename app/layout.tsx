@@ -1,12 +1,17 @@
 "use client";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Luckiest_Guy } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
 
 const inter = Inter({ subsets: ["latin"] });
+export const luckiestGuy = Luckiest_Guy({
+  weight: ["400", "400"],
+  subsets: ["latin"],
+  variable: "--font-lucky",
+});
 
 export const metadata = {
   title: "Create Next App",
