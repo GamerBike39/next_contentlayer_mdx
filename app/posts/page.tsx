@@ -1,9 +1,9 @@
-import { allPosts } from "@/.contentlayer/generated"
-import Link from "next/link"
+import { allPosts } from "@/.contentlayer/generated";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="prose dark:prose-invert">
+    <div className="prose dark:prose-invert max-w-4xl mx-auto">
       {allPosts.map((post) => (
         <article key={post._id}>
           <Link href={post.slug}>
@@ -13,5 +13,5 @@ export default function Home() {
         </article>
       ))}
     </div>
-  )
+  );
 }

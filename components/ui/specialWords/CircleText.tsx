@@ -9,10 +9,10 @@ const CircleText = ({ text, className }: CircleTextProps) => {
   }
 
   return (
-    <span className={`relative w-fit block ${className ? className : ""}`}>
-      <p className="text-gray-900 dark:text-zinc-100">
-        <strong>{text}</strong>
-      </p>
+    <span
+      className={`relative w-fit inline-block ${className ? className : ""}`}
+    >
+      {text}
       <svg
         className="absolute top-1/2 left-1/2 origin-top-left transform -translate-y-1/2 -translate-x-1/2"
         xmlns="http://www.w3.org/2000/svg"

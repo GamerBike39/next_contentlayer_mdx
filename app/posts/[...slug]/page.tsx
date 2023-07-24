@@ -7,6 +7,7 @@ import { Mdx } from "@/components/mdx-components";
 import NavigationMenu from "@/components/ui/navigation/mdx/sideNav";
 
 import "@code-hike/mdx/dist/index.css";
+import NavPost from "@/components/ui/navigation/mdx/NavPosts";
 
 interface PostProps {
   params: {
@@ -55,7 +56,7 @@ export default async function PostPage({ params }: PostProps) {
 
   return (
     <div className="relative">
-      <article className="py-6 prose dark:prose-invert">
+      <article className="py-6 prose dark:prose-invert lg:max-w-4xl mx-auto">
         <h1 className="mb-2">{post.title}</h1>
         {post.description && (
           <p className="text-xl mt-0 text-slate-700 dark:text-slate-200">
@@ -69,6 +70,9 @@ export default async function PostPage({ params }: PostProps) {
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
+      <div className="fixed left-0 top-32 pt-5 z-50 max-w-[250px]">
+        <NavPost />
+      </div>
     </div>
   );
 }
