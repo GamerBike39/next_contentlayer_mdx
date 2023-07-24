@@ -6,7 +6,7 @@ interface NavigationMenuProps {
 }
 
 const SummaryPost: React.FC<NavigationMenuProps> = ({ navigationItems }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
