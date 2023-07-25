@@ -1,3 +1,4 @@
+"use client";
 // SoundContext.tsx
 import { createContext, useContext, useState } from "react";
 
