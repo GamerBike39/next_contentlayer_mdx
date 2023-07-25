@@ -1,5 +1,4 @@
 "use client";
-import { usePathname } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
