@@ -23,7 +23,7 @@ export function ModeToggle() {
         theme === "dark" ? playOff() : playOn();
         setTheme(theme === "light" ? "dark" : "light");
       }}
-      className="border rounded-md w-6 h-6 flex items-center justify-center"
+      className="border rounded-md w-6 h-6 flex items-center justify-center hover:scale-110 transition-all"
     >
       <span className="sr-only">Toggle mode</span>
       {theme !== "dark" ? (

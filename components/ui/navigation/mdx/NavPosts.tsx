@@ -15,7 +15,8 @@ interface NavPostsProps {
 const NavPost = ({ className, navigationItems }: NavPostsProps) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(true);
-  const [isArticleOpen, setIsArticleOpen] = useState(false);
+  const [isArticleOpen, setIsArticleOpen] = useState(true);
+  const [isOpenSummary, setIsOpenSummary] = useState(true);
 
   const { height, width } = useViewportSize();
 
@@ -26,6 +27,10 @@ const NavPost = ({ className, navigationItems }: NavPostsProps) => {
 
   const toggleMenuArticle = () => {
     setIsArticleOpen(!isArticleOpen);
+  };
+
+  const toggleMenuSummary = () => {
+    setIsOpenSummary(!isOpenSummary);
   };
 
   useEffect(() => {
@@ -40,7 +45,7 @@ const NavPost = ({ className, navigationItems }: NavPostsProps) => {
     <>
       <div
         onClick={toggleMenu}
-        className="flex gap-2 items-center mb-5 pl-6 cursor-pointer group"
+        className="flex gap-2 items-center pl-6 cursor-pointer group"
       >
         <span className="text-gray-700 dark:text-gray-200 border-b">Menu</span>
         <div className="w-3 group-hover:scale-105">
@@ -48,28 +53,56 @@ const NavPost = ({ className, navigationItems }: NavPostsProps) => {
         </div>
       </div>
 
-      <AnimatePresence initial={false}>
+      <AnimatePresence initial={true}>
         {isOpen && (
           <>
             <motion.div
-              initial={{ x: "-100%" }}
+              initial={{ x: isOpen ? "0%" : "100%", opacity: isOpen ? 1 : 0 }}
               animate={{
                 x: isOpen ? "0%" : "-100%",
-                transition: { duration: 0.2 },
+                opacity: isOpen ? 1 : 0,
               }}
-              exit={{ x: "-200%" }}
+              exit={{ x: "-100%", opacity: 0 }}
               transition={{
-                duration: 0.2,
+                duration: 0.3,
               }}
               className={`max-w-sm mx-auto  transition-all ease-in-out pl-6 ${
                 className ? className : ""
               }`}
             >
-              <SummaryPost navigationItems={navigationItems} />
+              {/* sommaire de l'article */}
+              {/* <SummaryPost navigationItems={navigationItems} /> */}
+              <div className="flex flex-col flex-wrap gap-2 mt-4 pb-5">
+                <div onClick={toggleMenuSummary} className="pl-5 font-bold">
+                  {navigationItems.length > 1 ? "Sommaire :" : null}
+                </div>
+                {isOpenSummary && (
+                  <motion.ul
+                    // animation d'ouverture accordéon
+                    initial={{ height: isOpenSummary ? 0 : "auto" }}
+                    animate={{ height: isOpenSummary ? "auto" : 0 }}
+                    exit={{ height: "auto" }}
+                    transition={{ duration: 0.15 }}
+                    className="mb-10"
+                  >
+                    {navigationItems.map((nav) => (
+                      <li key={nav}>
+                        <a
+                          href={`#${nav}`}
+                          className="text-md pl-6 text-slate-700 dark:text-slate-200 decoration-transparent scroll-smooth"
+                        >
+                          {nav}
+                        </a>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </div>
 
+              {/* listes des articles */}
               <p
                 onClick={toggleMenuArticle}
-                className="ml-5 border-b border-gray-300  max-w-fit font-bold text-lg mb-5"
+                className="ml-5  max-w-fit font-bold text-lg mb-5"
               >
                 Liste des articles :
               </p>
@@ -88,6 +121,7 @@ const NavPost = ({ className, navigationItems }: NavPostsProps) => {
                   ))}
                 </ul>
               ) : null}
+              {/* ****** fin de liste article */}
             </motion.div>
           </>
         )}

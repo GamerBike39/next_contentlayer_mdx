@@ -68,7 +68,7 @@ export default async function PostPage({ params }: PostProps) {
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
-      <div className="fixed left-0 top-32 pt-5 z-50 max-w-[250px]">
+      <div className="fixed left-0 top-32 z-50 max-w-[250px]">
         <NavPost navigationItems={post.navigation ? post.navigation : []} />
       </div>
     </div>

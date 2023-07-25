@@ -36,7 +36,7 @@ const BtnDisabledSound = ({}) => {
 
   return (
     <div
-      className={`w-10 h-10 flex items-center ml-2 cursor-pointer text-lg}`}
+      className={`w-10 h-10 flex items-center ml-2 cursor-pointer text-lg hover:scale-110 transition-all }`}
       onClick={handleToggleSound}
     >
       {soundEnabled ? "🔊" : "🔇"}
