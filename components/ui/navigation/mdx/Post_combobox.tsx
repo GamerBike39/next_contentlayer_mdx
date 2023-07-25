@@ -1,5 +1,4 @@
 "use client";
-
 import * as React from "react";
 import { allPosts } from "@/.contentlayer/generated";
 
@@ -21,7 +20,13 @@ import { CheckCircle2, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-export function ArticleMenu() {
+interface ArticleMenuProps {
+  params?: {
+    slug: string[];
+  };
+}
+
+export function ArticleMenu({ params }: ArticleMenuProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const pathname = usePathname();
@@ -61,9 +66,12 @@ export function ArticleMenu() {
           <CommandEmpty>No post found.</CommandEmpty>
           <CommandGroup>
             {posts.map((post) => (
-              <Link className="w-full flex justify-between" href={post.link}>
+              <Link
+                key={"articleMenu" + post.value}
+                className="w-full flex justify-between"
+                href={post.link}
+              >
                 <CommandItem
-                  key={post.value}
                   onSelect={() => {
                     setValue(post.value);
                     setOpen(false);

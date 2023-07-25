@@ -1,5 +1,6 @@
+"use client";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 import { ArticleMenu } from "./Post_combobox";
@@ -7,11 +8,13 @@ import SummaryPost from "./sideNav";
 
 interface NavPostsProps {
   className?: string;
-  navigationItems: string[];
+  navigationItems?: string[];
+  params?: {
+    slug: string[];
+  };
 }
 
-const NavPost = ({ className, navigationItems }: NavPostsProps) => {
-  const pathname = usePathname();
+const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const { width } = useViewportSize();
@@ -49,10 +52,10 @@ const NavPost = ({ className, navigationItems }: NavPostsProps) => {
             }`}
           >
             {/* sommaire de l'article */}
-            <SummaryPost navigationItems={navigationItems} />
+            {/* <SummaryPost navigationItems={navigationItems} /> */}
 
             {/* listes des articles */}
-            <ArticleMenu />
+            <ArticleMenu params={params} />
             {/* ****** fin de liste article */}
           </div>
         </>

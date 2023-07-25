@@ -1,5 +1,5 @@
 interface NavigationMenuProps {
-  navigationItems: string[];
+  navigationItems?: string[];
 }
 
 const SummaryPost = ({ navigationItems }: NavigationMenuProps) => {
@@ -13,14 +13,11 @@ const SummaryPost = ({ navigationItems }: NavigationMenuProps) => {
 
   return (
     <div className="flex flex-col flex-wrap gap-2 mt-4 min-h-full">
-      <div className="pl-5 font-bold">
-        {navigationItems.length > 1 ? "Sommaire :" : null}
-      </div>
       <ul className="mb-10 space-y-3">
-        {navigationItems.map((nav) => {
+        {navigationItems?.map((nav, index) => {
           const [title, subMenu] = transformToSubMenu(nav);
           return (
-            <li key={nav}>
+            <li key={`menu-item-${nav}+${index}`}>
               <a
                 href={`#${title}`}
                 className="text-md pl-6 text-slate-700 dark:text-slate-200 decoration-transparent scroll-smooth"
@@ -28,9 +25,9 @@ const SummaryPost = ({ navigationItems }: NavigationMenuProps) => {
                 {title}
               </a>
               {subMenu && subMenu.length > 0 && (
-                <ul>
-                  {subMenu.map((item: any) => (
-                    <li key={item}>
+                <ul key={`${nav + index}`}>
+                  {subMenu.map((item: any, subIndex: number) => (
+                    <li>
                       <a
                         href={`#${item}`}
                         className="text-md pl-8 text-slate-500 dark:text-slate-200 decoration-transparent scroll-smooth"
