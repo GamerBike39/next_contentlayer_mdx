@@ -52,7 +52,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
             }`}
           >
             {/* sommaire de l'article */}
-            {/* <SummaryPost navigationItems={navigationItems} /> */}
+            <SummaryPost navigationItems={navigationItems} />
 
             {/* listes des articles */}
             <ArticleMenu params={params} />
