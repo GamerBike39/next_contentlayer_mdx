@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer";
 
 interface NavigationMenuProps {
   navigationItems: string[];
@@ -18,14 +17,7 @@ const SummaryPost: React.FC<NavigationMenuProps> = ({ navigationItems }) => {
         {navigationItems.length > 1 ? "Sommaire :" : null}
       </div>
       {isOpenSummary && (
-        <motion.ul
-          // animation d'ouverture accordéon
-          initial={{ height: 0 }}
-          animate={{ height: "auto" }}
-          exit={{ height: 0 }}
-          transition={{ duration: 0.2 }}
-          className="mb-10"
-        >
+        <ul className="mb-10">
           {navigationItems.map((nav) => (
             <li key={nav}>
               <a
@@ -36,7 +28,7 @@ const SummaryPost: React.FC<NavigationMenuProps> = ({ navigationItems }) => {
               </a>
             </li>
           ))}
-        </motion.ul>
+        </ul>
       )}
     </div>
   );
