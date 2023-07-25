@@ -19,18 +19,26 @@ import {
 } from "@/components/ui/popover";
 import { CheckCircle2, Search } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
-export function ComboboxDemo() {
+export function ArticleMenu() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const pathname = usePathname();
+  const router = useRouter();
 
   const posts = allPosts.map((post) => ({
     value: post.title,
     label: post.title,
     link: post.slug,
   }));
+
+  const handleSelect = (value: string) => {
+    const selectedPost = posts.find((post) => post.value === value);
+    if (selectedPost) {
+      router.push(selectedPost.link);
+    }
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -59,6 +67,12 @@ export function ComboboxDemo() {
                   onSelect={() => {
                     setValue(post.value);
                     setOpen(false);
+                    handleSelect(post.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleSelect(post.value);
+                    }
                   }}
                   className="flex items-center h-full w-full cursor-pointer"
                 >
