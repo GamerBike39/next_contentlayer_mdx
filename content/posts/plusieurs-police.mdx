@@ -1,0 +1,80 @@
+---
+title: Ajouter des polices sur NextJS
+description: Comment ajouter plusieurs polices sur NextJS
+date: "2023-07-24"
+---
+
+C'est quelque chose de relativement courant d'utiliser au moins deux polices de caractères différentes. C'est pourquoi je vais vous montrer comment ajouter plusieurs polices sur NextJS <UnderlineVagueSvg text='très simplement'/>.
+
+### Choses à savoir !
+
+Next JS par défaut est optimisé avec les polices de [Google](https://fonts.google.com/).  
+Cet article se concentre dans un premier temps sur comment ajouter des polices depuis la biliothèque de Google.
+
+Plutôt que de l'importer via css, ou de l'ajouter dans le head de votre page, nous allons utiliser un composant de NextJS qui va nous permettre de l'ajouter via une constante que l'on importera au besoin.
+
+Vous avez surement du constaté comment était fait votre fichier `layout.js` dans le dossier `app` :
+
+```js
+import "./globals.css";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
+
+{.....}
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <html lang="fr">
+      <body
+        className={`${inter.className} relative antialiased min-h-screen bg-white dark:bg-[#1B1A21] text-slate-900 dark:text-slate-50 `}
+      >
+      {.....}
+      </body>
+    </html>
+  );
+}
+```
+
+Comme on peut le voir c'est en appelaant la fonction `Inter` dans un litteral de gabarit que l'on va pouvoir utiliser la police de caractère `Inter` sur notre site de manière globale.
+
+Ceci dit cette méthode ne marchera pas si vous voulez plusieurs polices.
+Enfin si vous y arrivez, je suis preneur de la solution 😉
+
+### Comment faire ?
+
+La méthode la plus simple que j'ai trouvé à ce jour est de créer un fichier `font.ts` dans le dossier "utils" de votre projet.
+
+```js
+import { Luckiest_Guy } from "next/font/google";
+
+export const Luckiest_GuyFont = Luckiest_Guy({
+  weight: "400",
+  subsets: ["latin"],
+});
+```
+
+C'est donc le même principe que pour la police `Inter` et l'on va créer une constante pour chaque police que l'on souhaite utiliser.
+
+Et ensuite, plutôt que de l'utiliser de manière globale.
+Là où l'on souhaite utiliser la police on va importer la constante et l'utiliser dans un litteral de gabarit.
+
+```js
+import { Luckiest_GuyFont } from "@/utils/fonts";
+
+export default function Home() {
+  return (
+    <div className={`${Luckiest_GuyFont.className} text-4xl`}>Hello World</div>
+  );
+}
+```
+
+<hr />
+
+<CircleText
+  text="Bravo"
+  className="text-xl scale-125 w-full mx-auto text-center"
+/>
+
+Maintenant vous savez comment ajouter plusieurs polices sur NextJS.  
+J'espère que ça vous sera <RedLine text='utile'/> ! 😊

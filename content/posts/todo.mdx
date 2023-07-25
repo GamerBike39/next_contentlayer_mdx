@@ -1,78 +1,16 @@
 ---
-title: ToDO
-description: Les choses à faire
-date: "2023-07-21"
-navigation:
-  - guide
-  - sound_design
-  - hooks
-  - animations
+title: Todo liste
+description: Liste des choses à faire
+date: "2023-07-25"
 ---
 
-# ToDO
+## Liste des choses à faire
 
-- [ ] page d'accueil
-- [ ] page de profil
-- [ ] page de projet
-- [ ] page de contact
-- [ ] page de blog
-- [ ] Outils pour MDX
-  <div className="h-5" />
+- [ ] créer le contenu de la page d'accueil
+- [ ] améliorer la page des articles
+- [ ] créer une page de contact / juste un mail, ou un formulaire ?
+- [ ] intégration du responsive pour les menus
+- [ ] intégration d'un footer.
 
-<h1 id="guide">Guide</h1>
-
-<h2 id="sound_design">Sound Design</h2>{" "}
-
-fortement inspiré par : <a href='https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/#interrupting-sounds-10' target='_blank'>Josh W Comeau</a>
-
-dependance : pnpm i use-sound
-
-    ```js
-
-import : `import useSound from 'use-sound';
-
-exemple : =>
-const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
-const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
-
- <button
-      onClick={() => {
-        theme === "dark" ? playOff() : playOn();
-        setTheme(theme === "light" ? "dark" : "light");
-      }}
-      className="border rounded-md w-6 h-6 flex items-center justify-center"
-    >
-
-    ```
-
-- [ ] hover
-- [ ] click
-- [ ] page transition ??
-
-- [x] click : pour le mode jour/nuit
-
-- [ ] hover : pour les liens et les boutons En Cours !
-
-Pourquoi pas faire un son d'un coeur de svg qui se remplit pour dire à quel point on m'aime 😇
-
-<h2 id="hooks">Hooks</h2>
-
-Un des premiers hooks dont j'ai besoin est pour connaître la taille du viewport. Pour cela, après mes recherches je suis tombé sur une librairie plutôt sympa, que je n'avais pas encore vu malgré les nombreux tutos que j'ai pu suivre.
-
-Il s'agit de <a href="https://mantine.dev/" target="_blank">Mantine</a>
-
-Ce hook est très pratique pour faire du style conditionnel.  
-Sont utilisation est très simple :
-
-```js
-import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
-const { height, width } = useViewportSize();
-```
-
-<hr />
-
-très vite je m'apperçois qu'il va me falloir un menu pour naviguer dans cette todo liste 😅, donc c'est partit !  
-Après avoir observé quelques repo sur GitHub pour évaluer quelle serait la meilleur pratique pour générer le menu depuis un mdx.  
-Je vais faire passer tout les liens de navigations dans une liste avec les paramètres de la page
-
-<h2 id="animations">Animations</h2>
+- [ ] faire de jolie cartes de présentation d'articles
+- [ ] ajouter image dans les metadata articles
