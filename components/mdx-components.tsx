@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import UnderlineVagueSvg from "./ui/specialWords/Underline_Vague";
