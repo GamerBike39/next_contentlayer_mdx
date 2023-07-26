@@ -25,18 +25,18 @@ const SummaryPost = ({ navigationItems }: NavigationMenuProps) => {
                 {title}
               </a>
               {subMenu && subMenu.length > 0 && (
-                <ul key={`${nav + index}`}>
+                <>
                   {subMenu.map((item: any, subIndex: number) => (
-                    <li>
+                    <div key={`sub-menu-item-${item}+${subIndex}`}>
                       <a
                         href={`#${item}`}
                         className="text-md pl-8 text-slate-500 dark:text-slate-200 decoration-transparent scroll-smooth"
                       >
                         {item}
                       </a>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </>
               )}
             </li>
           );

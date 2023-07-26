@@ -77,7 +77,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
                     setOpen(false);
                     handleSelect(post.value);
                   }}
-                  onKeyDown={(e) => {
+                  onKeyDown={(e: any) => {
                     if (e.key === "Enter") {
                       handleSelect(post.value);
                     }
