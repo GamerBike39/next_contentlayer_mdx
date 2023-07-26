@@ -4,11 +4,18 @@ import { useEffect, useState } from 'react';
 import Nav from './nav';
 import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import useSound from 'use-sound';
+import { useSoundContext } from "@/providers/SoundProvider";
 
 export default function CurvedMenu() {
 
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();
+
+  const { soundEnabled } = useSoundContext();
+  const [playOn] = useSound("/sounds/openBubble.mp3", { volume: 0.25, playbackRate: 0.8, soundEnabled });
+
+
 
   useEffect(() => {
     if (isActive) setIsActive(false)
@@ -19,8 +26,12 @@ export default function CurvedMenu() {
     <>
       <div>
         <div className={`${styles.header}`}>
-          <div onClick={() => { setIsActive(!isActive) }} className={styles.button}>
-            <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
+          <div onClick={() => {
+            setIsActive(!isActive)
+            playOn()
+          }} className={styles.button}>
+            <div
+              className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
           </div>
         </div>
       </div>

@@ -52,7 +52,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[250px] md:w-80 px-0"
+          className="w-[250px] md:w-72"
         >
           {value
             ? posts.find((post) => post.value === value)?.label

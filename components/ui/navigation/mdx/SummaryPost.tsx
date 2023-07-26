@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 interface NavigationMenuProps {
   navigationItems?: string[];
   action?: () => void;
@@ -15,7 +13,7 @@ const SummaryPost = ({ navigationItems, action }: NavigationMenuProps) => {
   };
 
   return (
-    <div className="flex flex-col flex-wrap gap-2 mt-4 min-h-full">
+    <div className="flex flex-col flex-wrap gap-2 mt-4 min-h-full w-fit">
       <ul className="space-y-4">
         {navigationItems?.map((nav, index) => {
           const [title, subMenu] = transformToSubMenu(nav);

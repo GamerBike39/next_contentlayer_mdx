@@ -40,7 +40,7 @@ export default function index() {
         return (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.3, rotate: 5, color: "#ffd700" }}
+            whileHover={{ scale: 1.3, rotate: 5, color: "#ffd700", y: -5 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}>
             <Link href={data.href} target='_blank'>
               {data.icon}

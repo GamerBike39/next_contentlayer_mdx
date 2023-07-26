@@ -60,7 +60,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
             {isSearchOpen && (
               <SummaryPost
                 navigationItems={navigationItems}
-                action={toggleMenu}
+                action={width < 1475 ? toggleMenu : () => {}}
               />
             )}
 
