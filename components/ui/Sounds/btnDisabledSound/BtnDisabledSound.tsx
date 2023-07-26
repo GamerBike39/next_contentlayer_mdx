@@ -1,8 +1,13 @@
 import { useSoundContext } from "@/providers/SoundProvider";
+import { Volume2, VolumeX } from "lucide-react";
 import { useRef, useState } from "react";
 import useSound from "use-sound";
 
-const BtnDisabledSound = ({}) => {
+interface Props {
+  iconSize?: number;
+}
+
+const BtnDisabledSound = ({ iconSize = 6 }: Props) => {
   const soundUrl = "/sounds/enable-sound.mp3";
   const { soundEnabled, setSoundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
   const playSoundRef = useRef<() => void | undefined>();
@@ -39,7 +44,11 @@ const BtnDisabledSound = ({}) => {
       className={`w-10 h-10 flex items-center ml-2 cursor-pointer text-lg hover:scale-110 transition-all }`}
       onClick={handleToggleSound}
     >
-      {soundEnabled ? "🔊" : "🔇"}
+      {soundEnabled ? (
+        <Volume2 className={`fill-slate-800/30 w-${iconSize} h-${iconSize}`} />
+      ) : (
+        <VolumeX className={`fill-slate-800/30 w-${iconSize} h-${iconSize}`} />
+      )}
     </div>
   );
 };

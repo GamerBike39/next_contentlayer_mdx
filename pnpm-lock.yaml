@@ -55,13 +55,16 @@ dependencies:
     version: 13.3.1(eslint@8.39.0)(typescript@5.0.4)
   framer:
     specifier: ^2.3.0
-    version: 2.3.0(framer-motion@7.10.3)(react-dom@18.2.0)(react@18.2.0)
+    version: 2.3.0(framer-motion@10.13.1)(react-dom@18.2.0)(react@18.2.0)
+  framer-motion:
+    specifier: ^10.13.1
+    version: 10.13.1(react-dom@18.2.0)(react@18.2.0)
   lucide-react:
     specifier: ^0.263.0
     version: 0.263.0(react@18.2.0)
   next:
     specifier: 13.4.1
-    version: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)
+    version: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.64.1)
   next-contentlayer:
     specifier: ^0.3.2
     version: 0.3.2(esbuild@0.17.18)(next@13.4.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.0.4)
@@ -83,6 +86,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  sass:
+    specifier: ^1.64.1
+    version: 1.64.1
   tailwind-merge:
     specifier: ^1.14.0
     version: 1.14.0
@@ -738,53 +744,6 @@ packages:
       vfile: 5.3.7
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /@motionone/animation@10.15.1:
-    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
-    dependencies:
-      '@motionone/easing': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/dom@10.16.2:
-    resolution: {integrity: sha512-bnuHdNbge1FutZXv+k7xub9oPWcF0hsu8y1HTH/qg6av58YI0VufZ3ngfC7p2xhMJMnoh0LXFma2EGTgPeCkeg==}
-    dependencies:
-      '@motionone/animation': 10.15.1
-      '@motionone/generators': 10.15.1
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      hey-listen: 1.0.8
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/easing@10.15.1:
-    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
-    dependencies:
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/generators@10.15.1:
-    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
-    dependencies:
-      '@motionone/types': 10.15.1
-      '@motionone/utils': 10.15.1
-      tslib: 2.5.0
-    dev: false
-
-  /@motionone/types@10.15.1:
-    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
-    dev: false
-
-  /@motionone/utils@10.15.1:
-    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
-    dependencies:
-      '@motionone/types': 10.15.1
-      hey-listen: 1.0.8
-      tslib: 2.5.0
     dev: false
 
   /@next/env@13.4.1:
@@ -3126,22 +3085,25 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: false
 
-  /framer-motion@7.10.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-k2ccYeZNSpPg//HTaqrU+4pRq9f9ZpaaN7rr0+Rx5zA4wZLbk547wtDzge2db1sB+1mnJ6r59P4xb+aEIi/W+w==}
+  /framer-motion@10.13.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uiKsaLEoySeln3eOPy8wUB3FkNtRRiVga5xJOkgs7C0sHVyvpJajXJFSoabt+emBojgnMQY0epnjl0ppoYPxkQ==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
-      '@motionone/dom': 10.16.2
-      hey-listen: 1.0.8
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      tslib: 2.4.0
+      tslib: 2.5.0
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
     dev: false
 
-  /framer@2.3.0(framer-motion@7.10.3)(react-dom@18.2.0)(react@18.2.0):
+  /framer@2.3.0(framer-motion@10.13.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-sVAwMEO3LEfHElJOueRjnlBEYN3X8ztbXwZ22RvBHUftOdDpBkrJfISdAds87O8FEWsn5T7Dp3sLfmrBKXXIaQ==}
     requiresBuild: true
     peerDependencies:
@@ -3152,7 +3114,7 @@ packages:
       '@juggle/resize-observer': 3.4.0
       eventemitter3: 3.1.2
       fontfaceobserver: 2.3.0
-      framer-motion: 7.10.3(react-dom@18.2.0)(react@18.2.0)
+      framer-motion: 10.13.1(react-dom@18.2.0)(react@18.2.0)
       hoist-non-react-statics: 3.3.2
       hsluv: 0.0.3
       react: 18.2.0
@@ -3527,6 +3489,10 @@ packages:
   /imagescript@1.2.16:
     resolution: {integrity: sha512-hhy8OVNymU+cYYj8IwCbdNlXJRoMr4HRd7+efkH32eBVfybVU/5SbzDYf3ZSiiF9ye/ghfBrI/ujec/nwl+fOQ==}
     engines: {node: '>=14.0.0'}
+    dev: false
+
+  /immutable@4.3.1:
+    resolution: {integrity: sha512-lj9cnmB/kVS0QHsJnYKD1uo3o39nrbKxszjnqS9Fr6NB7bZzW45U6WSGBPKXDL/CvDKqDNPA4r3DoDQ8GTxo2A==}
     dev: false
 
   /import-fresh@3.3.0:
@@ -4486,7 +4452,7 @@ packages:
     dependencies:
       '@contentlayer/core': 0.3.2(esbuild@0.17.18)(typescript@5.0.4)
       '@contentlayer/utils': 0.3.2(typescript@5.0.4)
-      next: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.64.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
@@ -4504,12 +4470,12 @@ packages:
       react: '*'
       react-dom: '*'
     dependencies:
-      next: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)
+      next: 13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.64.1)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /next@13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0):
+  /next@13.4.1(@opentelemetry/api@1.4.1)(react-dom@18.2.0)(react@18.2.0)(sass@1.64.1):
     resolution: {integrity: sha512-JBw2kAIyhKDpjhEWvNVoFeIzNp9xNxg8wrthDOtMctfn3EpqGCmW0FSviNyGgOSOSn6zDaX48pmvbdf6X2W9xA==}
     engines: {node: '>=16.8.0'}
     hasBin: true
@@ -4538,6 +4504,7 @@ packages:
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+      sass: 1.64.1
       styled-jsx: 5.1.1(react@18.2.0)
       zod: 3.21.4
     optionalDependencies:
@@ -5250,6 +5217,16 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
       is-regex: 1.1.4
+    dev: false
+
+  /sass@1.64.1:
+    resolution: {integrity: sha512-16rRACSOFEE8VN7SCgBu1MpYCyN7urj9At898tyzdXFhC+a+yOX5dXwAR7L8/IdPJ1NB8OYoXmD55DM30B2kEQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.1
+      source-map-js: 1.0.2
     dev: false
 
   /scheduler@0.23.0:

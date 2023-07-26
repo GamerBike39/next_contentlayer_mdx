@@ -4,7 +4,11 @@ import { useSoundContext } from "@/providers/SoundProvider";
 import { useTheme } from "next-themes";
 import useSound from "use-sound";
 
-export function ModeToggle() {
+interface Props {
+  iconSize?: number;
+}
+
+export function ModeToggle({ iconSize = 6 }: Props) {
   const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
   const { setTheme, theme } = useTheme();
 
@@ -23,7 +27,7 @@ export function ModeToggle() {
         theme === "dark" ? playOff() : playOn();
         setTheme(theme === "light" ? "dark" : "light");
       }}
-      className="border rounded-md w-6 h-6 flex items-center justify-center hover:scale-110 transition-all"
+      className={`rounded-md w-${iconSize} h-${iconSize} flex items-center justify-center hover:scale-110 transition-all active:outline-none`}
     >
       <span className="sr-only">Toggle mode</span>
       {theme !== "dark" ? (
@@ -33,7 +37,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4"
+          className={`w-${iconSize} h-${iconSize}`}
         >
           <path
             strokeLinecap="round"
@@ -48,7 +52,7 @@ export function ModeToggle() {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-4 h-4"
+          className={`w-${iconSize} h-${iconSize}`}
         >
           <path
             strokeLinecap="round"
