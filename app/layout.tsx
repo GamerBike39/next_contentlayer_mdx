@@ -1,11 +1,10 @@
-"use client";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
-
+import Pagetransition from "@/components/animations/PageTransition";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -25,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Pagetransition />
             <div className="max-w-7xl mx-auto py-10 px-4">
               <header>
                 <NavBar />
