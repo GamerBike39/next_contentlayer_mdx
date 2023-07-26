@@ -76,3 +76,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 0.08em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.overlayImgBlack{
+  border-image:
+  linear-gradient(#50585A, #d6d5d554) /* your gradient here */
+    50%/50%; /* no need to touch this, we always want 50% of slice and border-width */
+}

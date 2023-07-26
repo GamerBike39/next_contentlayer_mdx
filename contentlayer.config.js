@@ -49,6 +49,9 @@ export const Post = defineDocumentType(() => ({
     navigation: {
       type: 'list',
       of: { type: 'string' },
+    },
+    picture: {
+      type: 'string',
     }
   },
   computedFields,

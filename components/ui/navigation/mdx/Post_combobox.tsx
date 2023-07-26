@@ -52,7 +52,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[300px] justify-between"
+          className="w-[250px] md:w-72"
         >
           {value
             ? posts.find((post) => post.value === value)?.label
@@ -60,7 +60,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
           <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className=" w-[250px] md:w-80 p-0">
         <Command>
           <CommandInput placeholder="Cherchez un article..." className="h-9" />
           <CommandEmpty>No post found.</CommandEmpty>

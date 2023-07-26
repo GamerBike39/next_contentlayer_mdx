@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 import { ArticleMenu } from "./Post_combobox";
-import SummaryPost from "./sideNav";
+import SummaryPost from "./SummaryPost";
 
 interface NavPostsProps {
   className?: string;
@@ -15,12 +15,18 @@ interface NavPostsProps {
 
 const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const [isSearchOpen, setIsSearchOpen] = useState(true);
 
   const { width } = useViewportSize();
 
   // Fonction pour gérer l'ouverture et la fermeture du menu
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    !isSearchOpen && setIsSearchOpen(true);
+  };
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
 
   useEffect(() => {
@@ -34,7 +40,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   return (
     <>
       <div
-        onClick={toggleMenu}
+        onClick={width < 1475 ? toggleMenu : () => {}}
         className="flex gap-2 items-center pl-6 cursor-pointer group"
       >
         <span className="text-gray-700 dark:text-gray-200 border-b">Menu</span>
@@ -46,15 +52,25 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
       {isOpen && (
         <>
           <div
-            className={`max-w-sm mx-auto  transition-all ease-in-out pl-6 ${
-              className ? className : ""
-            }`}
+            className={`max-w-sm mx-auto  transition-all ease-in-out pl-6 
+            ${className ? className : ""}
+            ${isSearchOpen ? "h-auto" : "h-96"}`}
           >
             {/* sommaire de l'article */}
-            <SummaryPost navigationItems={navigationItems} />
+            {isSearchOpen && (
+              <SummaryPost
+                navigationItems={navigationItems}
+                action={width < 1475 ? toggleMenu : () => {}}
+              />
+            )}
 
             {/* listes des articles */}
-            <ArticleMenu params={params} />
+            <div
+              onClick={width < 1475 ? toggleSearch : () => {}}
+              className={`${isSearchOpen ? "mt-6" : ""}`}
+            >
+              <ArticleMenu params={params} />
+            </div>
             {/* ****** fin de liste article */}
           </div>
         </>

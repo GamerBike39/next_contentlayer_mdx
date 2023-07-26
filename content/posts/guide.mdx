@@ -2,8 +2,9 @@
 title: Making of Portfolio
 description: Petit guide sur la création de ce portfolio
 date: "2023-07-21"
+picture: "/posts/making_web_site.png"
 navigation:
-  - guide/part1/part2
+  - guide/librairie
   - sound_design/part1/part2
   - hooks
   - animations
@@ -19,7 +20,9 @@ navigation:
 - [ ] Outils pour MDX
   <div className="h-5" />
 
-<h1 id="guide">Guide</h1>
+<span id="guide" className="h-20" />
+<br />
+## Guide
 
 ### Pourquoi un guide ?
 
@@ -27,7 +30,9 @@ Pourquoi pas ? 😅
 A force de voir des tutos, j'ai eu envie de faire le mien sur ce portfolio, aussi bien pour moi que pour les autres qui souhaiterait s'en servir.
 Il servira de documentation !
 
-### Les technologies et librairies utilisées
+<span id="librairie" className="h-20" />
+<br />
+## Les technologies et librairies utilisées
 
 Todo ! 😅
 
@@ -56,7 +61,9 @@ export default makeSource({
 
 et vous avez le jolie résultat sous vos yeux ! 😍
 
-<h2 id="sound_design">Sound Design</h2>{" "}
+<span id="sound_design" className="h-20" />
+<br />
+## Sound Design
 
 ### Pourquoi du son ?
 
@@ -342,7 +349,9 @@ export default NavigationMenu;
 En l'état ce composant fonctionne mais n'est pas très joli, ni responsive.  
 Donc ToDo : styliser + rendre responsive
 
-<h2 id="animations">Animations</h2>
+<span id="animations" className="h-20" />
+<br />
+## Animations
 
 Petite présentation ici d'un coeur tout mignon avec un effet sonore plus des interactions.
 
@@ -432,14 +441,14 @@ import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 interface LikeButtonProps {}
 
 const LikeButton = ({}: LikeButtonProps) => {
-  const [isClicked, setIsClicked] = useState<number>(20);
+  const [isClicked, setIsClicked] = useState < number > 20;
   const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
-  const refBouche = useRef<HTMLDivElement>(null);
-  const refHeart = useRef<HTMLDivElement>(null);
-  const [isPositive, setIsPositive] = useState<boolean>(true);
+  const refBouche = useRef < HTMLDivElement > null;
+  const refHeart = useRef < HTMLDivElement > null;
+  const [isPositive, setIsPositive] = useState < boolean > true;
   const { height, width } = useViewportSize();
   const [showConfetti, setShowConfetti] = useState(false);
-  const [isVictory, setIsVictory] = useState<boolean>(true);
+  const [isVictory, setIsVictory] = useState < boolean > true;
 
   // sound effect
   const soundUrl = "/sounds/glug-a.mp3";
@@ -606,19 +615,13 @@ const LikeButton = ({}: LikeButtonProps) => {
         </div>
       </div>
       {showConfetti && (
-        <Confetti
-          width={width - 20}
-          height={height}
-          gravity={0.5}
-        />
+        <Confetti width={width - 20} height={height} gravity={0.5} />
       )}
     </>
   );
 };
 
 export default LikeButton;
-
-}
 ```
 
 </CH.Code>
