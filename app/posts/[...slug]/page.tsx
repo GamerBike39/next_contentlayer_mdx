@@ -7,6 +7,8 @@ import { Mdx } from "@/components/mdx-components";
 import "@code-hike/mdx/dist/index.css";
 import NavPost from "@/components/ui/navigation/mdx/NavPosts";
 import Image from "next/image";
+import Link from "next/link";
+import { Tags } from "lucide-react";
 
 interface PostProps {
   params: {
@@ -37,6 +39,30 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
+    keywords: post.tags?.join(", "),
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      creator: "@GamerBike39",
+      images: [
+        "https://media.discordapp.net/attachments/1041748300510003202/1126456355713187840/metaImg.jpg?width=1140&height=625",
+      ],
+    },
+    openGraph: {
+      type: "website",
+      url: `/posts/${post.slugAsParams}`,
+      title: "Mont Poupet Bike Park",
+      description: post.description,
+      images: [
+        {
+          url: "https://media.discordapp.net/attachments/1041748300510003202/1126456355713187840/metaImg.jpg?width=1140&height=625",
+          width: 800,
+          height: 600,
+          alt: "JulWebDev",
+        },
+      ],
+    },
   };
 }
 
@@ -88,6 +114,20 @@ export default async function PostPage({ params }: PostProps) {
         </h1>
       )}
       <article className="py-6 prose dark:prose-invert lg:max-w-4xl mx-auto">
+        {/* affichage des tags */}
+        <div className="flex my-2 gap-3 items-center w-full justify-start">
+          <Tags />
+          {post.tags &&
+            post.tags.map((tag, index) => (
+              <Link
+                href={`/tags/${tag}`}
+                key={tag + index}
+                className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+              >
+                {tag}
+              </Link>
+            ))}
+        </div>
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
