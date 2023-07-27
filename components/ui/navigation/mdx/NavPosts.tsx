@@ -1,6 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 import { ArticleMenu } from "./Post_combobox";
 import SummaryPost from "./SummaryPost";
@@ -45,7 +45,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
       >
         <span className="text-gray-700 dark:text-gray-200 border-b">Menu</span>
         <div className="w-3 group-hover:scale-105">
-          {isOpen ? <PanelLeftClose size={24} /> : <PanelLeftOpen size={24} />}
+          <Menu />
         </div>
       </div>
 

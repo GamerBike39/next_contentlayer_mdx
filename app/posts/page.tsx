@@ -1,4 +1,5 @@
 import { allPosts } from "@/.contentlayer/generated";
+import { Tags } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
           </Link>
           {post.description && <p>{post.description}</p>}
           <div className="flex my-2 gap-3 items-center w-full">
+            <Tags />
             {post.tags &&
               post.tags.map((tag, index) => (
                 <Link
