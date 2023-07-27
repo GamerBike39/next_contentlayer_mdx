@@ -30,9 +30,9 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   };
 
   useEffect(() => {
-    if (width < 1475) {
+    if (width < 1540) {
       setIsOpen(false);
-    } else if (width >= 1475) {
+    } else if (width >= 1540) {
       setIsOpen(true);
     }
   }, [width]);
@@ -40,7 +40,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   return (
     <>
       <div
-        onClick={width < 1475 ? toggleMenu : () => {}}
+        onClick={width < 1540 ? toggleMenu : () => {}}
         className="flex gap-2 items-center pl-6 cursor-pointer group"
       >
         <span className="text-gray-700 dark:text-gray-200 border-b">Menu</span>
@@ -60,18 +60,18 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
             {isSearchOpen && (
               <SummaryPost
                 navigationItems={navigationItems}
-                action={width < 1475 ? toggleMenu : () => {}}
+                action={width < 1540 ? toggleMenu : () => {}}
               />
             )}
 
             {/* listes des articles */}
             <div
-              onClick={width < 1475 ? toggleSearch : () => {}}
+              onClick={width < 1540 ? toggleSearch : () => {}}
               className={`${isSearchOpen ? "mt-6" : ""}`}
             >
               <ArticleMenu
                 params={params}
-                action={width < 1475 ? toggleMenu : () => {}}
+                action={width < 1540 ? toggleMenu : () => {}}
               />
             </div>
             {/* ****** fin de liste article */}

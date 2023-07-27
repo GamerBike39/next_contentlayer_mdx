@@ -96,7 +96,10 @@ export default function TagsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2  gap-5">
           {posts.map((post) => (
-            <Card key={post._id} className="relative min-h-[250px]">
+            <Card
+              key={post._id}
+              className="relative min-h-[250px]  pb-20 lg:pb-16"
+            >
               <Link href={post.slug}>
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
@@ -117,7 +120,7 @@ export default function TagsPage() {
                       <Link
                         key={tag + index}
                         href={`/tags/${tag}`}
-                        className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+                        className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline"
                       >
                         {tag}
                       </Link>

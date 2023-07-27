@@ -15,9 +15,12 @@ import Image from "next/image";
 export default function PostCard() {
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {allPosts.map((post) => (
-          <Card key={post._id} className="relative min-h-[250px] z-10">
+          <Card
+            key={post._id}
+            className="relative min-h-[250px] pb-20 lg:pb-16"
+          >
             <Link href={post.slug}>
               <CardHeader>
                 <CardTitle>{post.title}</CardTitle>
@@ -50,14 +53,6 @@ export default function PostCard() {
                 <SVGHoverAnimation text="Consulter" />
               </Link>
             </CardFooter>
-            {/* {post.picture && (
-              <Image
-                src={post.picture}
-                alt={post.title}
-                fill
-                className="rounded-md brightness-[0.2] -z-10"
-              />
-            )} */}
           </Card>
         ))}
       </div>

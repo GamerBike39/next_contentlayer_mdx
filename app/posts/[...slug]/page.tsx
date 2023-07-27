@@ -133,7 +133,7 @@ export default async function PostPage({ params }: PostProps) {
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
-      <div className="fixed xl:left-0 xl:top-32 left-0 top-0 z-50 dark:bg-black bg-white xl:bg-transparent dark:xl:bg-transparent w-full xl:w-fit py-3 h-auto">
+      <div className="fixed 2xl:left-0 2xl:top-32 left-0 top-0 z-50 dark:bg-black bg-white 2xl:bg-transparent dark:2xl:bg-transparent w-full 2xl:w-fit py-3 h-auto">
         {post.navigation ? (
           <NavPost
             navigationItems={post.navigation}
