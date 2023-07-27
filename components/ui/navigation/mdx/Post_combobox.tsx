@@ -24,9 +24,10 @@ interface ArticleMenuProps {
   params?: {
     slug: string[];
   };
+  action?: () => void;
 }
 
-export function ArticleMenu({ params }: ArticleMenuProps) {
+export function ArticleMenu({ params, action }: ArticleMenuProps) {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const pathname = usePathname();
@@ -70,6 +71,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
                 key={"articleMenu" + post.value}
                 className="w-full flex justify-between"
                 href={post.link}
+                onClick={action}
               >
                 <CommandItem
                   onSelect={() => {
@@ -79,6 +81,7 @@ export function ArticleMenu({ params }: ArticleMenuProps) {
                   }}
                   onKeyDown={(e: any) => {
                     if (e.key === "Enter") {
+                      action;
                       handleSelect(post.value);
                     }
                   }}

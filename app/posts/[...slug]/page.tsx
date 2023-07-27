@@ -54,9 +54,9 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       {post.picture ? (
-        <div className="w-full min-h-[500px] mb-20 relative flex items-center rounded-lg">
+        <div className="w-full min-h-[500px] mb-10 relative flex items-center rounded-lg">
           <Image
             src={post.picture}
             alt={post.title}
@@ -83,7 +83,9 @@ export default async function PostPage({ params }: PostProps) {
           </div>
         </div>
       ) : (
-        <h1 className="mb-2 text-center text-4xl">{post.title}</h1>
+        <h1 className="mt-20 xl:mt-10 mb-2 text-center text-3xl xl:text-6xl ">
+          {post.title}
+        </h1>
       )}
       <article className="py-6 prose dark:prose-invert lg:max-w-4xl mx-auto">
         <hr className="my-4" />

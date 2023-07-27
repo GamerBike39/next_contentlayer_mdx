@@ -69,7 +69,10 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
               onClick={width < 1475 ? toggleSearch : () => {}}
               className={`${isSearchOpen ? "mt-6" : ""}`}
             >
-              <ArticleMenu params={params} />
+              <ArticleMenu
+                params={params}
+                action={width < 1475 ? toggleMenu : () => {}}
+              />
             </div>
             {/* ****** fin de liste article */}
           </div>
