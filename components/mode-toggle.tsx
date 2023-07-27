@@ -25,12 +25,12 @@ export function ModeToggle({ iconSize = 6 }: Props) {
     <button
       onClick={() => {
         theme === "dark" ? playOff() : playOn();
-        setTheme(theme === "light" ? "dark" : "light");
+        setTheme(theme === "light" || theme === "system" ? "dark" : "light");
       }}
       className={`rounded-md w-${iconSize} h-${iconSize} flex items-center justify-center hover:scale-110 transition-all active:outline-none`}
     >
       <span className="sr-only">Toggle mode</span>
-      {theme !== "dark" ? (
+      {theme !== "dark" && theme !== "system" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

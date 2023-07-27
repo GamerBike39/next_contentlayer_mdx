@@ -47,19 +47,24 @@ export default function TagsPage() {
           ))}
         </div>
         {tags.length > 0 && (
-          <div className="flex gap-2 items-center min-h-[80px]">
-            <Tags className="w-6 h-6" />
+          <div className="flex items-center min-h-[100px] justify-start">
+            <label htmlFor="tags">
+              <Tags className="w-6 h-6" />
+            </label>
             <Splide
               aria-label="tags"
               options={{
                 perPage: 5,
                 gap: "5px",
-                width: "80%",
+                width: "100%",
                 pagination: false,
                 arrows: false,
                 breakpoints: {
                   640: {
                     perPage: 3,
+                  },
+                  360: {
+                    perPage: 2,
                   },
                 },
               }}
@@ -68,7 +73,7 @@ export default function TagsPage() {
                 <SplideSlide key={tag + index} className="max-w-fit">
                   <Link
                     href={`/tags/${tag}`}
-                    className=" max-w-fit w-fit border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+                    className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
                   >
                     {tag}
                   </Link>
@@ -77,28 +82,32 @@ export default function TagsPage() {
             </Splide>
           </div>
         )}
-
-        {posts.map((post) => (
-          <article key={post._id}>
-            <Link href={post.slug}>
-              <h2>{post.title}</h2>
-            </Link>
-            {post.description && <p>{post.description}</p>}
-            <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
-              <Tags />
-              {post.tags &&
-                post.tags.map((tag, index) => (
-                  <Link
-                    key={tag + index}
-                    href={`/tags/${tag}`}
-                    className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
-                  >
-                    {tag}
-                  </Link>
-                ))}
-            </div>
-          </article>
-        ))}
+        <div className="flex flex-col gap-5">
+          {posts.map((post) => (
+            <article
+              key={post._id}
+              className="border p-5 flex flex-col justify-between h-full dark:bg-zinc-900 bg-zinc-100/25 shadow-xl rounded-md"
+            >
+              <Link href={post.slug}>
+                <h2 className="m-0">{post.title}</h2>
+              </Link>
+              {post.description && <p>{post.description}</p>}
+              <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
+                <Tags />
+                {post.tags &&
+                  post.tags.map((tag, index) => (
+                    <Link
+                      key={tag + index}
+                      href={`/tags/${tag}`}
+                      className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+              </div>
+            </article>
+          ))}
+        </div>
         <Link href="/posts">Tous les articles</Link>
       </div>
     </>

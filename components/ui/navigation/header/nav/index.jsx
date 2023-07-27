@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import styles from './style.module.scss';
 import { motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
@@ -22,10 +22,18 @@ const navItems = [
     title: "About",
     href: "/about",
   },
-]
+];
+
+// Ajoute la fonction isPathnameMatch ici
+const isPathnameMatch = (pathname, href) => {
+  return (
+    pathname === href ||
+    pathname.startsWith(`${href}/`) ||
+    (href === "/posts" && pathname === "/posts")
+  );
+};
 
 export default function index() {
-
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
 
@@ -43,7 +51,10 @@ export default function index() {
           </div>
           {
             navItems.map((data, index) => {
-              return <Link key={index} data={{ ...data, index }} isActive={selectedIndicator == data.href} setSelectedIndicator={setSelectedIndicator}></Link>
+              // Utilise la fonction isPathnameMatch pour vérifier l'activité de l'onglet
+              const isActive = isPathnameMatch(pathname, data.href);
+
+              return <Link key={index} data={{ ...data, index }} isActive={isActive} setSelectedIndicator={setSelectedIndicator}></Link>
             })
           }
         </div>
@@ -51,5 +62,5 @@ export default function index() {
       </div>
       <Curve />
     </motion.div>
-  )
+  );
 }

@@ -25,7 +25,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`relative antialiased min-h-screen bg-white dark:bg-[#1B1A21] text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
         <SoundContextProvider>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
             <div className="max-w-7xl mx-auto py-10 px-4">
               <header>

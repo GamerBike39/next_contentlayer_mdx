@@ -9,6 +9,7 @@ import NavPost from "@/components/ui/navigation/mdx/NavPosts";
 import Image from "next/image";
 import Link from "next/link";
 import { Tags } from "lucide-react";
+import BreadCrumbs from "@/components/ui/navigation/breadcrumbs/BreadCrumbs";
 
 interface PostProps {
   params: {
@@ -128,6 +129,7 @@ export default async function PostPage({ params }: PostProps) {
               </Link>
             ))}
         </div>
+        <BreadCrumbs />
         <hr className="my-4" />
         <Mdx code={post.body.code} />
       </article>
