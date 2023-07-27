@@ -7,6 +7,15 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useEffect, useState } from "react";
 import { Tags } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
 
 export default function TagsPage() {
   const pathname = usePathname();
@@ -32,19 +41,17 @@ export default function TagsPage() {
     setAllTags(uniqueTags);
   }, []);
 
+  // Filtrer le tableau allTags pour exclure le tag actif
+  const filteredTags = allTags.filter((tag) => !tags.includes(tag));
+
   return (
     <>
-      <div className="prose dark:prose-invert max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <div className="flex gap-2 items-center">
           <p>Articles avec le tag </p>
-          {tags.map((tag, index) => (
-            <p
-              key={tag + index}
-              className=" w-fit border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
-            >
-              {tag}
-            </p>
-          ))}
+          <p className=" w-fit border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline">
+            {tags}
+          </p>
         </div>
         {tags.length > 0 && (
           <div className="flex items-center min-h-[100px] justify-start">
@@ -55,7 +62,7 @@ export default function TagsPage() {
               aria-label="tags"
               options={{
                 perPage: 5,
-                gap: "5px",
+                gap: "10px",
                 width: "100%",
                 pagination: false,
                 arrows: false,
@@ -69,7 +76,7 @@ export default function TagsPage() {
                 },
               }}
             >
-              {allTags.map((tag, index) => (
+              {filteredTags.map((tag, index) => (
                 <SplideSlide key={tag + index} className="max-w-fit">
                   <Link
                     href={`/tags/${tag}`}
@@ -82,33 +89,50 @@ export default function TagsPage() {
             </Splide>
           </div>
         )}
-        <div className="flex flex-col gap-5">
+        <Link href="/posts" className="max-w-fit block">
+          <SVGHoverAnimation text="Tout les projets" />
+        </Link>
+        <hr className="my-5" />
+
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-5">
           {posts.map((post) => (
-            <article
-              key={post._id}
-              className="border p-5 flex flex-col justify-between h-full dark:bg-zinc-900 bg-zinc-100/25 shadow-xl rounded-md"
-            >
+            <Card key={post._id} className="relative min-h-[250px]">
               <Link href={post.slug}>
-                <h2 className="m-0">{post.title}</h2>
+                <CardHeader>
+                  <CardTitle>{post.title}</CardTitle>
+                </CardHeader>
               </Link>
-              {post.description && <p>{post.description}</p>}
-              <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
-                <Tags />
-                {post.tags &&
-                  post.tags.map((tag, index) => (
-                    <Link
-                      key={tag + index}
-                      href={`/tags/${tag}`}
-                      className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
-                    >
-                      {tag}
-                    </Link>
-                  ))}
-              </div>
-            </article>
+              <CardContent>
+                {post.description && (
+                  <CardDescription className="min-h-[50px]">
+                    {post.description}
+                  </CardDescription>
+                )}
+              </CardContent>
+              <CardFooter>
+                <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
+                  <Tags />
+                  {post.tags &&
+                    post.tags.map((tag, index) => (
+                      <Link
+                        key={tag + index}
+                        href={`/tags/${tag}`}
+                        className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+                      >
+                        {tag}
+                      </Link>
+                    ))}
+                </div>
+                <Link
+                  href={post.slug}
+                  className="absolute bottom-2 right-2 flex justify-start"
+                >
+                  <SVGHoverAnimation text="Consulter" />
+                </Link>
+              </CardFooter>
+            </Card>
           ))}
         </div>
-        <Link href="/posts">Tous les articles</Link>
       </div>
     </>
   );

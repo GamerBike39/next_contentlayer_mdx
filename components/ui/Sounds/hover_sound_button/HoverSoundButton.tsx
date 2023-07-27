@@ -1,3 +1,4 @@
+"use client";
 import { useSoundContext } from "@/providers/SoundProvider";
 import React, { useState } from "react";
 import useSound from "use-sound";
