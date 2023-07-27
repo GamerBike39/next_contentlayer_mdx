@@ -52,10 +52,15 @@ export const Post = defineDocumentType(() => ({
     },
     picture: {
       type: 'string',
-    }
+    },
+    tags: {
+      type: 'list',
+      of: { type: 'string' },
+    },
   },
   computedFields,
 }))
+
 
 export default makeSource({
   contentDirPath: "./content",

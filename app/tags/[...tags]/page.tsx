@@ -1,10 +1,24 @@
+"use client";
 import { allPosts } from "@/.contentlayer/generated";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-export default function Home() {
+export default function TagsPage() {
+  const pathname = usePathname();
+  // // Récupère les tags depuis l'URL
+  const tags = pathname.split("/").slice(2);
+
+  const posts = allPosts.filter((post) => {
+    // // Récupère les tags du post
+    const postTags = post.tags;
+    // // Vérifie si les tags du post contiennent tous les tags de l'URL
+    const hasAllTags = tags.every((tag) => postTags?.includes(tag));
+    return hasAllTags;
+  });
+
   return (
     <div className="prose dark:prose-invert max-w-4xl mx-auto">
-      {allPosts.map((post) => (
+      {posts.map((post) => (
         <article key={post._id}>
           <Link href={post.slug}>
             <h2>{post.title}</h2>
@@ -24,6 +38,7 @@ export default function Home() {
           </div>
         </article>
       ))}
+      <Link href="/posts">Tous les articles</Link>
     </div>
   );
 }
