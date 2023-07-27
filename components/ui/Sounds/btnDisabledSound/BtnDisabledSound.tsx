@@ -1,6 +1,6 @@
 import { useSoundContext } from "@/providers/SoundProvider";
 import { Volume2, VolumeX } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import useSound from "use-sound";
 
 interface Props {
@@ -38,6 +38,22 @@ const BtnDisabledSound = ({ iconSize = 6 }: Props) => {
     setIsMuted((prevIsMuted) => !prevIsMuted);
     isMuted ? play() : playOff();
   };
+
+  useEffect(() => {
+    // Vérifier si "soundEnabled" existe déjà dans le "localStorage"
+    const storedSoundEnabled = localStorage.getItem("soundEnabled");
+
+    // Si "soundEnabled" existe dans le "localStorage", utiliser cette valeur pour initialiser l'état
+    if (storedSoundEnabled !== null) {
+      setSoundEnabled(storedSoundEnabled === "true");
+      setIsMuted(storedSoundEnabled !== "true");
+    }
+  }, [setSoundEnabled]);
+
+  // Mettre à jour le "localStorage" à chaque changement de "soundEnabled"
+  useEffect(() => {
+    localStorage.setItem("soundEnabled", String(soundEnabled));
+  }, [soundEnabled]);
 
   return (
     <div
