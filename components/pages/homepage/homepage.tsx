@@ -1,7 +1,9 @@
 "use client";
 
+import PostCard from "@/components/postCard/PostCard";
 import LikeButton from "@/components/ui/Sounds/clickerSound/clickerSound";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import PrezCard from "@/components/ui/prezCard/PrezCard";
 import BoxSpecialWord from "@/components/ui/specialWords/BoxSpecialWord";
 import CircleText from "@/components/ui/specialWords/CircleText";
 import RedLine from "@/components/ui/specialWords/RedLine";
@@ -45,7 +47,9 @@ const Homepage = ({}) => {
         <LikeButton />
       </div>
       <div className="my-20">
-        {/* <HoverColorInversion backgroundColor="red" /> */}
+        <PrezCard>
+          <PostCard prezCard={width > 1600} />
+        </PrezCard>
       </div>
     </div>
   );

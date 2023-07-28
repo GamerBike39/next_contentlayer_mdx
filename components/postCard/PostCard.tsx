@@ -14,23 +14,57 @@ import {
 
 import { Button } from "../ui/button";
 
-const PostCard = () => {
+interface PostCardProps {
+  prezCard?: boolean;
+}
+
+const PostCard = ({ prezCard = false }: PostCardProps) => {
+  const date = (date: string) => {
+    const dateObj = new Date(date);
+    const month = dateObj.toLocaleString("fr-FR", { month: "long" });
+    const day = dateObj.toLocaleString("fr-FR", { day: "numeric" });
+    const year = dateObj.toLocaleString("fr-FR", { year: "numeric" });
+    return `${day} ${month} ${year}`;
+  };
+
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative ">
+      <div
+        className={`
+      ${
+        prezCard
+          ? "flex flex-wrap gap-5 justify-center"
+          : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+      }
+      flex relative
+      `}
+      >
         {allPosts.map((post, index) => {
           return (
-            <Card key={post._id} className="relative">
+            <Card
+              key={post._id}
+              className={`${
+                prezCard
+                  ? "mini-card module module-article article max-w-xs drop-shadow-lg"
+                  : ""
+              }`}
+            >
               <Link href={post.slug}>
-                <CardHeader>
+                <CardHeader className="py-5">
                   <CardTitle>{post.title}</CardTitle>
+                  {post.date && (
+                    <p className="text-xs text-gray-600 dark:text-gray-500">
+                      {date(post.date)}
+                    </p>
+                  )}
+                  <hr className="w-1/2" />
                 </CardHeader>
+                <CardContent>
+                  <CardDescription className="min-h-[50px] pr-10">
+                    {post.description}
+                  </CardDescription>
+                </CardContent>
               </Link>
-              <CardContent>
-                <CardDescription className="min-h-[50px]">
-                  {post.description}
-                </CardDescription>
-              </CardContent>
               <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
                 <div className="flex flex-wrap my-2 gap-3 items-center w-full">
                   <Tags />

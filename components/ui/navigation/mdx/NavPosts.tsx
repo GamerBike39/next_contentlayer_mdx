@@ -32,7 +32,7 @@ const NavPost: FC<NavPostsProps> = ({ params, navigationItems, className }) => {
   useEffect(() => {
     if (width < 1540) {
       setIsOpen(false);
-    } else if (width >= 1540) {
+    } else if (width > 1540) {
       setIsOpen(true);
     }
   }, [width]);
