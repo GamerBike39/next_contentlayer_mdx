@@ -28,7 +28,7 @@ const SVGHoverAnimation = ({ text }: SVGHoverAnimationProps) => {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="flex gap-2 items-center max-w-fit px-3 py-1 rounded-md border duration-200 ease-in-out hover:scale-105 active:scale-95 transition-all overflow-hidden shadow-md"
+      className="flex gap-2 items-center max-w-fit px-3 py-1 duration-200 ease-in-out hover:scale-105 active:scale-95 transition-all overflow-hidden"
     >
       <p>{text}</p>
       <svg width="36" height="12" viewBox="0 0 36 12" fill="none" className="">

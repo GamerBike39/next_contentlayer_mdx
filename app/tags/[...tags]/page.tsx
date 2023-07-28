@@ -16,6 +16,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import { Button } from "@/components/ui/button";
 
 export default function TagsPage() {
   const pathname = usePathname();
@@ -96,23 +97,20 @@ export default function TagsPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2  gap-5">
           {posts.map((post) => (
-            <Card
-              key={post._id}
-              className="relative min-h-[250px]  pb-20 lg:pb-16"
-            >
+            <Card key={post._id} className="relative">
               <Link href={post.slug}>
                 <CardHeader>
                   <CardTitle>{post.title}</CardTitle>
                 </CardHeader>
+                <CardContent>
+                  {post.description && (
+                    <CardDescription className="min-h-[50px]">
+                      {post.description}
+                    </CardDescription>
+                  )}
+                </CardContent>
               </Link>
-              <CardContent>
-                {post.description && (
-                  <CardDescription className="min-h-[50px]">
-                    {post.description}
-                  </CardDescription>
-                )}
-              </CardContent>
-              <CardFooter>
+              <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
                 <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
                   <Tags />
                   {post.tags &&
@@ -126,12 +124,12 @@ export default function TagsPage() {
                       </Link>
                     ))}
                 </div>
-                <Link
-                  href={post.slug}
-                  className="absolute bottom-2 right-2 flex justify-start"
-                >
-                  <SVGHoverAnimation text="Consulter" />
-                </Link>
+                <hr className="h-[0.2px] w-full" />
+                <Button className="flex  justify-start" size={"sm"}>
+                  <Link href={post.slug}>
+                    <SVGHoverAnimation text="Consulter" />
+                  </Link>
+                </Button>
               </CardFooter>
             </Card>
           ))}
