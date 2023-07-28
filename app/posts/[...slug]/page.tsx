@@ -81,40 +81,42 @@ export default async function PostPage({ params }: PostProps) {
   }
 
   return (
-    <div className="relative overflow-hidden">
-      {post.picture ? (
-        <div className="w-full min-h-[500px] mb-10 relative flex items-center rounded-lg">
-          <Image
-            src={post.picture}
-            alt={post.title}
-            fill
-            sizes="10vw"
-            className="blur-3xl -z-10"
-          />
-          <Image
-            src={post.picture}
-            alt={post.title}
-            fill
-            priority
-            sizes="80vw"
-            className="brightness-[0.7] object-cover overlayImgBlack"
-          />
-
-          <div className="relative z-10 h-full w-full flex justify-end flex-col items-center ">
-            <h1 className="mb-2 text-white text-7xl brightness-200 text-center">
-              {post.title}
-            </h1>
-            {post.description && (
-              <p className="text-xl mt-0 text-white">{post.description}</p>
-            )}
-          </div>
-        </div>
-      ) : (
-        <h1 className="mt-20 xl:mt-10 mb-2 text-center text-3xl xl:text-6xl ">
-          {post.title}
-        </h1>
-      )}
+    <div className="relative">
       <article className="py-6 prose dark:prose-invert lg:max-w-4xl mx-auto">
+        {post.picture ? (
+          <div className="w-full min-h-[500px] mb-10 relative flex items-center rounded-lg">
+            {/* <Image
+              src={post.picture}
+              alt={post.title}
+              fill
+              sizes="10vw"
+              className="blur-3xl -z-10"
+            /> */}
+            <Image
+              src={post.picture}
+              alt={post.title}
+              fill
+              priority
+              sizes="80vw"
+              className="brightness-[0.7] object-cover  rounded-lg"
+            />
+
+            <div className="relative z-10 h-full w-full flex justify-end flex-col items-center ">
+              <h1 className="mb-2 text-white text-7xl brightness-200 text-center">
+                {post.title}
+              </h1>
+            </div>
+          </div>
+        ) : (
+          <h1 className="mt-20 xl:mt-10 mb-2 text-center text-3xl xl:text-6xl ">
+            {post.title}
+          </h1>
+        )}
+        {post.description && (
+          <p className="text-lg text-gray-500 dark:text-gray-400 m-0 italic mb-10">
+            {post.description}
+          </p>
+        )}
         {/* affichage des tags */}
         <div className="flex my-2 gap-3 items-center w-full justify-start">
           <Tags />
@@ -123,7 +125,7 @@ export default async function PostPage({ params }: PostProps) {
               <Link
                 href={`/tags/${tag}`}
                 key={tag + index}
-                className="border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-sm font-medium text-gray-900 dark:text-gray-100 no-underline"
+                className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline"
               >
                 {tag}
               </Link>

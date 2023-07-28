@@ -1,6 +1,6 @@
 interface CircleTextProps {
   text: string;
-  className?: string;
+  className?: string | string[];
 }
 
 const CircleText = ({ text, className }: CircleTextProps) => {
@@ -16,8 +16,8 @@ const CircleText = ({ text, className }: CircleTextProps) => {
       <svg
         className="absolute top-1/2 left-1/2 origin-top-left transform -translate-y-1/2 -translate-x-1/2"
         xmlns="http://www.w3.org/2000/svg"
-        height="75"
-        width="75"
+        height="80"
+        width="80"
         viewBox="0 0 920.39 800.7"
       >
         <path

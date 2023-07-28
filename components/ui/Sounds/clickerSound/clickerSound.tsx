@@ -115,7 +115,7 @@ const LikeButton = ({}: LikeButtonProps) => {
         ref={refHeart}
         onClick={handleClick}
         onContextMenu={rightClick}
-        className="select-none relative w-max p-5 cursor-pointer hover:-rotate-6 hover:scale-150 transition-all ease-in-out duration-300 drop-shadow-xl"
+        className="select-none relative h-10 w-max p-5 cursor-pointer hover:-rotate-6 hover:scale-150 transition-all ease-in-out duration-300 drop-shadow-xl"
       >
         <div className={`${style.heart}`}>
           <div className={`${style.initialHeart}`} />

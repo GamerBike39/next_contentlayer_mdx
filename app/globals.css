@@ -95,3 +95,70 @@ body::-webkit-scrollbar-thumb {
   linear-gradient(#50585A, #d6d5d554) /* your gradient here */
     50%/50%; /* no need to touch this, we always want 50% of slice and border-width */
 }
+
+
+.mini-card-grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-overflow-scrolling: touch
+}
+
+.mini-card-grid::-webkit-scrollbar {
+  width: 0px;
+  height: 0px
+}
+
+.mini-card {
+  min-width: 300px;
+  min-height: 350px;
+  border-radius: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: .2s;
+  transition: .2s;
+  margin: 0
+}
+
+.mini-card:not(:first-child) {
+  margin-left: -130px
+}
+
+
+.mini-card:focus-within, .mini-card:hover {
+  -webkit-transform: translate(0, -1rem);
+  transform: translate(0, -1rem)
+}
+
+.mini-card:focus-within ~ .mini-card, .mini-card:hover ~ .mini-card {
+  -webkit-transform: translateX(130px);
+  transform: translateX(130px)
+}
+
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  height: 130%;
+  animation: rotBGimg 10s linear infinite;
+  transition: all 0.2s linear;
+  z-index: -1;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+

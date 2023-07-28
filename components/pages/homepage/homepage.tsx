@@ -1,6 +1,9 @@
 "use client";
+
+import PostCard from "@/components/postCard/PostCard";
 import LikeButton from "@/components/ui/Sounds/clickerSound/clickerSound";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import PrezCard from "@/components/ui/prezCard/PrezCard";
 import BoxSpecialWord from "@/components/ui/specialWords/BoxSpecialWord";
 import CircleText from "@/components/ui/specialWords/CircleText";
 import RedLine from "@/components/ui/specialWords/RedLine";
@@ -32,7 +35,7 @@ const Homepage = ({}) => {
       <div className="my-10">
         <SVGHoverAnimation text="coucou" />
       </div>
-      <div className="h-10">
+      <div className="h-10 ">
         <p>
           comment ça va ? <BoxSpecialWord text="hello world" /> c'est cool ce
           que tu fais, <BoxSpecialWord text="Gamerbike" /> , c'est vraiment
@@ -42,6 +45,11 @@ const Homepage = ({}) => {
       </div>
       <div className="my-20">
         <LikeButton />
+      </div>
+      <div className="my-20">
+        <PrezCard>
+          <PostCard prezCard={width > 1600} />
+        </PrezCard>
       </div>
     </div>
   );
