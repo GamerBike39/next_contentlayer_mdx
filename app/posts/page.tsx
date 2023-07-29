@@ -8,6 +8,8 @@ import {
   ArrowUp10,
   ArrowUpAZ,
   ArrowUpFromDot,
+  Maximize2,
+  Minimize2,
   Tags,
 } from "lucide-react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -27,6 +29,8 @@ import { Luckiest_GuyFont } from "@/utils/fonts";
 import { allPosts } from "@/.contentlayer/generated";
 import { Checkbox } from "@/components/ui/checkbox";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import Image from "next/image";
+import { Switch } from "@/components/ui/switch";
 
 export default function TagsPage() {
   const searchParams = useSearchParams();
@@ -39,6 +43,7 @@ export default function TagsPage() {
   const [allowMultipleTags, setAllowMultipleTags] = useState(false); // Nouvel état pour autoriser la sélection multiple
   const [additionalPostsCount, setAdditionalPostsCount] = useState(4);
   const [sortAlphabetically, setSortAlphabetically] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
     const allTags = allPosts.flatMap((post) => post.tags ?? []);
@@ -134,6 +139,10 @@ export default function TagsPage() {
     setSortByDate(false);
   };
 
+  const handleMinimize = () => {
+    setIsMinimized((prev) => !prev);
+  };
+
   const dateFormatted = (date: string) => {
     return new Date(date).toLocaleDateString("fr-FR");
   };
@@ -202,62 +211,71 @@ export default function TagsPage() {
         </div>
 
         <div className="flex flex-wrap items-center gap-5">
-          <div
-            className="flex items-center space-x-2"
-            onClick={handleMultipleTagsClick}
-          >
+          <div className="flex items-center space-x-2 border px-2 py-1 rounded-md">
+            <Switch
+              id="terms"
+              checked={allowMultipleTags}
+              onClick={handleMultipleTagsClick}
+            />
             <label
               htmlFor="terms"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
               tag multiple
             </label>
-            <Checkbox id="terms" checked={allowMultipleTags} />
           </div>
 
-          <div
-            className="flex items-center space-x-2"
-            onClick={handleSortByDate}
-          >
-            <label htmlFor="sortByDate" className="text-sm font-medium">
-              Trier par dates
-            </label>
-            <Checkbox
+          <div className="flex items-center space-x-2 border px-2 py-1 rounded-md">
+            <Switch
               id="sortByDate"
               checked={sortByDate}
-              // onChange={() => setSortByDate((prev) => !prev)}
-              // onChange={() => setSortByDate(!sortByDate)}
+              onClick={handleSortByDate}
             />
-            {sortByDate ? (
-              <ArrowUp10 className="cursor-pointer" />
-            ) : (
-              <ArrowDown10 className="cursor-pointer" />
-            )}
+            <label htmlFor="sortByDate" className="text-sm font-medium">
+              {sortByDate ? (
+                <ArrowUp10 className="cursor-pointer" />
+              ) : (
+                <ArrowDown10 className="cursor-pointer" />
+              )}
+            </label>
           </div>
 
-          <div
-            className="flex items-center space-x-2"
-            onClick={handleSortAlphabetically}
-          >
-            <label htmlFor="sortAlphabetically" className="text-sm font-medium">
-              Trier alphabétiquement
-            </label>
-            <Checkbox
+          <div className="flex items-center space-x-2 border px-2 py-1 rounded-md">
+            <Switch
               id="sortAlphabetically"
               checked={sortAlphabetically}
-              // onChange={() => setSortAlphabetically((prev) => !prev)}
+              onClick={handleSortAlphabetically}
             />
-            {sortAlphabetically ? (
-              <ArrowDownAZ className="cursor-pointer" />
-            ) : (
-              <ArrowUpAZ className="cursor-pointer" />
-            )}
+
+            <label htmlFor="sortAlphabetically" className="text-sm font-medium">
+              {sortAlphabetically ? (
+                <ArrowDownAZ className="cursor-pointer" />
+              ) : (
+                <ArrowUpAZ className="cursor-pointer" />
+              )}
+            </label>
+          </div>
+
+          <div className="flex items-center space-x-1 border px-2 py-1 rounded-md">
+            <Switch
+              id="minimize"
+              checked={isMinimized}
+              onClick={handleMinimize}
+            />
+
+            <label htmlFor="minimize" className="text-sm font-medium">
+              {isMinimized ? <Minimize2 /> : <Maximize2 />}
+            </label>
           </div>
         </div>
 
         <hr className="my-5" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2  gap-5 peer">
+        <div
+          className={`grid grid-cols-1 gap-5 
+        ${isMinimized ? "md:grid-cols-1 space-y-5" : "md:grid-cols-2"}
+        `}
+        >
           {postsToShow.map((post) => (
             <motion.div
               key={post._id + "animation"}
@@ -266,48 +284,78 @@ export default function TagsPage() {
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
               whileInView={{ opacity: 1, y: 0 }}
+              className={`${
+                isMinimized
+                  ? " bg-transparent dark:hover:bg-[#1e1e2bf8] px-5 py-3  dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out"
+                  : ""
+              }`}
             >
-              <Card
-                key={post._id}
-                className={` bg-transparent dark:hover:bg-[#1e1e2bf8] hover:scale-105 dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out`}
-              >
-                <Link href={post.slug}>
-                  <CardHeader>
-                    <CardTitle>{post.title}</CardTitle>
-                    <p className="text-xs font-extralight">
-                      {dateFormatted(post.date)}
-                    </p>
-                  </CardHeader>
-                  <CardContent>
-                    {post.description && (
-                      <CardDescription className="min-h-[50px]">
-                        {post.description}
-                      </CardDescription>
-                    )}
-                  </CardContent>
+              {isMinimized ? (
+                <Link href={post.slug} className="hover:scale-110">
+                  <CardTitle>{post.title}</CardTitle>
+                  <p className="text-xs font-extralight">
+                    {dateFormatted(post.date)}
+                  </p>
+                  {/* <CardContent> */}
+                  {post.description && (
+                    <CardDescription className="mt-1">
+                      {post.description}
+                    </CardDescription>
+                  )}
+                  {/* </CardContent> */}
                 </Link>
-                <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
-                  <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
-                    <Tags />
-                    {post.tags &&
-                      post.tags.map((tag, index) => (
-                        <div
-                          key={tag + index}
-                          onClick={() => handleTagClick(tag)}
-                          className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline cursor-pointer"
-                        >
-                          {tag}
-                        </div>
-                      ))}
-                  </div>
-                  <hr className="h-[0.2px] w-full" />
-                  <Button className="flex  justify-start" size={"sm"}>
-                    <Link href={post.slug}>
-                      <SVGHoverAnimation text="Consulter" />
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
+              ) : (
+                <Card
+                  key={post._id}
+                  className={` bg-transparent dark:hover:bg-[#1e1e2bf8] hover:scale-105 dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out`}
+                >
+                  <Link href={post.slug}>
+                    <CardHeader>
+                      {post.picture && (
+                        <Image
+                          src={post.picture}
+                          alt=""
+                          width={200}
+                          height={200}
+                          className="rounded-md mx-auto"
+                        />
+                      )}
+                      <CardTitle>{post.title}</CardTitle>
+                      <p className="text-xs font-extralight">
+                        {dateFormatted(post.date)}
+                      </p>
+                    </CardHeader>
+                    <CardContent>
+                      {post.description && (
+                        <CardDescription className="min-h-[50px]">
+                          {post.description}
+                        </CardDescription>
+                      )}
+                    </CardContent>
+                  </Link>
+                  <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
+                    <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
+                      <Tags />
+                      {post.tags &&
+                        post.tags.map((tag, index) => (
+                          <div
+                            key={tag + index}
+                            onClick={() => handleTagClick(tag)}
+                            className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline cursor-pointer"
+                          >
+                            {tag}
+                          </div>
+                        ))}
+                    </div>
+                    <hr className="h-[0.2px] w-full" />
+                    <Button className="flex  justify-start" size={"sm"}>
+                      <Link href={post.slug}>
+                        <SVGHoverAnimation text="Consulter" />
+                      </Link>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              )}
             </motion.div>
           ))}
         </div>
