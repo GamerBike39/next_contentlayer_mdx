@@ -7,6 +7,9 @@ import { usePathname } from 'next/navigation';
 import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
 
+
+
+
 export default function CurvedMenu() {
 
   const [isActive, setIsActive] = useState(false);
@@ -26,10 +29,12 @@ export default function CurvedMenu() {
     <>
       <div>
         <div className={`${styles.header}`}>
-          <div onClick={() => {
-            setIsActive(!isActive)
-            playOn()
-          }} className={styles.button}>
+          <div
+            id='burger'
+            onClick={() => {
+              setIsActive(!isActive)
+              playOn()
+            }} className={styles.button}>
             <div
               className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
           </div>
@@ -41,3 +46,4 @@ export default function CurvedMenu() {
     </>
   )
 }
+

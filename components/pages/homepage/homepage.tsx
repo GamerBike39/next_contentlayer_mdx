@@ -3,6 +3,7 @@
 import PostCard from "@/components/postCard/PostCard";
 import LikeButton from "@/components/ui/Sounds/clickerSound/clickerSound";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import MagicButton from "@/components/ui/animations/magicButton";
 import PrezCard from "@/components/ui/prezCard/PrezCard";
 import BoxSpecialWord from "@/components/ui/specialWords/BoxSpecialWord";
 import CircleText from "@/components/ui/specialWords/CircleText";
@@ -17,41 +18,47 @@ const Homepage = ({}) => {
   const { height, width } = useViewportSize();
 
   return (
-    <div className="my-10 w-full">
-      <div className="flex flex-col items-center justify-center">
-        <h1 className={`text-8xl font-bold ${Luckiest_GuyFont.className} `}>
-          Hello World
-        </h1>
-        <p className="text-2xl">
-          Viewport size: {width}x{height}
-        </p>
-        <UnderlineVagueSvg text="hello world comment ça va ?" />
-      </div>
-      <CircleText text="hello ?" />
+    <>
+      <div className="my-10 w-full">
+        <div className="flex flex-col items-center justify-center">
+          <h1 className={`text-8xl font-bold ${Luckiest_GuyFont.className} `}>
+            Hello World
+          </h1>
+          <p className="text-2xl">
+            Viewport size: {width}x{height}
+          </p>
+          <UnderlineVagueSvg text="hello world comment ça va ?" />
+        </div>
+        <CircleText text="hello ?" />
 
-      <p className="mt-5">
-        Comment ça va ? <RedLine text="hello world" /> t'en penses quoi ?
-      </p>
-      <div className="my-10">
-        <SVGHoverAnimation text="coucou" />
-      </div>
-      <div className="h-10 ">
-        <p>
-          comment ça va ? <BoxSpecialWord text="hello world" /> c'est cool ce
-          que tu fais, <BoxSpecialWord text="Gamerbike" /> , c'est vraiment
-          intéressant, <BoxSpecialWord text="Gamerbike" /> Mais dis moi c'est
-          quoi cette <UnderlineVagueSvg text="magie" />
+        <p className="mt-5">
+          Comment ça va ? <RedLine text="hello world" /> t'en penses quoi ?
         </p>
+        <div className="my-10">
+          <SVGHoverAnimation text="coucou" />
+        </div>
+        <div className="h-10 ">
+          <p>
+            comment ça va ? <BoxSpecialWord text="hello world" /> c'est cool ce
+            que tu fais, <BoxSpecialWord text="Gamerbike" /> , c'est vraiment
+            intéressant, <BoxSpecialWord text="Gamerbike" /> Mais dis moi c'est
+            quoi cette <UnderlineVagueSvg text="magie" />
+          </p>
+        </div>
+        <div className="my-20">
+          <LikeButton />
+        </div>
+        <div className="my-20">
+          <PrezCard>
+            <PostCard prezCard={width > 1600} />
+          </PrezCard>
+        </div>
+
+        <div className="my-20">
+          <MagicButton />
+        </div>
       </div>
-      <div className="my-20">
-        <LikeButton />
-      </div>
-      <div className="my-20">
-        <PrezCard>
-          <PostCard prezCard={width > 1600} />
-        </PrezCard>
-      </div>
-    </div>
+    </>
   );
 };
 
