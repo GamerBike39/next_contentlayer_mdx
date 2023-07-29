@@ -139,9 +139,21 @@ export default function TagsPage() {
     setSortByDate(false);
   };
 
-  const handleMinimize = () => {
-    setIsMinimized((prev) => !prev);
+  // const handleMinimize = () => {
+  //   setIsMinimized((prev) => !prev);
+  // };
+
+  const handleMinimizeToggle = () => {
+    setIsMinimized((prevIsMinimized) => !prevIsMinimized);
+    localStorage.setItem("isMinimized", JSON.stringify(!isMinimized));
   };
+
+  useEffect(() => {
+    const storedIsMinimized = localStorage.getItem("isMinimized");
+    if (storedIsMinimized !== null) {
+      setIsMinimized(JSON.parse(storedIsMinimized));
+    }
+  }, []);
 
   const dateFormatted = (date: string) => {
     return new Date(date).toLocaleDateString("fr-FR");
@@ -260,7 +272,7 @@ export default function TagsPage() {
             <Switch
               id="minimize"
               checked={isMinimized}
-              onClick={handleMinimize}
+              onClick={handleMinimizeToggle}
             />
 
             <label htmlFor="minimize" className="text-sm font-medium">
