@@ -1,31 +1,18 @@
-// import PostCard from "@/components/postCard/PostCard";
-// import { Luckiest_GuyFont } from "@/utils/fonts";
-
-// export default function Page() {
-//   return (
-//     <div className="max-w-4xl mx-auto flex flex-col gap-10">
-//       <div>
-//         <h1 className={`text-6xl font-bold  ${Luckiest_GuyFont.className} `}>
-//           J'ai écrit des trucs !
-//         </h1>
-//         <p className="italic font-extralight">
-//           Mes expérimentations textuelles
-//         </p>
-//       </div>
-//       <PostCard />
-//     </div>
-//   );
-// }
-
 "use client";
-import { allPosts } from "@/.contentlayer/generated";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
 import { useEffect, useState } from "react";
-import { Tags } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowDown10,
+  ArrowDownAZ,
+  ArrowUp10,
+  ArrowUpAZ,
+  ArrowUpFromDot,
+  Tags,
+} from "lucide-react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { motion } from "framer-motion";
+import "@splidejs/react-splide/css";
+
 import {
   Card,
   CardContent,
@@ -38,38 +25,118 @@ import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSo
 import { Button } from "@/components/ui/button";
 import { Luckiest_GuyFont } from "@/utils/fonts";
 
+import { allPosts } from "@/.contentlayer/generated";
+import { Checkbox } from "@/components/ui/checkbox";
+
+import { useSearchParams } from "next/navigation";
+
 export default function TagsPage() {
-  const pathname = usePathname();
-  // // Récupère les tags depuis l'URL
-  const tags = pathname.split("/").slice(2);
-
-  const posts = allPosts.filter((post) => {
-    // // Récupère les tags du post
-    const postTags = post.tags;
-    // // Vérifie si les tags du post contiennent tous les tags de l'URL
-    const hasAllTags = tags.every((tag) => postTags?.includes(tag));
-
-    return hasAllTags;
-  });
-
+  const searchParams = useSearchParams();
+  const tagQuerry = searchParams.get("tag");
+  const [defaultPostsCount, setDefaultPostsCount] = useState(4);
+  const [additionalPostsCount, setAdditionalPostsCount] = useState(4);
   const [allTags, setAllTags] = useState<string[]>([]);
+  const [allowMultipleTags, setAllowMultipleTags] = useState(false); // Nouvel état pour autoriser la sélection multiple
+  const [activeTags, setActiveTags] = useState<string[]>(allTags);
+  const [sortByDate, setSortByDate] = useState(false);
+  const [sortAlphabetically, setSortAlphabetically] = useState(false);
 
   useEffect(() => {
     const allTags = allPosts.flatMap((post) => post.tags ?? []);
     // @ts-expect-error
     const uniqueTags = [...new Set(allTags)];
-
     setAllTags(uniqueTags);
   }, []);
 
-  // Filtrer le tableau allTags pour exclure le tag actif
-  const filteredTags = allTags.filter((tag) => !tags.includes(tag));
+  useEffect(() => {
+    // si le tag est dans l'url, on le met dans le state
+    if (tagQuerry) {
+      setActiveTags([tagQuerry]);
+    } else {
+      setActiveTags(allTags);
+    }
+  }, [tagQuerry]);
+
+  // Handle tag click event
+  const handleTagClick = (tag: any) => {
+    if (allowMultipleTags) {
+      // Si la sélection multiple est autorisée, nous ajoutons ou supprimons le tag de la liste activeTags
+      setActiveTags((prevTags) => {
+        if (prevTags.includes(tag)) {
+          return prevTags.filter((t) => t !== tag);
+        } else {
+          return [...prevTags, tag];
+        }
+      });
+    } else {
+      // Sinon, nous remplaçons simplement la liste activeTags par le tag cliqué
+      setActiveTags([tag]);
+      // si l'on reselectionne le tag, on le supprime de la liste activeTags
+      if (activeTags.includes(tag)) {
+        setActiveTags([]);
+      }
+    }
+  };
+
+  const handleMultipleTagsClick = () => {
+    setActiveTags([]);
+    setAllowMultipleTags((prev) => !prev);
+  };
+
+  // Filter posts based on active tags
+  const posts = allPosts.filter((post) => {
+    const postTags = post.tags;
+    const hasAllTags = activeTags.every((tag) => postTags?.includes(tag));
+    return hasAllTags;
+  });
+
+  // const postsToShow = posts.slice(0, defaultPostsCount + additionalPostsCount);
+  // const postsToShow = posts.slice(0, defaultPostsCount);
+  const postsToShow = posts
+    .sort((a, b) => {
+      if (sortAlphabetically && sortByDate) {
+        // Trier d'abord par ordre alphabétique
+        const titleComparison = a.title.localeCompare(b.title);
+        // Si les titres sont égaux, trier ensuite par date
+        if (titleComparison === 0) {
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        }
+        return titleComparison;
+      } else if (sortAlphabetically) {
+        // Trier uniquement par ordre alphabétique
+        return a.title.localeCompare(b.title);
+      } else if (sortByDate) {
+        // Trier uniquement par date
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      }
+      return 0;
+    })
+    .slice(0, defaultPostsCount);
+
+  const handleLoadMorePosts = () => {
+    setDefaultPostsCount(defaultPostsCount + additionalPostsCount);
+  };
+
+  const handleSortByDate = () => {
+    setSortByDate((prev) => !prev);
+    setSortAlphabetically(false);
+  };
+
+  const handleSortAlphabetically = () => {
+    setSortAlphabetically((prev) => !prev);
+    setSortByDate(false);
+  };
+
+  const dateFormatted = (date: string) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(date).toLocaleDateString("fr-FR");
+  };
 
   return (
     <>
       <div className="max-w-4xl mx-auto">
         <div>
-          <h1 className={`text-6xl font-bold  ${Luckiest_GuyFont.className} `}>
+          <h1 className={`text-6xl font-bold ${Luckiest_GuyFont.className}`}>
             J'ai écrit des trucs !
           </h1>
           <p className="italic font-extralight">
@@ -79,19 +146,17 @@ export default function TagsPage() {
         <hr className="my-5" />
         <div className="flex items-center min-h-[50px] justify-start">
           <label htmlFor="tags">
-            <Tags className="w-6 h-auto" />
+            <Tags className="w-6 h-6" />
           </label>
           <Splide
             aria-label="tags"
             options={{
               perPage: 5,
-
               gap: "10px",
               width: "100%",
               padding: {
                 left: "10px",
               },
-
               pagination: false,
               arrows: false,
               breakpoints: {
@@ -104,63 +169,146 @@ export default function TagsPage() {
               },
             }}
           >
-            {filteredTags.map((tag, index) => (
+            {allTags.map((tag, index) => (
               <SplideSlide key={tag + index} className="max-w-fit py-3">
-                <Link
-                  href={`/tags/${tag}`}
-                  className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline"
-                >
-                  {tag}
-                </Link>
+                {/* Toggle active class based on tag selection */}
+                <div>
+                  <div
+                    className={`${
+                      activeTags.includes(tag)
+                        ? "border-gray-600 dark:border-white -translate-y-1 transform transition-all duration-300 ease-in-out scale-105"
+                        : "bg-gray-100 dark:bg-gray-800 dark:border-gray-700"
+                    } hover:border-gray-700 dark:hover:border-white border rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 cursor-pointer no-underline hover:-translate-y-[1px] transform transition-all duration-300 ease-in-out]`}
+                    onClick={() => handleTagClick(tag)}
+                  >
+                    {tag}
+                  </div>
+
+                  {activeTags.includes(tag) && (
+                    <ArrowUpFromDot
+                      className={`flex justify-center w-full mt-1 h-3 animate-bounce `}
+                    />
+                  )}
+                </div>
               </SplideSlide>
             ))}
           </Splide>
         </div>
 
+        <div className="flex flex-wrap items-center gap-5">
+          <div
+            className="flex items-center space-x-2"
+            onClick={handleMultipleTagsClick}
+          >
+            <label
+              htmlFor="terms"
+              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            >
+              tag multiple
+            </label>
+            <Checkbox id="terms" />
+          </div>
+
+          <div
+            className="flex items-center space-x-2"
+            onClick={handleSortByDate}
+          >
+            <label htmlFor="sortByDate" className="text-sm font-medium">
+              Trier par dates
+            </label>
+            <Checkbox
+              id="sortByDate"
+              checked={sortByDate}
+              onChange={() => setSortByDate((prev) => !prev)}
+            />
+            {sortByDate ? (
+              <ArrowUp10 className="cursor-pointer" />
+            ) : (
+              <ArrowDown10 className="cursor-pointer" />
+            )}
+          </div>
+
+          <div
+            className="flex items-center space-x-2"
+            onClick={handleSortAlphabetically}
+          >
+            <label htmlFor="sortAlphabetically" className="text-sm font-medium">
+              Trier alphabétiquement
+            </label>
+            <Checkbox
+              id="sortAlphabetically"
+              checked={sortAlphabetically}
+              onChange={() => setSortAlphabetically((prev) => !prev)}
+            />
+            {sortAlphabetically ? (
+              <ArrowUpAZ className="cursor-pointer" />
+            ) : (
+              <ArrowDownAZ className="cursor-pointer" />
+            )}
+          </div>
+        </div>
+
         <hr className="my-5" />
 
         <div className="grid grid-cols-1 md:grid-cols-2  gap-5 peer">
-          {posts.map((post) => (
-            <Card
-              key={post._id}
-              className={`hover:scale-105 dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out`}
+          {postsToShow.map((post) => (
+            <motion.div
+              key={post._id + "animation"}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5 }}
+              whileInView={{ opacity: 1, y: 0 }}
             >
-              <Link href={post.slug}>
-                <CardHeader>
-                  <CardTitle>{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {post.description && (
-                    <CardDescription className="min-h-[50px]">
-                      {post.description}
-                    </CardDescription>
-                  )}
-                </CardContent>
-              </Link>
-              <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
-                <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
-                  <Tags />
-                  {post.tags &&
-                    post.tags.map((tag, index) => (
-                      <Link
-                        key={tag + index}
-                        href={`/tags/${tag}`}
-                        className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline"
-                      >
-                        {tag}
-                      </Link>
-                    ))}
-                </div>
-                <hr className="h-[0.2px] w-full" />
-                <Button className="flex  justify-start" size={"sm"}>
-                  <Link href={post.slug}>
-                    <SVGHoverAnimation text="Consulter" />
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
+              <Card
+                key={post._id}
+                className={` bg-transparent dark:hover:bg-[#1e1e2bf8] hover:scale-105 dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out`}
+              >
+                <Link href={post.slug}>
+                  <CardHeader>
+                    <CardTitle>{post.title}</CardTitle>
+                    <p className="text-xs font-extralight">
+                      {dateFormatted(post.date)}
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    {post.description && (
+                      <CardDescription className="min-h-[50px]">
+                        {post.description}
+                      </CardDescription>
+                    )}
+                  </CardContent>
+                </Link>
+                <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
+                  <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
+                    <Tags />
+                    {post.tags &&
+                      post.tags.map((tag, index) => (
+                        <div
+                          key={tag + index}
+                          onClick={() => handleTagClick(tag)}
+                          className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline cursor-pointer"
+                        >
+                          {tag}
+                        </div>
+                      ))}
+                  </div>
+                  <hr className="h-[0.2px] w-full" />
+                  <Button className="flex  justify-start" size={"sm"}>
+                    <Link href={post.slug}>
+                      <SVGHoverAnimation text="Consulter" />
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
         </div>
+        {defaultPostsCount < posts.length && (
+          <Button onClick={handleLoadMorePosts} className="my-5">
+            Charger plus d'articles
+          </Button>
+        )}
       </div>
     </>
   );

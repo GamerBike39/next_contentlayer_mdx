@@ -123,7 +123,7 @@ export default async function PostPage({ params }: PostProps) {
           {post.tags &&
             post.tags.map((tag, index) => (
               <Link
-                href={`/tags/${tag}`}
+                href={`/posts?tag=${tag}`}
                 key={tag + index}
                 className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline"
               >
