@@ -89,47 +89,13 @@ function ModalSheet() {
                       href="/posts"
                       text="Projets"
                       className="text-4xl font-bold"
-                    />
-                    <SoundLink
-                      href="/about"
-                      text="À&nbsp;propos"
-                      className="text-4xl font-bold"
-                    />
-                  </nav>
-                  <nav className="text-sm font-medium space-y-6 flex flex-col flex-wrap">
-                    <SoundLink
-                      href="/"
-                      text="Accueil"
                       action={() => setOpen(false)}
-                      className="text-4xl font-bold"
-                    />
-                    <SoundLink
-                      href="/posts"
-                      text="Projets"
-                      className="text-4xl font-bold"
                     />
                     <SoundLink
                       href="/about"
                       text="À&nbsp;propos"
                       className="text-4xl font-bold"
-                    />
-                  </nav>
-                  <nav className="text-sm font-medium space-y-6 flex flex-col flex-wrap">
-                    <SoundLink
-                      href="/"
-                      text="Accueil"
                       action={() => setOpen(false)}
-                      className="text-4xl font-bold"
-                    />
-                    <SoundLink
-                      href="/posts"
-                      text="Projets"
-                      className="text-4xl font-bold"
-                    />
-                    <SoundLink
-                      href="/about"
-                      text="À&nbsp;propos"
-                      className="text-4xl font-bold"
                     />
                   </nav>
                 </div>
