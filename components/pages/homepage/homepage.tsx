@@ -28,7 +28,7 @@ const Homepage = ({}) => {
           </p>
           <UnderlineVagueSvg text="hello world comment ça va ?" />
         </div>
-        <CircleText text="hello ?" />
+        {/* <CircleText text="hello ?" /> */}
 
         <p className="mt-5">
           Comment ça va ? <RedLine text="hello world" /> t'en penses quoi ?
