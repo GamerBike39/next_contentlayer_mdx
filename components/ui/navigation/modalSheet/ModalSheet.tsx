@@ -28,47 +28,39 @@ function ModalSheet() {
       <motion.div
         className="fixed h-10 bg-gray-900 dark:bg-zinc-700  bottom-0 flex justify-center items-center w-full z-[9999]"
         drag
-        whileDrag={{ height: 100 }}
-        onDrag={(event, info) => console.log(info.point.x, info.point.y)}
+        whileDrag={{ height: 80 }}
         dragDirectionLock={true}
         dragConstraints={{ left: 0, right: 0, top: 0.1, bottom: 0 }}
-        dragElastic={0.001}
-        // dragElastic={0.2}
-        // dragSnapToOrigin={true}
+        dragElastic={0.0001}
+        dragSnapToOrigin={true}
         onDragEnd={() => setOpen((prev) => !prev)}
         whileHover={{ scale: 1.2 }}
         style={{ touchAction: "none" }}
         onClick={() => setOpen((prev) => !prev)}
       >
-        {/* <motion.button
-        className="flex justify-center items-center  rounded-full bg-gray-900 dark:bg-white dark:text-gray-950 text-white shadow-lg focus:outline-none"
-        onClick={() => setOpen((prev) => !prev)}
-      > */}
-        {/* <Menu /> */}
         <p className="text-center text-white">Menu</p>
-        {/* </motion.button> */}
       </motion.div>
     </div>
   );
 
   return (
     <>
-      {width > 1024 ? Dekstop : Mobile}
-
+      {/* {width > 1024 ? Dekstop : Mobile} */}
+      {Mobile}
       <Sheet
         isOpen={isOpen}
         onClose={() => setOpen((prev) => !prev)}
-        detent="content-height"
+        detent="full-height"
         tweenConfig={{
           ease: "easeOut",
           duration: 0.4,
         }}
       >
-        <Sheet.Container>
-          {/* <Sheet.Header className="dark:!bg-slate-950" /> */}
+        <Sheet.Container className="!h-screen">
+          <Sheet.Header className="dark:!bg-slate-950" />
           <Sheet.Content>
             {/* <div style={{ height: 200 }}>Some content</div> */}
-            <div className="w-full h-auto bg-white dark:bg-slate-950 relative">
+            <div className="w-full h-full bg-white dark:bg-slate-950 relative">
               <div className="flex w-full p-5">
                 <X
                   onClick={() => setOpen((prev) => !prev)}
