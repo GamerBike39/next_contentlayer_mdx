@@ -19,9 +19,15 @@ interface SoundLinkProps {
   href: string;
   text: string;
   className?: string;
+  action?: () => void;
 }
 
-const SoundLink: React.FC<SoundLinkProps> = ({ href, text, className }) => {
+const SoundLink: React.FC<SoundLinkProps> = ({
+  href,
+  text,
+  className,
+  action,
+}) => {
   const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
 
   const soundUrl = "/sounds/plunger.mp3";
@@ -38,6 +44,7 @@ const SoundLink: React.FC<SoundLinkProps> = ({ href, text, className }) => {
       onClick={() => {
         stop();
         clickSound();
+        action && action();
       }}
       onMouseEnter={() => {
         play();
