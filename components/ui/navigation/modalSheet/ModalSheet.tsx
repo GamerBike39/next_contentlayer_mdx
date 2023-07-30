@@ -15,27 +15,7 @@ function ModalSheet() {
 
   return (
     <>
-      {width < 1024 ? (
-        <motion.div
-          className="fixed bottom-12 flex justify-center w-full px-3 py-1 z-[9999]"
-          drag
-          whileDrag={{ scale: 1.2 }}
-          dragConstraints={{ left: 5, right: 5, top: 5, bottom: 5 }}
-          dragElastic={0.2}
-          dragSnapToOrigin={true}
-          onDragEnd={() => setOpen((prev) => !prev)}
-          whileHover={{ scale: 1.2 }}
-          // onClick={() => setOpen((prev) => !prev)}
-        >
-          <motion.button
-            className="p-3 flex justify-center items-center  rounded-full bg-gray-900 dark:bg-white dark:text-gray-950 text-white shadow-lg focus:outline-none"
-            whileHover={{ width: 150, height: 50, borderRadius: 100 }}
-            onClick={() => setOpen((prev) => !prev)}
-          >
-            <Menu />
-          </motion.button>
-        </motion.div>
-      ) : (
+      {width > 1024 ? (
         <motion.div
           className="fixed top-5 right-10 px-3 py-1 z-[9999]"
 
@@ -48,11 +28,31 @@ function ModalSheet() {
             <Menu />
           </motion.button>
         </motion.div>
+      ) : (
+        <motion.div
+          className="fixed h-10 bg-gray-900 dark:bg-zinc-700  bottom-0 flex justify-center items-center w-full z-[9999]"
+          drag
+          whileDrag={{ height: 100 }}
+          dragConstraints={{ left: 0, right: 0, top: 1, bottom: 1 }}
+          dragElastic={0.2}
+          dragSnapToOrigin={true}
+          onDragEnd={() => setOpen((prev) => !prev)}
+          whileHover={{ scale: 1.2 }}
+          onClick={() => setOpen((prev) => !prev)}
+        >
+          {/* <motion.button
+            className="flex justify-center items-center  rounded-full bg-gray-900 dark:bg-white dark:text-gray-950 text-white shadow-lg focus:outline-none"
+            onClick={() => setOpen((prev) => !prev)}
+          > */}
+          {/* <Menu /> */}
+          <p className="text-center text-white">Menu</p>
+          {/* </motion.button> */}
+        </motion.div>
       )}
 
       <Sheet
         isOpen={isOpen}
-        onClose={() => setOpen(false)}
+        onClose={() => setOpen((prev) => !prev)}
         detent="content-height"
         tweenConfig={{
           ease: "easeOut",
@@ -67,10 +67,10 @@ function ModalSheet() {
               <div className="flex w-full p-5">
                 <X
                   onClick={() => setOpen(false)}
-                  className="absolute right-2 top-2 w-8 h-8 cursor-pointer"
+                  className="absolute right-4 top-0 pr-5 w-20 h-20 cursor-pointer"
                 />
                 <div>
-                  <div className="flex gap-5 items-center">
+                  <div className="flex gap-5 items-center select-none focus">
                     <div className="bg-slate-200 dark:bg-slate-200/50 rounded-full p-4  h-14 w-14 flex items-center justify-center select-none">
                       <ModeToggle />
                     </div>
