@@ -32,7 +32,9 @@ export function ModeToggle({ iconSize = 6 }: Props) {
     >
       <span className="sr-only">Toggle mode</span>
       {theme !== "dark" && theme !== "system" ? (
-        <Moon className={`fill-slate-800/30 w-${iconSize} h-${iconSize}`} />
+        <Moon
+          className={`fill-slate-800/30 w-${iconSize} h-${iconSize} focus:outline-none`}
+        />
       ) : (
         <Sun className={`fill-slate-800/30 w-${iconSize} h-${iconSize}`} />
       )}
