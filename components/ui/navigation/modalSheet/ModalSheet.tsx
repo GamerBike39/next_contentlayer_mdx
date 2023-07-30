@@ -1,7 +1,7 @@
 "use client";
 
 import Sheet from "react-modal-sheet";
-import { useState, useRef, use, useEffect } from "react";
+import { useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import BtnDisabledSound from "../../Sounds/btnDisabledSound/BtnDisabledSound";
 import SoundLink from "../../Sounds/SoundLink";
@@ -50,16 +50,6 @@ function ModalSheet() {
       </motion.div>
     </div>
   );
-
-  useEffect(() => {
-    if (width > 1024) {
-      setOpen(false);
-    }
-
-    return () => {
-      setOpen(false);
-    };
-  }, [width]);
 
   return (
     <>
