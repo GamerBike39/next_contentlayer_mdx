@@ -13,6 +13,11 @@ export const metadata = {
   title: "JulDev | Blogfolio ",
   description:
     "Bienvenue sur mon blogfolio, je suis Julien, développeur web et mobile. Je partage ici mes expériences, mes projets et mes passions.",
+  themeColor: [
+    {
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
 };
 
 interface RootLayoutProps {

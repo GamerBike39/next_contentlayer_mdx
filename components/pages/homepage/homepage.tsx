@@ -23,9 +23,7 @@ const Homepage = ({}) => {
           <h1 className={`text-8xl font-bold ${Luckiest_GuyFont.className} `}>
             Hello World
           </h1>
-          <p className="text-2xl">
-            Viewport size: {width}x{height}
-          </p>
+          <p className="text-2xl">{/* Viewport size: {width}x{height} */}d</p>
           <UnderlineVagueSvg text="hello world comment ça va ?" />
         </div>
         {/* <CircleText text="hello ?" /> */}
