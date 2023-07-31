@@ -1,12 +1,12 @@
 "use client";
 
 import Sheet from "react-modal-sheet";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import BtnDisabledSound from "../../Sounds/btnDisabledSound/BtnDisabledSound";
 import SoundLink from "../../Sounds/SoundLink";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
 import ChipTabs from "../tabs/mobile/Tabs";
 
@@ -14,6 +14,8 @@ function ModalSheet() {
   const [isOpen, setOpen] = useState(false);
   const { height, width } = useViewportSize();
   const [isViewportSizeReady, setIsViewportSizeReady] = useState(false);
+
+  const constraintsRef = useRef(null);
 
   useEffect(() => {
     if (width) {
@@ -41,25 +43,23 @@ function ModalSheet() {
       </motion.button>
     </motion.div>
   );
+
   const Mobile = (
-    <motion.div
-      className="overflow-hidden relative"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-    >
+    <motion.div ref={constraintsRef} className="w-full fixed bottom-0">
       <motion.div
-        className="fixed h-10 bg-gray-900 dark:bg-zinc-700  bottom-0 flex justify-center items-center w-full z-50"
-        drag
-        whileDrag={{ height: 80 }}
-        dragDirectionLock={true}
-        dragConstraints={{ left: 0, right: 0, top: 0.1, bottom: 0 }}
+        className="bg-gray-900 dark:bg-zinc-700 flex justify-center items-center w-full z-[9999]"
+        drag="y"
+        dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
+        dragConstraints={constraintsRef}
+        whileDrag={{ height: 100 }} // Gérer la hauteur pendant le glisser-déposer
         dragElastic={0.0001}
         dragSnapToOrigin={true}
-        onDragEnd={() => setOpen((prev) => !prev)}
-        whileHover={{ scale: 1.2 }}
-        style={{ touchAction: "none" }}
-        onClick={() => setOpen((prev) => !prev)}
+        onDragEnd={() => {
+          setOpen((prev) => !prev);
+        }}
+        // whileHover={{ scale: 1.2 }}
+        // style={{ touchAction: "none" }}
+        // onClick={() => setOpen((prev) => !prev)}
       >
         <p className="text-center text-white">Menu</p>
       </motion.div>
@@ -84,7 +84,7 @@ function ModalSheet() {
           <Sheet.Header className="dark:!bg-slate-950" />
           <Sheet.Content>
             {/* <div style={{ height: 200 }}>Some content</div> */}
-            <div className="w-full h-full bg-white dark:bg-slate-950 relative">
+            <div className="w-full h-full bg-yellow-100/80 dark:bg-slate-950 relative">
               <ChipTabs />
               <div className="flex flex-col w-full p-5">
                 <X
