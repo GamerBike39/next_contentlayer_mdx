@@ -76,7 +76,7 @@ function ModalSheet({ posts }: ModalSheetProps) {
         whileDrag={{ height: 100 }} // Gérer la hauteur pendant le glisser-déposer
         dragElastic={0.0001}
         dragSnapToOrigin={true}
-        onDragEnd={() => {
+        onDragStart={() => {
           setOpen((prev) => !prev);
         }}
         style={{ touchAction: "none" }}
