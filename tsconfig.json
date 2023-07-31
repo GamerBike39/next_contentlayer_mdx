@@ -31,6 +31,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-, "hooks/use-viewport-size", "hooks/use-window-event", "components/animation/custom_cursor/CursorContext.jsx"  ],
+, "hooks/use-viewport-size", "hooks/use-window-event", "components/animation/custom_cursor/CursorContext.jsx", "components/ui/navigation/modalSheet/Footer/FooterSocialsLinks.jsx"  ],
   "exclude": ["node_modules"]
 }

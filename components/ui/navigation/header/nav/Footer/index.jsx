@@ -35,12 +35,12 @@ const LinkFooter = [
 
 export default function index() {
   return (
-    <div className={styles.footer}>
+    <div className={`flex flex-wrap w-full text-sm gap-3`}>
       {LinkFooter.map((data, index) => {
         return (
           <motion.div
             key={index}
-            whileHover={{ scale: 1.3, rotate: 5, color: "#ffd700", y: -5 }}
+            whileHover={{ scale: 1.3, rotate: 5, y: -5 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}>
             <Link href={data.href} target='_blank'>
               {data.icon}

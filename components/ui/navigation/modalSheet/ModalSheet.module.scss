@@ -1,0 +1,28 @@
+.menuLink{
+    position: relative;
+    z-index: 22;
+    transform: translateY(0);
+
+    &:hover{
+        transform: translateY(-20px);
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 12%;
+        left: 0;
+        width: 100%;
+        height: 3%;
+        transition: transform 0.3s ease-in-out;
+        z-index: 0;
+        transform : scaleX(0);
+        @apply bg-current;
+    
+    }
+
+    &:hover::after{
+        transform: scaleX(1);
+    }
+
+}
