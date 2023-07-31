@@ -54,6 +54,7 @@ function ModalSheet({ posts }: ModalSheetProps) {
     <motion.div
       ref={constraintsRef}
       className="w-full fixed bottom-0 bg-gray-900 dark:bg-zinc-700 pb-5 pt-3 z-50"
+      onClick={() => setOpen((prev) => !prev)}
     >
       <motion.div
         className=" flex justify-center items-center w-full"
@@ -67,7 +68,6 @@ function ModalSheet({ posts }: ModalSheetProps) {
           setOpen((prev) => !prev);
         }}
         style={{ touchAction: "none" }}
-        onClick={() => setOpen((prev) => !prev)}
       >
         <p className="text-center text-white">Menu</p>
       </motion.div>
