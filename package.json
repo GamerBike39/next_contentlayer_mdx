@@ -48,5 +48,8 @@
     "typescript": "5.0.4",
     "use-sound": "^4.0.1",
     "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "daisyui": "^3.5.0"
   }
 }
