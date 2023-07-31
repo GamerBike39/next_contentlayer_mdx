@@ -95,8 +95,8 @@ function ModalSheet({ posts }: ModalSheetProps) {
         onClose={() => setOpen((prev) => !prev)}
         detent="full-height"
         tweenConfig={{
-          ease: [0.87, 0, 0.13, 1],
-          duration: 0.4,
+          ease: "easeInOut",
+          duration: 0.6,
         }}
         className="!overflow-auto"
       >
