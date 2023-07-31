@@ -87,7 +87,7 @@ function ModalSheet({ posts }: ModalSheetProps) {
           duration: 0.2,
         }}
       >
-        <Sheet.Container className="!h-screen">
+        <Sheet.Container>
           <Sheet.Backdrop className="!blur-3xl !z-40" />
           <Sheet.Header className="dark:!bg-slate-950" />
           <Sheet.Content>
