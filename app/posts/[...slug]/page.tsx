@@ -85,13 +85,6 @@ export default async function PostPage({ params }: PostProps) {
       <article className="py-6 prose dark:prose-invert lg:max-w-4xl mx-auto">
         {post.picture ? (
           <div className="w-full min-h-[500px] mb-10 relative flex items-center rounded-lg">
-            {/* <Image
-              src={post.picture}
-              alt={post.title}
-              fill
-              sizes="10vw"
-              className="blur-3xl -z-10"
-            /> */}
             <Image
               src={post.picture}
               alt={post.title}
