@@ -16,8 +16,8 @@ const ChipTabs = () => {
   const isSelectedProjet = () => {
     if (selected === "Projet") {
       return (
-        <div className="flex flex-col items-center justify-center columns-2 md:columns-3 lg:columns-4">
-          <Link href="/projet" className="bg-yellow-400 p-5">
+        <div className="flex flex-col items-center justify-center w-full h-full">
+          <Link href="/projet" className="bg-yellow-400 p-5 w-full h-full">
             Projet
           </Link>
         </div>
@@ -53,7 +53,7 @@ const ChipTabs = () => {
           key={tab}
         />
       ))}
-      <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex flex-col items-center justify-center w-full h-[100dvh]">
         {isSelectedProjet()}
       </div>
     </div>

@@ -20,6 +20,7 @@ interface SoundLinkProps {
   text: string;
   className?: string;
   action?: () => void;
+  ref?: React.Ref<HTMLAnchorElement>;
 }
 
 const SoundLink: React.FC<SoundLinkProps> = ({
@@ -27,6 +28,7 @@ const SoundLink: React.FC<SoundLinkProps> = ({
   text,
   className,
   action,
+  ref,
 }) => {
   const { soundEnabled } = useSoundContext(); // Accès à l'état global du son via le contexte
 
@@ -41,6 +43,7 @@ const SoundLink: React.FC<SoundLinkProps> = ({
 
   return (
     <Link
+      ref={ref}
       onClick={() => {
         stop();
         clickSound();
@@ -54,12 +57,12 @@ const SoundLink: React.FC<SoundLinkProps> = ({
       }}
       href={href}
       className={`${className ? className : ""}
-      hover:text-blue-500
-        transition-colors duration-300
+      hover:brightness-200
+        transition-all duration-300
         ${
           isPathnameMatch(pathname, href)
-            ? "text-blue-500 border-b border-blue-400"
-            : "text-gray-500"
+            ? "dark:text-white text-black brightness-200"
+            : "dark:text-white/40 text-black/40 hover:dark:text-white hover:text-black"
         }
         `}
     >
