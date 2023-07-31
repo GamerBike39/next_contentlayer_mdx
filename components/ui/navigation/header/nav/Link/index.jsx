@@ -15,7 +15,7 @@ export default function Index({ data, isActive, setSelectedIndicator }) {
       <motion.div
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 400, damping: 10 }}>
-        <Link href={href}>{title}</Link>
+        <Link href={href} className={`text-clampXl text-red-400`}>{title}</Link>
       </motion.div>
     </motion.div>
   )

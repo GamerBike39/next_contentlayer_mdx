@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './pages/**/*.{ts,tsx,jsx}',
+    './components/**/*.{ts,tsx,jsx}',
+    './app/**/*.{ts,tsx,jsx}',
+    './src/**/*.{ts,tsx,jsx}',
     "./content/**/*.{md,mdx}",
   ],
   theme: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        clampXl: ["clamp(3.75rem, 2.75rem + 5vw, 8.75rem)", "1.1"],
+        clampXl: ["clamp(2.5rem, 2.1rem + 2.4vw, 5rem)", "1.1"],
       },
       colors: {
         border: "hsl(var(--border))",

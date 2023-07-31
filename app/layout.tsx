@@ -5,7 +5,6 @@ import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
 import CurvedMenu from "@/components/ui/navigation/header/CurvedMenu";
-import ModalSheet from "@/components/ui/navigation/modalSheet/ModalSheet";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,8 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       >
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <ModalSheet />
-            {/* <CurvedMenu /> */}
+            <CurvedMenu />
             <div className="max-w-7xl mx-auto py-10 px-4">
               <header>
                 <NavBar />
