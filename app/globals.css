@@ -163,7 +163,7 @@
 
 .menu{
   /* right: 0; */
-  @apply fixed right-0 top-0 z-10 w-full h-full lg:w-1/3 dark:bg-slate-950 bg-yellow-50 text-foreground p-14;
+  @apply fixed right-0 top-0 z-[100] w-full h-full lg:w-1/3 dark:bg-slate-950 bg-yellow-50 text-foreground p-14;
 }
 
 .curve{

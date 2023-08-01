@@ -94,7 +94,7 @@ export default async function PostPage({ params }: PostProps) {
               className="brightness-[0.7] object-cover  rounded-lg"
             />
 
-            <div className="relative z-10 h-full w-full flex justify-end flex-col items-center ">
+            <div className="relative z-1 h-full w-full flex justify-end flex-col items-center ">
               <h1 className="mb-2 text-white text-7xl brightness-200 text-center">
                 {post.title}
               </h1>
