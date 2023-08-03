@@ -47,7 +47,7 @@ export default function CurvedMenu() {
           </div>
         </div>
       </div>
-      <div >
+      <div ref={ref} >
         <AnimatePresence mode="wait">
           {isActive && (
             <Nav />
