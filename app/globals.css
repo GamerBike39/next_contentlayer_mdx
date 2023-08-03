@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
  
 @layer base {
   :root {
@@ -163,12 +164,25 @@
 
 .menu{
   /* right: 0; */
-  @apply fixed right-0 top-0 z-[100] w-full h-full lg:w-1/3 dark:bg-slate-950 bg-yellow-50 text-foreground p-14;
+  @apply fixed right-0 top-0 z-[100] w-full h-full lg:w-1/3 dark:bg-slate-950 bg-yellow-50 text-foreground;
 }
 
 .curve{
   @apply absolute top-0 left-[-99px] w-28 h-full fill-yellow-50 dark:fill-slate-950 stroke-none;
 }
+
+#menu-background-pattern{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+
+  transition: opacity 800ms ease, background-size 800ms ease;
+}
+
+
 
 
 

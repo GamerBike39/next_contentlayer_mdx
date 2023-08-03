@@ -1,5 +1,6 @@
 "use client";
 
+import CursorGradient from "@/components/cursorGradient/CursorGradient";
 import LikeButton from "@/components/ui/Sounds/clickerSound/clickerSound";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
 import AccordionImg from "@/components/ui/accordionImg/AccordionImg";
@@ -43,7 +44,10 @@ const Homepage = ({}) => {
         <div className="my-20">
           <LikeButton />
         </div>
-        <AccordionImg />
+        <CursorGradient>
+          <AccordionImg />
+        </CursorGradient>
+        <div className="my-20"></div>
       </div>
     </>
   );

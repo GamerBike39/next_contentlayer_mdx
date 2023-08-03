@@ -31,6 +31,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
+import CursorGradient from "@/components/cursorGradient/CursorGradient";
 
 export default function TagsPage() {
   const searchParams = useSearchParams();
@@ -100,8 +101,7 @@ export default function TagsPage() {
       return hasAllTags;
     }
   });
-  // const postsToShow = posts.slice(0, defaultPostsCount + additionalPostsCount);
-  // const postsToShow = posts.slice(0, defaultPostsCount);
+
   const postsToShow = posts
     .slice()
     .sort((a, b) => {
@@ -138,10 +138,6 @@ export default function TagsPage() {
     setSortAlphabetically((prev) => !prev);
     setSortByDate(false);
   };
-
-  // const handleMinimize = () => {
-  //   setIsMinimized((prev) => !prev);
-  // };
 
   const handleMinimizeToggle = () => {
     setIsMinimized((prevIsMinimized) => !prevIsMinimized);
@@ -291,11 +287,16 @@ export default function TagsPage() {
           {postsToShow.map((post) => (
             <motion.div
               key={post._id + "animation"}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.5 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+                delay: 0.2,
+                type: "tween",
+              }}
+              whileInView={{ opacity: 1 }}
               className={`${
                 isMinimized
                   ? " bg-transparent dark:hover:bg-[#1e1e2bf8] px-5 py-3  dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out"
@@ -321,51 +322,53 @@ export default function TagsPage() {
                   key={post._id}
                   className={` bg-transparent dark:hover:bg-[#1e1e2bf8] hover:scale-105 dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out`}
                 >
-                  <Link href={post.slug}>
-                    <CardHeader>
-                      {post.picture && (
-                        <Image
-                          src={post.picture}
-                          alt=""
-                          width={200}
-                          height={200}
-                          className="rounded-md mx-auto"
-                        />
-                      )}
-                      <CardTitle>{post.title}</CardTitle>
-                      <p className="text-xs font-extralight">
-                        {dateFormatted(post.date)}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      {post.description && (
-                        <CardDescription className="min-h-[50px]">
-                          {post.description}
-                        </CardDescription>
-                      )}
-                    </CardContent>
-                  </Link>
-                  <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
-                    <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
-                      <Tags />
-                      {post.tags &&
-                        post.tags.map((tag, index) => (
-                          <div
-                            key={tag + index}
-                            onClick={() => handleTagClick(tag)}
-                            className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline cursor-pointer"
-                          >
-                            {tag}
-                          </div>
-                        ))}
-                    </div>
-                    <hr className="h-[0.2px] w-full" />
-                    <Button className="flex  justify-start" size={"sm"}>
-                      <Link href={post.slug}>
-                        <SVGHoverAnimation text="Consulter" />
-                      </Link>
-                    </Button>
-                  </CardFooter>
+                  <CursorGradient>
+                    <Link href={post.slug}>
+                      <CardHeader>
+                        {post.picture && (
+                          <Image
+                            src={post.picture}
+                            alt=""
+                            width={200}
+                            height={200}
+                            className="rounded-md mx-auto"
+                          />
+                        )}
+                        <CardTitle>{post.title}</CardTitle>
+                        <p className="text-xs font-extralight">
+                          {dateFormatted(post.date)}
+                        </p>
+                      </CardHeader>
+                      <CardContent>
+                        {post.description && (
+                          <CardDescription className="min-h-[50px]">
+                            {post.description}
+                          </CardDescription>
+                        )}
+                      </CardContent>
+                    </Link>
+                    <CardFooter className="flex flex-col-reverse w-full items-start gap-5 justify-between h-fit">
+                      <div className="flex flex-wrap my-2 gap-3 items-center w-full max-w-xs lg:max-w-lg">
+                        <Tags />
+                        {post.tags &&
+                          post.tags.map((tag, index) => (
+                            <div
+                              key={tag + index}
+                              onClick={() => handleTagClick(tag)}
+                              className="hover:border-gray-700 dark:hover:border-white border bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-md px-2 py-1 text-xs font-medium text-gray-900 dark:text-gray-100 no-underline cursor-pointer"
+                            >
+                              {tag}
+                            </div>
+                          ))}
+                      </div>
+                      <hr className="h-[0.2px] w-full" />
+                      <Button className="flex  justify-start" size={"sm"}>
+                        <Link href={post.slug}>
+                          <SVGHoverAnimation text="Consulter" />
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </CursorGradient>
                 </Card>
               )}
             </motion.div>

@@ -20,6 +20,15 @@ module.exports = {
       fontSize: {
         clampXl: ["clamp(2.5rem, 2.1rem + 2.4vw, 5rem)", "1.1"],
       },
+      backgroundSize: {
+        bgMenu: "12vmin 12vmin",
+        bgMenuHover: "11vmin 11vmin",
+      },
+      backgroundImage: {
+        "menu-pattern": "radial-gradient(rgba(255, 255, 255, 0.1) 9%, transparent 9%)",
+
+      },
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
