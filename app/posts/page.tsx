@@ -27,7 +27,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Luckiest_GuyFont } from "@/utils/fonts";
 import { allPosts } from "@/.contentlayer/generated";
-import { Checkbox } from "@/components/ui/checkbox";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
@@ -41,7 +40,7 @@ export default function TagsPage() {
   const [sortType, setSortType] = useState("default");
   const [defaultPostsCount, setDefaultPostsCount] = useState(4);
   const [activeTags, setActiveTags] = useState<string[]>(allTags);
-  const [allowMultipleTags, setAllowMultipleTags] = useState(false); // Nouvel état pour autoriser la sélection multiple
+  const [allowMultipleTags, setAllowMultipleTags] = useState(false); //  état pour autoriser la sélection multiple
   const [additionalPostsCount, setAdditionalPostsCount] = useState(4);
   const [sortAlphabetically, setSortAlphabetically] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -284,6 +283,13 @@ export default function TagsPage() {
         ${isMinimized ? "md:grid-cols-1 space-y-5" : "md:grid-cols-2"}
         `}
         >
+          {!postsToShow.length && (
+            <div className="flex items-center justify-center">
+              <p className="text-sm font-bold text-muted-foreground w-full">
+                Aucun article trouvé avec les tags sélectionnés
+              </p>
+            </div>
+          )}
           {postsToShow.map((post) => (
             <motion.div
               key={post._id + "animation"}
