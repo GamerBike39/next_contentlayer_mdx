@@ -6,7 +6,6 @@ import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
-import { useClickOutside } from '@/hooks/use-click-outside/UseClickOutside';
 import { useScrollLock } from '@/hooks/use-scroll-lock/useScrollLock';
 
 export default function CurvedMenu() {
@@ -17,7 +16,6 @@ export default function CurvedMenu() {
   const { soundEnabled } = useSoundContext();
   const [playOn] = useSound("/sounds/openBubble.mp3", { volume: 0.25, playbackRate: 0.8, soundEnabled });
   const { lockScroll, unlockScroll } = useScrollLock();
-  const ref = useClickOutside(() => setIsActive(false));
 
 
 
@@ -36,7 +34,7 @@ export default function CurvedMenu() {
 
   return (
     <>
-      <div ref={ref}>
+      <div>
         <div className={`${styles.header}`}>
           <div onClick={() => {
             setIsActive(!isActive)
@@ -47,7 +45,7 @@ export default function CurvedMenu() {
           </div>
         </div>
       </div>
-      <div ref={ref} >
+      <div >
         <AnimatePresence mode="wait">
           {isActive && (
             <Nav />
