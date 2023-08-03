@@ -5,6 +5,7 @@ import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
 import CurvedMenu from "@/components/ui/navigation/header/CurvedMenu";
+import Reveal from "@/components/animation/Reveal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning={true}>
       <body
         className={`relative antialiased min-h-screen bg-white dark:bg-[#1B1A21] text-slate-900 dark:text-slate-50 ${inter.className}`}
       >
@@ -33,7 +34,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
             <div className="max-w-7xl mx-auto py-10 px-4">
-              <header>
+              <header className="fixed top-0 max-w-7xl w-full z-20 bg-background/30 rounded-md backdrop-blur-md px-10">
                 <NavBar />
               </header>
               <main>{children}</main>

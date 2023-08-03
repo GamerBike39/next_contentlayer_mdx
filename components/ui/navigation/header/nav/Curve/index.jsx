@@ -22,8 +22,8 @@ export default function Index() {
   }
 
   return (
-    <svg className='curve'>
-      <motion.path variants={curve} initial="initial" animate="enter" exit="exit"></motion.path>
+    <svg className='curve '>
+      <motion.path variants={curve} initial="initial" animate="enter" exit="exit" className={"fill-yellow-50 dark:fill-slate-950"}></motion.path>
     </svg>
   )
 }

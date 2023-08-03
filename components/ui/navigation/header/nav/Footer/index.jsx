@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Instagram, Linkedin, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import React from "react";
-import { Mail } from "lucide-react";
 
 const LinkFooter = [
   {
@@ -48,7 +47,6 @@ export default function FooterSocialsLinks() {
       delay,
       type: "spring",
       stiffness: 100,
-      // damping: 80,
       bounce: 0.8,
       velocity: 2,
 
@@ -107,7 +105,6 @@ const CustomIcon = ({ icon }) => {
         damping: 20,
         bounce: 0.25,
       }}
-    // Ajoutez d'autres propriétés de style au besoin
     >
       {icon}
     </motion.div>

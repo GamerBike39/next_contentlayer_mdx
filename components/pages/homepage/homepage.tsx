@@ -1,11 +1,10 @@
 "use client";
 
-import PostCard from "@/components/postCard/PostCard";
+import CursorGradient from "@/components/cursorGradient/CursorGradient";
 import LikeButton from "@/components/ui/Sounds/clickerSound/clickerSound";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
-import PrezCard from "@/components/ui/prezCard/PrezCard";
+import AccordionImg from "@/components/ui/accordionImg/AccordionImg";
 import BoxSpecialWord from "@/components/ui/specialWords/BoxSpecialWord";
-import CircleText from "@/components/ui/specialWords/CircleText";
 import RedLine from "@/components/ui/specialWords/RedLine";
 import UnderlineVagueSvg from "@/components/ui/specialWords/Underline_Vague";
 import { useViewportSize } from "@/hooks/use-viewport-size/use-viewport-size";
@@ -45,11 +44,10 @@ const Homepage = ({}) => {
         <div className="my-20">
           <LikeButton />
         </div>
-        {/* <div className="my-20">
-          <PrezCard>
-            <PostCard prezCard={width > 1600} />
-          </PrezCard>
-        </div> */}
+        <CursorGradient>
+          <AccordionImg />
+        </CursorGradient>
+        <div className="my-20"></div>
       </div>
     </>
   );
