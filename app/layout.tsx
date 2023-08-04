@@ -5,7 +5,6 @@ import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
 import CurvedMenu from "@/components/ui/navigation/header/CurvedMenu";
-import Reveal from "@/components/animation/Reveal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,11 +12,6 @@ export const metadata = {
   title: "JulDev | Blogfolio ",
   description:
     "Bienvenue sur mon blogfolio, je suis Julien, développeur web et mobile. Je partage ici mes expériences, mes projets et mes passions.",
-  themeColor: [
-    {
-      media: "(prefers-color-scheme: dark)",
-    },
-  ],
 };
 
 interface RootLayoutProps {
@@ -33,12 +27,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
-            <div className="max-w-7xl mx-auto py-10 px-4">
+            <div className="max-w-7xl mx-auto px-4">
               <header className="fixed top-0 max-w-7xl w-full z-20 bg-background/30 rounded-md backdrop-blur-md px-10">
                 <NavBar />
               </header>
-              <main>{children}</main>
             </div>
+            <main>{children}</main>
             {/* <Analytics /> */}
           </ThemeProvider>
         </SoundContextProvider>

@@ -19,6 +19,8 @@ module.exports = {
     extend: {
       fontSize: {
         clampXl: ["clamp(2.5rem, 2.1rem + 2.4vw, 5rem)", "1.1"],
+        clamp3xl: ["clamp(2.0625rem, 0.9958rem + 5.3333vw, 4.0625rem)", "1.1"],
+        clamp4xl: ["clamp(5.5rem, 1.7667rem + 18.6667vw, 12.5rem)", "1.1"],
       },
       backgroundSize: {
         bgMenu: "12vmin 12vmin",
