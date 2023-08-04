@@ -31,6 +31,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".contentlayer/generated"
-, "hooks/use-viewport-size", "hooks/use-window-event", "components/animation/custom_cursor/CursorContext.jsx", "components/ui/navigation/modalSheet/Footer/FooterSocialsLinks.jsx", "hooks/use-scroll-lock/useScrollLock.js"  ],
+, "hooks/use-viewport-size", "hooks/use-window-event", "components/animation/custom_cursor/CursorContext.jsx", "components/ui/navigation/modalSheet/Footer/FooterSocialsLinks.jsx", "hooks/use-scroll-lock/useScrollLock.js", "components/animation/text-animation/TextSpan.js"  ],
   "exclude": ["node_modules"]
 }
