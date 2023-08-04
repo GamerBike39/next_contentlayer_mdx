@@ -21,12 +21,16 @@ function Reveal({ children }: Props) {
     <div ref={ref} className="relative">
       <motion.div
         variants={{
-          hidden: { opacity: 0, y: 75 },
+          hidden: { opacity: 0, y: 100 },
           visible: { opacity: 1, y: 0 },
         }}
         initial="hidden"
         animate={mainControls}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{
+          duration: 1.3,
+          delay: 0.3,
+          ease: "easeInOut",
+        }}
       >
         {children}
       </motion.div>
