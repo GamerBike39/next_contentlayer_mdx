@@ -20,15 +20,15 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="fr" suppressHydrationWarning={true}>
+    <html lang="fr" suppressHydrationWarning={true} className="overflow-auto">
       <body
-        className={`relative antialiased min-h-screen bg-white dark:bg-[#1B1A21] text-slate-900 dark:text-slate-50 ${inter.className}`}
+        className={`relative antialiased min-h-screen bg-lightGradient2 dark:bg-darkGradient3 text-zinc-900 dark:text-slate-50 ${inter.className}`}
       >
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
             <div className="max-w-7xl mx-auto px-4">
-              <header className="fixed top-0 max-w-7xl w-full z-20 bg-background/30 rounded-md backdrop-blur-md px-10">
+              <header className="hidden lg:block fixed top-0 max-w-7xl w-full z-[500] bg-background/30 rounded-md backdrop-blur-md py-2 px-10">
                 <NavBar />
               </header>
             </div>

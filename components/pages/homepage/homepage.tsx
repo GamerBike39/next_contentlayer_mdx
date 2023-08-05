@@ -21,7 +21,7 @@ const Homepage = ({}) => {
   return (
     <>
       <HomeHeader />
-      <div className="my-10 w-full max-w-4xl px-5 mx-auto">
+      <div className="my-10 w-full max-w-6xl px-5 mx-auto">
         <Reveal>
           <div className="flex flex-col items-center justify-center">
             <h1 className={`text-8xl font-bold ${Luckiest_GuyFont.className} `}>
