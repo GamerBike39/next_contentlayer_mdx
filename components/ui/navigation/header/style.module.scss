@@ -1,15 +1,19 @@
 .header{
-    padding: 10px;
+    padding: 3px;
     position: fixed;
     right: 10px;
-    top: 20px;
-    z-index: 900;
+    top: 2px;
+    z-index: 499;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .button{
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background-color: #455CE9;
+        backdrop-filter: blur(10px);
         cursor: pointer;
         display: flex;
         align-items: center;

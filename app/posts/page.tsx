@@ -31,6 +31,7 @@ import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSo
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import CursorGradient from "@/components/cursorGradient/CursorGradient";
+import { cn } from "@/lib/utils";
 
 export default function TagsPage() {
   const searchParams = useSearchParams();
@@ -43,7 +44,7 @@ export default function TagsPage() {
   const [allowMultipleTags, setAllowMultipleTags] = useState(false); //  état pour autoriser la sélection multiple
   const [additionalPostsCount, setAdditionalPostsCount] = useState(4);
   const [sortAlphabetically, setSortAlphabetically] = useState(false);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
 
   useEffect(() => {
     const allTags = allPosts.flatMap((post) => post.tags ?? []);
@@ -154,9 +155,31 @@ export default function TagsPage() {
     return new Date(date).toLocaleDateString("fr-FR");
   };
 
+  const randomRotate = () => {
+    //  un chiffre aléatoire entre -2 et 2 mais excluant 0, si -2 on retourne -rotate-2, si 2 on retourne rotate-2 etc...
+    const random =
+      Math.floor(Math.random() * 3) * (Math.round(Math.random()) ? 1 : -1);
+    if (random === 0) {
+      return "rotate-1";
+    }
+    if (random === -2) {
+      return "-rotate-2 0";
+    }
+    if (random === 2) {
+      return "rotate-2";
+    }
+    if (random === -1) {
+      return "-rotate-1";
+    }
+    if (random === 1) {
+      return "rotate-1";
+    }
+    return random;
+  };
+
   return (
     <>
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto px-10 mt-20">
         <div>
           <h1 className={`text-6xl font-bold ${Luckiest_GuyFont.className}`}>
             J'ai écrit des trucs !
@@ -305,12 +328,15 @@ export default function TagsPage() {
               whileInView={{ opacity: 1 }}
               className={`${
                 isMinimized
-                  ? " bg-transparent dark:hover:bg-[#1e1e2bf8] px-5 py-3  dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out"
+                  ? `w-fit bg-yellow-700 dark:hover:bg-[#1e1e2bf8] px-5 py-3  dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out ${randomRotate()}`
                   : ""
               }`}
             >
               {isMinimized ? (
-                <Link href={post.slug} className="hover:scale-110">
+                <Link
+                  href={post.slug}
+                  className={cn(post._id && randomRotate())}
+                >
                   <CardTitle>{post.title}</CardTitle>
                   <p className="text-xs font-extralight">
                     {dateFormatted(post.date)}

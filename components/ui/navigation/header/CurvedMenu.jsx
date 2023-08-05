@@ -2,7 +2,7 @@
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
 import Nav from './nav';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
@@ -36,6 +36,8 @@ export default function CurvedMenu() {
     <>
       <div>
         <div className={`${styles.header}`}>
+          <div className='px-10'>Logo</div>
+
           <div onClick={() => {
             setIsActive(!isActive)
             playOn()
@@ -48,7 +50,15 @@ export default function CurvedMenu() {
       <div >
         <AnimatePresence mode="wait">
           {isActive && (
-            <Nav />
+            <>
+              <motion.div className='absolute top-0 left-0 w-full h-full backdrop-blur-md z-50 bg-black bg-opacity-50'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+              <Nav />
+            </>
           )}
         </AnimatePresence>
       </div>

@@ -1,17 +1,26 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 interface PatternProps {
   className?: string;
+  MaxLength?: number;
+  Frequency?: number;
+  Spacing?: number;
+  Offset?: number;
 }
 
-const Pattern = ({ className }: PatternProps) => {
-  const maxLength = 100;
-  const frequency = 300;
-  const spacing = 5;
-  const offset = 10;
+const Pattern = ({
+  className,
+  MaxLength = 100,
+  Frequency = 300,
+  Spacing = 5,
+  Offset = 10,
+}: PatternProps) => {
+  const maxLength = MaxLength;
+  const frequency = Frequency;
+  const spacing = Spacing;
+  const offset = Offset;
 
   const { theme } = useTheme();
 
@@ -24,6 +33,7 @@ const Pattern = ({ className }: PatternProps) => {
       frequency * 2
     }`;
     const transform = `rotate(${index * offset}, 400, 400)`;
+
     return (
       <motion.circle
         key={index}

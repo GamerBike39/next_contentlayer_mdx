@@ -27,9 +27,13 @@ function Reveal({ children }: Props) {
         initial="hidden"
         animate={mainControls}
         transition={{
-          duration: 1.3,
+          duration: 0.5,
           delay: 0.3,
           ease: "easeInOut",
+          type: "spring",
+          stiffness: 100,
+          bounce: 0.3,
+          mass: 1,
         }}
       >
         {children}

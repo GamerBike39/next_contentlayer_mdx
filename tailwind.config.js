@@ -28,7 +28,11 @@ module.exports = {
       },
       backgroundImage: {
         "menu-pattern": "radial-gradient(rgba(255, 255, 255, 0.1) 9%, transparent 9%)",
-
+        "lightGradient": "linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%)",
+        "lightGradient2": "bg-gradient-to-t from-rose-100 to-teal-100",
+        "darkGradient": "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%)",
+        "darkGradient2": "bg-gradient-to-r from-gray-700 via-gray-900 to-black",
+        "darkGradient3": "bg-gradient-to-t from-gray-700 via-gray-900 to-black"
       },
 
       colors: {

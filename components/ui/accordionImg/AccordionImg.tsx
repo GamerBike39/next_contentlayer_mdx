@@ -9,9 +9,6 @@ import {
 } from "@/components/ui/accordion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import Reveal from "@/components/animation/Reveal";
-import AnimatedTextCharacter from "@/components/animation/text-animation/letter-by-letter/AnimatedTextCharacters";
-import AnimatedTextWord from "@/components/animation/text-animation/letter-by-letter/AnimatedTextWord";
 
 // TODO size image parametre
 
@@ -59,7 +56,7 @@ const AccordionImg: FC<AccordionImgProps> = ({}) => {
               </AccordionTrigger>
               <AccordionContent className="max-w-full">
                 {/* {item.content} */}
-                <AnimatedTextWord text={item.content} />
+                {item.content}
               </AccordionContent>
             </AccordionItem>
           ))}

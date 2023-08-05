@@ -1,0 +1,22 @@
+---
+title: Trucs et astuces
+description: Plusieurs snippets pour vous aider à développer plus rapidement et astucieusement
+date: "2023-07-25"
+tags: ["nextjs", "tailwindcss", "tuto", "astuce", "snippets"]
+---
+
+## Snippets Bouton
+
+Se rendre à une ancre dans la page, c'est à dire une id# avec un bouton
+
+```js
+<Button
+  onClick={() => {
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  }}
+>
+  En savoir plus
+</Button>
+```
+
+Ce code utilise un composant ShadcnUI, mais vous pouvez utiliser un bouton classique.
