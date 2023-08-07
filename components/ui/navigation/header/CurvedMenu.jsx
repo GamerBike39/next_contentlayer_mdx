@@ -37,7 +37,7 @@ export default function CurvedMenu() {
     <>
       <div>
         <div className={`p-1 fixed right-3 top-1 z-[1000] flex justify-between items-center`}>
-          <div className='px-10'>
+          <div>
             <Hamburger toggled={isActive} toggle={setIsActive} />
           </div>
         </div>
