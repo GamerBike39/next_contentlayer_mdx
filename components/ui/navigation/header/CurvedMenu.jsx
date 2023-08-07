@@ -1,5 +1,4 @@
 'use client'
-import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
 import Nav from './nav';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -7,6 +6,8 @@ import { usePathname } from 'next/navigation';
 import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
 import { useScrollLock } from '@/hooks/use-scroll-lock/useScrollLock';
+import Hamburger from 'hamburger-react'
+
 
 export default function CurvedMenu() {
 
@@ -16,8 +17,6 @@ export default function CurvedMenu() {
   const { soundEnabled } = useSoundContext();
   const [playOn] = useSound("/sounds/openBubble.mp3", { volume: 0.25, playbackRate: 0.8, soundEnabled });
   const { lockScroll, unlockScroll } = useScrollLock();
-
-
 
   useEffect(() => {
     if (isActive) setIsActive(false)
@@ -32,18 +31,14 @@ export default function CurvedMenu() {
   }, [isActive])
 
 
+
+
   return (
     <>
       <div>
-        <div className={`${styles.header}`}>
-          <div className='px-10'>Logo</div>
-
-          <div onClick={() => {
-            setIsActive(!isActive)
-            playOn()
-          }} className={styles.button}>
-            <div
-              className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
+        <div className={`p-1 fixed right-3 top-1 z-[1000] flex justify-between items-center`}>
+          <div className='px-10'>
+            <Hamburger toggled={isActive} toggle={setIsActive} />
           </div>
         </div>
       </div>
@@ -51,11 +46,14 @@ export default function CurvedMenu() {
         <AnimatePresence mode="wait">
           {isActive && (
             <>
-              <motion.div className='absolute top-0 left-0 w-full h-full backdrop-blur-md z-50 bg-black bg-opacity-50'
+              <motion.div className='absolute top-0 left-0 w-full min-h-screen h-[150%] backdrop-blur-md z-50 bg-black bg-opacity-50'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                onClick={() => {
+                  setIsActive(false)
+                }}
               />
               <Nav />
             </>

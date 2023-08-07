@@ -16,8 +16,9 @@ interface AccordionImgProps {}
 
 const accordionData = [
   {
-    title: "Is it accessible?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    title: "Ce que je fais !",
+    content:
+      "Site vitrines pour votre entreprise, blog pour votre passion, site e-commerce pour votre boutique, ...",
     img: "/posts/menuMdx.jpg",
     link: "https://www.google.fr",
   },
@@ -45,13 +46,16 @@ const AccordionImg: FC<AccordionImgProps> = ({}) => {
   return (
     <div className="grid grid-cols-12 gap-0 lg:gap-8 w-full border px-5 py-10 rounded-xl bg-background shadow-2xl">
       <div className="col-span-12 lg:col-span-7 ">
-        <p className="text-3xl dark:text-white/90 w-fit border-b border-dashed mb-10">
+        {/* <p className="text-3xl dark:text-white/90 w-fit border-b border-dashed mb-10">
           Solution
-        </p>
+        </p> */}
         <Accordion type="single" collapsible>
           {accordionData.map((item, index) => (
             <AccordionItem key={index} value={`item-${index + 1}`}>
-              <AccordionTrigger onClick={() => handleActive(index)}>
+              <AccordionTrigger
+                onClick={() => handleActive(index)}
+                className="text-xl"
+              >
                 {item.title}
               </AccordionTrigger>
               <AccordionContent className="max-w-full">

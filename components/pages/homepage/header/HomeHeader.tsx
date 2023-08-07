@@ -1,13 +1,11 @@
+"use client";
 import TextScaleDifform from "@/components/animation/text-animation/scaleDifform/TextScaleDifform";
 import Pattern from "./pattern2";
 import { useState } from "react";
-import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
-import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import GridBackground from "@/components/background/GridBackground";
+import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
 
 const HomeHeader = ({}) => {
   const [maxLength, setMaxLength] = useState(100);
@@ -29,90 +27,35 @@ const HomeHeader = ({}) => {
   };
 
   return (
-    <>
-      <GridBackground />
-      <div className="relative overflow-hidden w-full h-screen max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-evenly lg:justify-center mt-14">
-        <div className="px-5 w-full h-full pt-40 flex flex-col justify-start">
-          <TextScaleDifform text="Salut" className="flex text-clamp4xl" />
-          <h1 className="text-clamp3xl">Bienvenue sur mon BlogFolio</h1>
-          <div className="flex gap-5">
-            <Button
-              className="mt-5"
-              onClick={() => {
-                router.push("/posts");
-              }}
-            >
-              Mes projets
-            </Button>
-            <Button
-              variant={"secondary"}
-              className="mt-5"
-              onClick={() => {
-                router.push("/about");
-              }}
-            >
-              En savoir plus
-            </Button>
-          </div>
+    <div className="grid grid-cols-6 h-screen w-full justify-center px-5">
+      <div className="col-span-6 lg:col-span-3 flex flex-col h-full  justify-center lg:ml-auto">
+        <div>
+          <h1 className="text-clamp3xl">
+            Bonjour, je suis{" "}
+            <TextScaleDifform text="Julien" className="text-clampXl" />
+          </h1>
+          <h2 className="text-clamp2xl">
+            Développeur web <br /> Création moderne et responsive
+          </h2>
         </div>
-        <div className="hidden lg:block absolute scale-125 opacity-25 -z-10 top-0 md:-right-36 h-full w-full">
-          <Pattern
-            Frequency={frequency}
-            MaxLength={maxLength}
-            Spacing={spacing}
-            className="w-full h-full"
-          />
+        <div className="mt-5">
+          <Button onClick={() => router.push("/contact")}>
+            <SVGHoverAnimation text="Me contacter" />
+          </Button>
         </div>
-
+      </div>
+      <div
+        className="col-span-6 lg:col-span-2
+       relative"
+      >
         <Image
-          src="/bg/popdev.png"
+          src={"/bg/popdev-removebg-preview.png"}
           alt=""
-          width={300}
-          height={300}
-          className="object-scale-down -z-10 rounded-full lg:hidden"
+          fill
+          className="object-cover lg:object-contain"
         />
       </div>
-      {/* <div className="flex flex-col gap-2 items-center justify-center">
-        <div className="flex gap-1">
-          <label htmlFor="maxLength">maxLength</label>
-          <input
-            value={maxLength}
-            onChange={(e) => handleChangeMaxLength(Number(e.target.value))}
-            type="range"
-            min="0"
-            max="500"
-            className="w-96"
-          ></input>
-          {maxLength}
-        </div>
-        <div className="flex  gap-1">
-          <label htmlFor="frequency">frequency</label>
-          <input
-            value={frequency}
-            onChange={(e) => handleChangeFrequency(Number(e.target.value))}
-            type="range"
-            step={5}
-            min="0"
-            max="500"
-            className="w-96"
-          ></input>
-          {frequency}
-        </div>
-        <div className="flex gap-1">
-          <Label htmlFor="spacing">spacing</Label>
-          <input
-            value={spacing}
-            onChange={(e) => handleChangeSpacing(Number(e.target.value))}
-            type="range"
-            step={0.5}
-            min={0}
-            max={50}
-            className="w-96 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-          ></input>
-          {spacing}
-        </div>
-      </div> */}
-    </>
+    </div>
   );
 };
 

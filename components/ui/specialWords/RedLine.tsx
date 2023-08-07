@@ -16,7 +16,7 @@ const RedLine = ({ text, className }: RedLineProps) => {
         width={90}
         height={8}
         preserveAspectRatio="none"
-        className="stroke-[#C02950] absolute -bottom-1 w-fit"
+        className="stroke-[#C02950] absolute -bottom-1 w-full"
       >
         <path
           strokeLinecap="round"

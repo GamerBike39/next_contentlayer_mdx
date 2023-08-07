@@ -32,7 +32,7 @@ export default function Nav() {
 
 
   return (
-    <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className={`menu z-[100] p-14`}>
+    <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className={`menu z-[1000] p-14`}>
       <div className={`flex items-center w-full gap-5 mb-5`}>
         <ModeToggle iconSize={9} />
         <BtnDisabledSound iconSize={10} />
@@ -44,7 +44,7 @@ export default function Nav() {
           <div className="mb-1 flex items-center w-full justify-between text-[11px] font-extralight pb-1 border-b border-gray-600 uppercase tracking-widest">
             <p>Navigation</p>
           </div>
-          <motion.div className='menu-item' {...animateNavItem(0.4)}>
+          <motion.div {...animateNavItem(0.4)}>
             <SoundLink
               href="/"
               text="Accueil"
