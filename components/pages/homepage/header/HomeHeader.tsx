@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
+import { useTheme } from "next-themes";
 
 const HomeHeader = ({}) => {
   const [maxLength, setMaxLength] = useState(100);
@@ -27,7 +28,7 @@ const HomeHeader = ({}) => {
   };
 
   return (
-    <div className="grid grid-cols-6 h-screen w-full justify-center px-5">
+    <div className="grid grid-cols-6 h-screen w-full justify-center px-5 relative">
       <div className="col-span-6 lg:col-span-3 flex flex-col h-full  justify-center lg:ml-auto">
         <div>
           <h1 className="text-clamp3xl">
@@ -44,17 +45,14 @@ const HomeHeader = ({}) => {
           </Button>
         </div>
       </div>
-      <div
-        className="col-span-6 lg:col-span-2
-       relative"
-      >
-        <Image
-          src={"/bg/popdev-removebg-preview.png"}
-          alt=""
-          fill
-          className="object-cover lg:object-contain"
-        />
-      </div>
+      <Image
+        src={"/bg/popdev-removebg-preview.png"}
+        alt=""
+        fill
+        sizes="80vw"
+        priority
+        className="object-cover lg:object-contain -z-10 opacity-60"
+      />
     </div>
   );
 };
