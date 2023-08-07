@@ -60,7 +60,7 @@ export default function FooterSocialsLinks() {
         <motion.div {...animateNavItem(1)}
           whileHover={{ scale: 1.3 }}
         >
-          <Link
+          <a
             href="mailto:champidub@gmail.com"
             className="max-w-fit"
           >
@@ -68,7 +68,7 @@ export default function FooterSocialsLinks() {
             <motion.svg className="w-10 h-10 lg:w-20 lg:h-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" stroke-linejoin="round"
               whileHover={{ scale: 1.1, rotate: 5, y: -3 }}
             ><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></motion.svg>
-          </Link>
+          </a>
         </motion.div>
       </motion.div>
       <motion.p className="w-full"

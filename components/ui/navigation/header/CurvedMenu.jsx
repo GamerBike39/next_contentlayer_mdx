@@ -1,12 +1,13 @@
 'use client'
 import styles from './style.module.scss'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Nav from './nav';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
 import { useScrollLock } from '@/hooks/use-scroll-lock/useScrollLock';
+
 
 export default function CurvedMenu() {
 
@@ -16,8 +17,6 @@ export default function CurvedMenu() {
   const { soundEnabled } = useSoundContext();
   const [playOn] = useSound("/sounds/openBubble.mp3", { volume: 0.25, playbackRate: 0.8, soundEnabled });
   const { lockScroll, unlockScroll } = useScrollLock();
-
-
 
   useEffect(() => {
     if (isActive) setIsActive(false)
@@ -30,6 +29,8 @@ export default function CurvedMenu() {
       unlockScroll()
     }
   }, [isActive])
+
+
 
 
   return (
@@ -56,6 +57,9 @@ export default function CurvedMenu() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                onClick={() => {
+                  setIsActive(false)
+                }}
               />
               <Nav />
             </>

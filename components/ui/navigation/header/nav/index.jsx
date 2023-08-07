@@ -44,7 +44,7 @@ export default function Nav() {
           <div className="mb-1 flex items-center w-full justify-between text-[11px] font-extralight pb-1 border-b border-gray-600 uppercase tracking-widest">
             <p>Navigation</p>
           </div>
-          <motion.div className='menu-item' {...animateNavItem(0.4)}>
+          <motion.div {...animateNavItem(0.4)}>
             <SoundLink
               href="/"
               text="Accueil"
