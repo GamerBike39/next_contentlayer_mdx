@@ -49,7 +49,7 @@ const HomeHeader = ({}) => {
         src={"/bg/popdev-removebg-preview.png"}
         alt=""
         fill
-        sizes="80vw"
+        sizes="100vw"
         priority
         className="object-cover lg:object-contain -z-10 opacity-60"
       />
