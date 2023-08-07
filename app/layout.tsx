@@ -20,7 +20,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="fr" suppressHydrationWarning={true} className="overflow-auto">
+    <html lang="fr" suppressHydrationWarning={true}>
       <body
         className={`relative antialiased min-h-screen bg-lightGradient2 dark:bg-darkGradient3 text-zinc-900 dark:text-slate-50 ${inter.className}`}
       >
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
             <div className="max-w-7xl mx-auto px-4">
-              <header className="hidden lg:block fixed top-0 max-w-7xl w-full z-[500] bg-background/30 rounded-md backdrop-blur-md py-2 px-10">
+              <header className="hidden md:block fixed top-0 max-w-7xl w-full z-[50] bg-background/30 rounded-md backdrop-blur-md py-2 px-10">
                 <NavBar />
               </header>
             </div>

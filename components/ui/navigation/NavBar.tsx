@@ -6,7 +6,7 @@ import BtnDisabledSound from "../Sounds/btnDisabledSound/BtnDisabledSound";
 
 const NavBar = ({}) => {
   return (
-    <div className="hidden 2xl:flex flex-wrap items-center justify-between">
+    <div className="hidden md:flex flex-wrap items-center justify-between">
       <ModeToggle />
       <BtnDisabledSound />
       <nav className="ml-auto text-sm font-medium space-x-6 flex flex-wrap">

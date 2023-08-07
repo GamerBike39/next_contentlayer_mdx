@@ -155,28 +155,6 @@ export default function TagsPage() {
     return new Date(date).toLocaleDateString("fr-FR");
   };
 
-  const randomRotate = () => {
-    //  un chiffre aléatoire entre -2 et 2 mais excluant 0, si -2 on retourne -rotate-2, si 2 on retourne rotate-2 etc...
-    const random =
-      Math.floor(Math.random() * 3) * (Math.round(Math.random()) ? 1 : -1);
-    if (random === 0) {
-      return "rotate-1";
-    }
-    if (random === -2) {
-      return "-rotate-2 0";
-    }
-    if (random === 2) {
-      return "rotate-2";
-    }
-    if (random === -1) {
-      return "-rotate-1";
-    }
-    if (random === 1) {
-      return "rotate-1";
-    }
-    return random;
-  };
-
   return (
     <>
       <div className="max-w-4xl mx-auto px-10 mt-20">
@@ -328,15 +306,12 @@ export default function TagsPage() {
               whileInView={{ opacity: 1 }}
               className={`${
                 isMinimized
-                  ? `w-fit bg-yellow-700 dark:hover:bg-[#1e1e2bf8] px-5 py-3  dark:hover:border-white hover:border-gray-600 transform transition-all duration-300 ease-in-out ${randomRotate()}`
+                  ? `w-fit px-5 py-3 h-24 hover:border dark:hover:border-white hover:border-gray-600 transform transition-all ease-in-out]`
                   : ""
               }`}
             >
               {isMinimized ? (
-                <Link
-                  href={post.slug}
-                  className={cn(post._id && randomRotate())}
-                >
+                <Link href={post.slug}>
                   <CardTitle>{post.title}</CardTitle>
                   <p className="text-xs font-extralight">
                     {dateFormatted(post.date)}
@@ -407,7 +382,11 @@ export default function TagsPage() {
           ))}
         </div>
         {defaultPostsCount < posts.length && (
-          <Button onClick={handleLoadMorePosts} className="my-5">
+          <Button
+            onClick={handleLoadMorePosts}
+            className="my-5"
+            variant={"secondary"}
+          >
             Charger plus d'articles
           </Button>
         )}
