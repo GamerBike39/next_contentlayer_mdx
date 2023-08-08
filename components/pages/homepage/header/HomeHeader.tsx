@@ -1,12 +1,10 @@
 "use client";
 import TextScaleDifform from "@/components/animation/text-animation/scaleDifform/TextScaleDifform";
-import Pattern from "./pattern2";
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
-import { useTheme } from "next-themes";
 
 const HomeHeader = ({}) => {
   const [maxLength, setMaxLength] = useState(100);

@@ -6,10 +6,10 @@ import BtnDisabledSound from "../Sounds/btnDisabledSound/BtnDisabledSound";
 
 const NavBar = ({}) => {
   return (
-    <div className="hidden md:flex flex-wrap items-center justify-between">
+    <div className="flex gap-2 items-center lg:justify-between w-1/3 lg:w-full relative z-10">
       <ModeToggle />
       <BtnDisabledSound />
-      <nav className="ml-auto text-sm font-medium space-x-6 flex flex-wrap">
+      <nav className="hidden ml-auto text-sm font-medium space-x-6 sm:flex">
         <SoundLink href="/" text="Accueil" />
         <SoundLink href="/posts" text="Projets" />
         {/* <SoundLink href="/blog" text="Blog" /> */}

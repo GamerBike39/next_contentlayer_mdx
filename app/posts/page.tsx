@@ -157,7 +157,7 @@ export default function TagsPage() {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto px-10 mt-20">
+      <div className="max-w-4xl mx-auto px-10 pt-20">
         <div>
           <h1 className={`text-6xl font-bold ${Luckiest_GuyFont.className}`}>
             J'ai écrit des trucs !

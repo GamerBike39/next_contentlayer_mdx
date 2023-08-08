@@ -7,6 +7,7 @@ import useSound from 'use-sound';
 import { useSoundContext } from "@/providers/SoundProvider";
 import { useScrollLock } from '@/hooks/use-scroll-lock/useScrollLock';
 import Hamburger from 'hamburger-react'
+import NavBar from "@/components/ui/navigation/NavBar";
 
 
 export default function CurvedMenu() {
@@ -36,8 +37,11 @@ export default function CurvedMenu() {
   return (
     <>
       <div>
-        <div className={`p-1 fixed right-3 top-1 z-[1000] flex justify-between items-center`}>
-          <div>
+        <div className={`w-full absolute right-0 left-0 top-1 flex justify-around items-center max-w-4xl mx-auto`}>
+          <div className='relative  w-full'>
+            <NavBar />
+          </div>
+          <div className='fixed z-[2000] right-2 '>
             <Hamburger toggled={isActive} toggle={setIsActive} />
           </div>
         </div>
