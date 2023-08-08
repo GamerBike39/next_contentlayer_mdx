@@ -9,8 +9,9 @@ import {
 import { Drawer } from "vaul";
 
 import { cardData } from "./cardData";
-import { BookPlus, PlusCircle, StepBack, StepForward, X } from "lucide-react";
+import { PlusCircle, StepBack, StepForward, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, useDragControls } from "framer-motion";
 
 interface CardProps {}
 
@@ -28,6 +29,16 @@ const CardInfo: FC<CardProps> = ({}) => {
   };
 
   const currentItem = cardData[currentIndex];
+
+  const controls = useDragControls();
+
+  const handleDragEnd = (e: any, info: { offset: { x: number } }) => {
+    if (info.offset.x > 150) {
+      handlePrevIndex();
+    } else if (info.offset.x < -150) {
+      handleNextIndex();
+    }
+  };
 
   return (
     <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -77,7 +88,18 @@ const CardInfo: FC<CardProps> = ({}) => {
                           </button>
                         </div>
 
-                        <div className="flex flex-col gap-10 overflow-auto h-[80vh] px-2 mb-10">
+                        <motion.div
+                          className="flex flex-col gap-10 overflow-auto h-[80vh] px-2 mb-10"
+                          drag="x"
+                          dragConstraints={{ left: 0, right: 0 }}
+                          dragElastic={0.1}
+                          dragControls={controls}
+                          onDragEnd={handleDragEnd}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
                           {currentItem.modalContent && // Utilise currentItem ici
                             currentItem.modalContent.content.map(
                               (contentItem, contentIndex) => (
@@ -91,7 +113,7 @@ const CardInfo: FC<CardProps> = ({}) => {
                                 </div>
                               )
                             )}
-                        </div>
+                        </motion.div>
                       </div>
                     </div>
                   </Drawer.Content>
