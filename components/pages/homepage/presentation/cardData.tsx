@@ -15,6 +15,7 @@ export const cardData = [
       "Réalisations de sites vitrines, blogs, e-commerce, ... sur mesure qui répondent à vos besoins",
     icon: <Rocket className="w-10 h-10" />,
     modalContent: {
+      title: "Développement Web",
       picture: "image-developpement-web.png",
       content: [
         {
@@ -46,6 +47,7 @@ export const cardData = [
       "Du cahier des charges à la mise en ligne, je vous accompagne dans votre projet pour qu'il soit le plus proche de vos attentes",
     icon: <HelpingHand className="w-10 h-10" />,
     modalContent: {
+      title: "Accompagnement",
       picture: "image-accompagnement.png",
       content: [
         {
@@ -77,6 +79,7 @@ export const cardData = [
       "Une fois votre site en ligne, je reste à votre disposition pour toute modification ou ajout de fonctionnalité",
     icon: <Construction className="w-10 h-10" />,
     modalContent: {
+      title: "Maintenance",
       picture: "image-maintenance.png",
       content: [
         {
@@ -105,6 +108,7 @@ export const cardData = [
       "Je vous aide à améliorer votre référencement naturel pour que votre site soit le plus visible possible",
     icon: <Target className="w-10 h-10" />,
     modalContent: {
+      title: "Référencement",
       picture: "image-referencement.png",
       content: [
         {
@@ -137,6 +141,7 @@ export const cardData = [
       "Je vous forme à l'utilisation de votre site pour que vous puissiez le gérer en toute autonomie",
     icon: <GraduationCap className="w-10 h-10" />,
     modalContent: {
+      title: "Formation",
       picture: "image-formation.png",
       content: [
         {
@@ -165,6 +170,7 @@ export const cardData = [
       "A l'aide des dernières technologies, je m'assure que votre site soit le plus rapide possible",
     icon: <Rocket className="w-10 h-10" />,
     modalContent: {
+      title: "Optimisation",
       picture: "image-optimisation.png",
       content: [
         {
