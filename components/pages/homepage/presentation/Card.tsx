@@ -1,5 +1,5 @@
 "use client";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Card,
   CardContent,
@@ -9,12 +9,26 @@ import {
 import { Drawer } from "vaul";
 
 import { cardData } from "./cardData";
-import { BookPlus, PlusCircle, X } from "lucide-react";
+import { BookPlus, PlusCircle, StepBack, StepForward, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface CardProps {}
 
 const CardInfo: FC<CardProps> = ({}) => {
+  const [currentIndex, setCurrentIndex] = useState(0); // Suivre l'index actuel de la modal
+
+  const handleNextIndex = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length); // Passe à l'index suivant en boucle
+  };
+
+  const handlePrevIndex = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + cardData.length) % cardData.length
+    ); // Passe à l'index précédent en boucle
+  };
+
+  const currentItem = cardData[currentIndex];
+
   return (
     <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {cardData.map((item, index) => (
@@ -42,16 +56,30 @@ const CardInfo: FC<CardProps> = ({}) => {
                       <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
                       <div className="max-w-md mx-auto">
                         <Drawer.Trigger className="absolute top-4 right-4">
-                          <button>
-                            <X />
-                          </button>
+                          <X />
                         </Drawer.Trigger>
-                        <Drawer.Title className="font-medium mb-4">
-                          {item.title}
-                        </Drawer.Title>
-                        <div className="flex flex-col gap-10 overflow-auto h-screen px-2">
-                          {item.modalContent &&
-                            item.modalContent.content.map(
+                        <div className="mb-5 flex justify-between items-center">
+                          {/* Ajoute des flèches pour passer à l'index précédent et suivant */}
+                          <button
+                            onClick={handlePrevIndex}
+                            disabled={currentIndex === 0}
+                          >
+                            <StepBack />
+                          </button>
+                          <Drawer.Title className="font-medium">
+                            {currentItem.title}
+                          </Drawer.Title>
+                          <button
+                            onClick={handleNextIndex}
+                            disabled={currentIndex === cardData.length - 1}
+                          >
+                            <StepForward />
+                          </button>
+                        </div>
+
+                        <div className="flex flex-col gap-10 overflow-auto h-[80vh] px-2 mb-10">
+                          {currentItem.modalContent && // Utilise currentItem ici
+                            currentItem.modalContent.content.map(
                               (contentItem, contentIndex) => (
                                 <div key={contentIndex}>
                                   <div>
