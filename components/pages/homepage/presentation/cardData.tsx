@@ -23,15 +23,15 @@ export const cardData = [
           text: "Chaque site que je crée est conçu sur mesure pour répondre à vos besoins spécifiques, reflétant ainsi l'identité et les valeurs de votre entreprise.",
         },
         {
-          title: "Expérience Utilisateur Avant Tout",
+          title: "Expérience Utilisateur",
           text: "Je m'assure que la navigation sur votre site soit intuitive et agréable pour vos visiteurs, favorisant ainsi un engagement accru et une exploration plus profonde.",
         },
         {
-          title: "Optimisation SEO Intégrée",
+          title: "Optimisation SEO",
           text: "Votre site sera conçu en suivant les meilleures pratiques SEO, garantissant une visibilité optimale sur les moteurs de recherche et attirant un trafic qualifié.",
         },
         {
-          title: "Compatibilité Multi-Plateformes",
+          title: "Compatibilité",
           text: "Votre site sera entièrement responsive, s'adaptant parfaitement à tous les types d'appareils, des ordinateurs de bureau aux smartphones.",
         },
         {
@@ -55,7 +55,7 @@ export const cardData = [
           text: "Je m'engage à comprendre vos objectifs, vos valeurs et votre vision afin de créer un site qui soit une extension fidèle de votre entreprise.",
         },
         {
-          title: "Transparence et Communication",
+          title: "Transparence & Communication",
           text: "Tout au long du processus, je vous tiendrai informé des progrès réalisés et des décisions prises, en veillant à ce que vous soyez impliqué et informé à chaque étape.",
         },
         {
@@ -120,7 +120,7 @@ export const cardData = [
           text: "Chaque page de votre site sera optimisée pour les mots-clés cibles, avec des titres, des méta-descriptions et un contenu de qualité.",
         },
         {
-          title: "Création de Contenu Engageant",
+          title: "Contenu Engageant",
           text: "Je peux vous aider à développer du contenu pertinent et engageant qui attire les visiteurs et répond à leurs besoins.",
         },
         {
@@ -174,7 +174,7 @@ export const cardData = [
       picture: "image-optimisation.png",
       content: [
         {
-          title: "Performance de Chargement",
+          title: "Performance",
           text: "J'utilise des techniques avancées de compression d'images, de mise en cache et d'optimisation du code pour garantir des temps de chargement rapides.",
         },
         {
@@ -184,10 +184,6 @@ export const cardData = [
         {
           title: "Conformité aux Standards",
           text: "Je m'assure que votre site respecte les normes de l'industrie, ce qui améliore sa compatibilité avec différents navigateurs et dispositifs.",
-        },
-        {
-          title: "Tests Rigoureux",
-          text: "Avant la mise en ligne et lors de chaque mise à jour, je réalise des tests approfondis pour identifier et résoudre tout problème de performance.",
         },
       ],
     },
