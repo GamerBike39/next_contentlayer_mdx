@@ -93,7 +93,8 @@ const CardInfo: FC<CardProps> = ({}) => {
                     variant={"outline"}
                     onClick={() => handleCurrentIndex(index)}
                   >
-                    En savoir <PlusCircle className="w-4 h-4 ml-2" />
+                    En savoir{" "}
+                    <PlusCircle className="w-4 h-4 ml-2 group-hover:animate-bounce transition" />
                   </Button>
                 </Drawer.Trigger>
                 <Drawer.Portal>
@@ -155,6 +156,14 @@ const CardInfo: FC<CardProps> = ({}) => {
                                     transition={{
                                       duration: 0.1,
                                       delay: 0.1 * contentIndex,
+                                    }}
+                                    whileInView={{
+                                      opacity: 1,
+                                      y: 0,
+                                      transition: {
+                                        duration: 0.2,
+                                        delay: 0.1 * contentIndex,
+                                      },
                                     }}
                                   >
                                     <div>
