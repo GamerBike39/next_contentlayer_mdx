@@ -27,11 +27,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <SoundContextProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <CurvedMenu />
-            <div className="max-w-7xl mx-auto px-4">
-              <header className="hidden md:block fixed top-0 max-w-7xl w-full z-[50] bg-background/30 rounded-md backdrop-blur-md py-2 px-10">
-                <NavBar />
-              </header>
-            </div>
             <main>{children}</main>
             {/* <Analytics /> */}
           </ThemeProvider>

@@ -1,12 +1,10 @@
 "use client";
 import TextScaleDifform from "@/components/animation/text-animation/scaleDifform/TextScaleDifform";
-import Pattern from "./pattern2";
 import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import SVGHoverAnimation from "@/components/ui/Sounds/hover_sound_button/HoverSoundButton";
-import { useTheme } from "next-themes";
 
 const HomeHeader = ({}) => {
   const [maxLength, setMaxLength] = useState(100);
@@ -49,7 +47,7 @@ const HomeHeader = ({}) => {
         src={"/bg/popdev-removebg-preview.png"}
         alt=""
         fill
-        sizes="80vw"
+        sizes="100vw"
         priority
         className="object-cover lg:object-contain -z-10 opacity-60"
       />

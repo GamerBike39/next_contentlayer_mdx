@@ -45,12 +45,14 @@
     "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
     "react-modal-sheet": "^2.0.0",
+    "react-tilt": "^1.0.2",
     "sass": "^1.64.1",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
     "typescript": "5.0.4",
     "use-sound": "^4.0.1",
-    "uuidv4": "^6.2.13"
+    "uuidv4": "^6.2.13",
+    "vaul": "^0.2.2"
   }
 }
