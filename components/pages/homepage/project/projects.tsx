@@ -65,8 +65,15 @@ const Projects: FC<projectsProps> = ({}) => {
         {projectsData.map((project, index) => (
           <div
             key={index}
-            className="w-full h-full grid grid-cols-5 gap-10 px-3 border rounded-md shadow-md"
+            className="w-full h-full grid grid-cols-5 gap-10 px-3 border rounded-md shadow-md relative"
           >
+            <Image
+              src="noise/noise.svg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover -z-10"
+            />
             <div className="col-span-5 lg:col-span-2 h-full py-10 items-center grid">
               <div>
                 <h3 className="text-foreground text-3xl">{project.title}</h3>
