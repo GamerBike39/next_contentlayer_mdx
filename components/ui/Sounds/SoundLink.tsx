@@ -60,6 +60,7 @@ const SoundLink: React.FC<SoundLinkProps> = ({
       hover:brightness-200
         transition-all duration-300
         ${
+          isPathnameMatch(pathname, "/#projets") ||
           isPathnameMatch(pathname, href)
             ? "dark:text-white text-black brightness-200"
             : "dark:text-white/40 text-black/40 hover:dark:text-white hover:text-black"

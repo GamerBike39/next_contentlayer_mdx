@@ -31,6 +31,9 @@ export default function CurvedMenu() {
     }
   }, [isActive])
 
+  const action = () => {
+    setIsActive(prev => !prev)
+  }
 
 
 
@@ -59,7 +62,7 @@ export default function CurvedMenu() {
                   setIsActive(false)
                 }}
               />
-              <Nav />
+              <Nav action={action} />
             </>
           )}
         </AnimatePresence>

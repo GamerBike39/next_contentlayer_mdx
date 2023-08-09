@@ -85,7 +85,7 @@ const CardInfo: FC<CardProps> = ({}) => {
       {cardData.map((item, index) => (
         <Card
           key={index + item.title}
-          className="hover:scale-105 hover:shadow-lg transition-all duration-300 delay-200 h-auto group hover:border"
+          className="hover:scale-105 hover:shadow-lg transition-all duration-300 h-auto group hover:border"
         >
           <CardHeader className="lg:flex-row flex-col-reverse justify-center items-center gap-6 transition">
             <h3 className="text-2xl font-bold w-fit">{item.title}</h3>
