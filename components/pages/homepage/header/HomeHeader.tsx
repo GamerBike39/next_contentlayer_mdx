@@ -28,7 +28,7 @@ const HomeHeader = ({}) => {
   return (
     <div className="grid grid-cols-6 h-screen w-full justify-center px-5 relative">
       <div className="col-span-6 lg:col-span-3 flex flex-col h-full  justify-center lg:ml-auto">
-        <div className="backdrop-blur-sm md:backdrop:backdrop-blur-0">
+        <div className="">
           <h1 className="text-clamp3xl">
             Bonjour, je suis{" "}
             <TextScaleDifform text="Julien" className="text-clampXl" />
