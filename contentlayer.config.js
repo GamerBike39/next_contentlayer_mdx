@@ -26,6 +26,13 @@ export const Page = defineDocumentType(() => ({
     description: {
       type: "string",
     },
+    site: {
+      type: 'string',
+    },
+    github: {
+      type: 'string',
+    }
+
   },
   computedFields,
 }))
