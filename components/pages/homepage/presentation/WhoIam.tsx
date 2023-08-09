@@ -18,12 +18,15 @@ const WhoIam: FC<WhoIamProps> = ({}) => {
         <h3 className="text-foreground/50 text-xl text-right">Qui suis-je ?</h3>
       </div>
       <div className="py-10">
-        <p className="text-xl py-1">
+        <p className="text-2xl pb-3">
           <UnderlineVagueSvg text="Développeur passioné" />,
         </p>
         <p className="text-xl">
           C'est avec beaucoup de plaisir que je vous{" "}
           <RedLine text="accompagnerai" /> dans vos projets
+        </p>
+        <p className="text-xl">
+          Web et mobiles à travers plusieurs compétences.
         </p>
       </div>
       <CardInfo />

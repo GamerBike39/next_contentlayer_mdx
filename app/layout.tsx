@@ -5,6 +5,8 @@ import { Analytics } from "@/components/analytics";
 import NavBar from "@/components/ui/navigation/NavBar";
 import { SoundContextProvider } from "@/providers/SoundProvider";
 import CurvedMenu from "@/components/ui/navigation/header/CurvedMenu";
+import Footer from "@/components/ui/footer/footer";
+import ToTop from "@/components/ui/toTop/toTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +31,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <CurvedMenu />
             <main>{children}</main>
             {/* <Analytics /> */}
+            <Footer />
+            <ToTop />
           </ThemeProvider>
         </SoundContextProvider>
       </body>

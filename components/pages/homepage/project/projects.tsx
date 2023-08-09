@@ -47,7 +47,7 @@ const projectsData = [
 
 const Projects: FC<projectsProps> = ({}) => {
   return (
-    <div className="w-full flex flex-col items-center gap-10">
+    <div id="projets" className="w-full flex flex-col items-center gap-10">
       <div>
         <h2
           className={`text-clamp3xl font-bold relative flex justify-center h-fit w-full`}
