@@ -106,8 +106,12 @@
 }
 
 
+.mdx > h1,.mdx > h2,.mdx > h3, h4,.mdx > h5,.mdx > h6,.mdx > p,.mdx > a,.mdx > ul,.mdx > li {
+  @apply max-w-4xl mx-auto w-full;
+}
 
-
-
+.mdx > h1,.mdx > h2, .mdx > h3,.mdx > h4, .mdx >h5,.mdx > h6 {
+  @apply !text-clamp3xl;
+}
 
 

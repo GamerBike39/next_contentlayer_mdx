@@ -12,14 +12,14 @@ const projectsData = [
     content:
       "Jeu de cherche et trouve où le but est de retrouver les langages de programmations cachés dans l'image",
     technologies: ["Javascript", "CSS"],
-    link: "https://popcode.netlify.app/",
+    link: "/popcode",
     picture: "/blog-post-1.jpg",
   },
   {
     title: "Mont Poupet Bike Park",
     content: "Site vitrine pour le bike park du Mont Poupet",
     technologies: ["NextJS", "Typescript", "TailwindCSS", "MDX"],
-    link: "https://mpbp-blog.vercel.app/",
+    link: "/mpbp",
     picture: "/blog-post-2.jpg",
   },
   {
@@ -33,22 +33,15 @@ const projectsData = [
       "PlanetScale",
       "Prisma",
     ],
-    link: "https://breadit-xi.vercel.app/",
+    link: "/breadit",
     picture: "/blog-post-3.jpg",
   },
   {
     title: "ACSCape",
     content: "Escape Game",
     technologies: ["PHP", "Javascript", "Bootstrap", "MySQL"],
-    link: "https://juldev.fr/",
+    link: "/acscape",
     picture: "/blog-post-4.jpg",
-  },
-  {
-    title: "Portfolio",
-    content: "Site vitrine pour me présenter moi et mes projets",
-    technologies: ["NextJS", "Typescript", "TailwindCSS", "MDX"],
-    link: "https://julweb.vercel.app/",
-    picture: "/blog-post-1.jpg",
   },
 ];
 
@@ -64,6 +57,9 @@ const Projects: FC<projectsProps> = ({}) => {
         <h3 className="text-foreground/50 text-xl text-right">
           Quelques projets réalisés
         </h3>
+        <p className="text-[10px] text-foreground/40">
+          Listes non exhaustive 😅
+        </p>
       </div>
       <div className="w-full h-full flex flex-col items-center gap-10">
         {projectsData.map((project, index) => (
@@ -89,11 +85,11 @@ const Projects: FC<projectsProps> = ({}) => {
                   ))}
                 </div>
 
-                <Button className="flex w-full mt-3" size={"sm"}>
-                  <Link href={project.link}>
+                <Link href={project.link}>
+                  <Button className="flex w-full mt-3" size={"sm"}>
                     <SVGHoverAnimation text="Consulter" />
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </div>
             <div className="col-span-5 lg:col-span-3 h-64 lg:h-full w-full relative">

@@ -9,7 +9,14 @@ import {
 import { Drawer } from "vaul";
 
 import { cardData } from "./cardData";
-import { MoveRight, PlusCircle, StepBack, StepForward, X } from "lucide-react";
+import {
+  ArrowDownFromLine,
+  MoveRight,
+  PlusCircle,
+  StepBack,
+  StepForward,
+  X,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion, useDragControls } from "framer-motion";
 
@@ -24,7 +31,7 @@ const CardInfo: FC<CardProps> = ({}) => {
       setIsButtonDisabled(true); // Désactive temporairement le bouton
       const time = setTimeout(() => {
         setIsButtonDisabled(false); // Réactive le bouton après un délai
-      }, 500);
+      }, 600);
       // setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length); // Passe à l'index suivant en boucle
       setCurrentIndex((prevIndex) => {
         if (prevIndex === cardData.length - 1) {
@@ -42,7 +49,7 @@ const CardInfo: FC<CardProps> = ({}) => {
       setIsButtonDisabled(true); // Désactive temporairement le bouton
       const time = setTimeout(() => {
         setIsButtonDisabled(false); // Réactive le bouton après un délai
-      }, 500);
+      }, 600);
 
       // setCurrentIndex((prevIndex) => (prevIndex - 1) % cardData.length); // Passe à l'index précédent en boucle
       setCurrentIndex((prevIndex) => {
@@ -62,9 +69,9 @@ const CardInfo: FC<CardProps> = ({}) => {
   const controls = useDragControls();
 
   const handleDragEnd = (e: any, info: { offset: { x: number } }) => {
-    if (info.offset.x > 150) {
+    if (info.offset.x > 100) {
       handlePrevIndex();
-    } else if (info.offset.x < -150) {
+    } else if (info.offset.x < -100) {
       handleNextIndex();
     }
   };
@@ -77,7 +84,7 @@ const CardInfo: FC<CardProps> = ({}) => {
     <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
       {cardData.map((item, index) => (
         <Card
-          key={index}
+          key={index + item.title}
           className="hover:scale-105 hover:shadow-lg transition-all duration-300 delay-200 h-auto group hover:border"
         >
           <CardHeader className="lg:flex-row flex-col-reverse justify-center items-center gap-6 transition">
@@ -99,9 +106,13 @@ const CardInfo: FC<CardProps> = ({}) => {
                 </Drawer.Trigger>
                 <Drawer.Portal>
                   <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-                  <Drawer.Content className="bg-zinc-100 flex flex-col h-[96%] mt-24 fixed bottom-0 left-0 right-0">
-                    <div className="p-4 bg-white dark:bg-black flex-1">
-                      <div className="mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8" />
+                  <Drawer.Content className="bg-zinc-100 flex flex-col h-[96%] mt-24 fixed bottom-0 left-0 right-0 ">
+                    <div className="p-4 bg-white dark:bg-black flex-1 cursor-grab  active:cursor-grabbing">
+                      <div className="relative mx-auto w-12 h-1.5 flex-shrink-0 rounded-full bg-zinc-300 mb-8 hoverarrow group transition-all">
+                        <div className="hidden absolute -bottom-3 w-full h-full group-hover:flex opacity-0 group-hover:opacity-100 group-hover:animate-bounce items-center justify-center transition ease-in-out duration-500">
+                          <ArrowDownFromLine className="w-4 h-4 text-zinc-300" />
+                        </div>
+                      </div>
                       <div className="max-w-4xl mx-auto">
                         <Drawer.Trigger className={"hidden lg:block"}>
                           <X className="absolute top-5 left-5" />
@@ -134,7 +145,7 @@ const CardInfo: FC<CardProps> = ({}) => {
 
                         <AnimatePresence mode="wait">
                           <motion.div
-                            className="grid grid-cols-1 lg:grid-cols-2 gap-10 overflow-auto h-[80lvh] lg:h-full px-2 my-10 pb-24"
+                            className="grid grid-cols-1 lg:grid-cols-2 gap-10 overflow-auto h-[80lvh] lg:h-full px-2 my-10 pb-24 cursor-auto active:cursor-grabbing"
                             key={currentIndex} // Utilise l'index actuel comme clé
                             // initial={{ opacity: 0 }} // Définis les styles initiaux
                             // animate={{ opacity: 1 }} // Définis les styles d'animation
@@ -171,13 +182,33 @@ const CardInfo: FC<CardProps> = ({}) => {
                                         <MoveRight className="w-4 h-4" />{" "}
                                         {contentItem.title}
                                       </h4>
-                                      <p className="text-foreground/70">
+                                      <motion.p
+                                        className="text-foreground/70"
+                                        key={contentIndex}
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 20 }}
+                                        transition={{
+                                          duration: 0.1,
+                                          delay: 0.2 * contentIndex,
+                                          ease: "easeInOut",
+                                        }}
+                                        whileInView={{
+                                          opacity: 1,
+                                          y: 0,
+                                          transition: {
+                                            duration: 0.2,
+                                            delay: 0.2 * contentIndex,
+                                          },
+                                        }}
+                                      >
                                         {contentItem.text}
-                                      </p>
+                                      </motion.p>
                                     </div>
                                   </motion.div>
                                 )
                               )}
+                            <div className="lg:hidden h-10 w-full" />
                           </motion.div>
                         </AnimatePresence>
                       </div>
